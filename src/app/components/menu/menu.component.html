@@ -1,0 +1,51 @@
+<div class="menu-con flex flex-col align-center justify-center">
+  <div class="nav-links-con flex align-center" >
+    <div class="flex align-center link ">
+      <mat-icon>school</mat-icon>
+      <p>E-Tutor</p>
+    </div>
+
+    <div class="link">
+      Tutors advertisements
+    </div>
+
+    <div class="link">
+      Students advertisements
+    </div>
+
+    <div class="link">
+      Login
+    </div>
+
+    <div>
+      <button class="main-btn">
+        Register
+      </button>
+    </div>
+  </div>
+
+  <div class="search-bar flex justify-center">
+    <h1>Find the best lessons and offers from over 0 advertisements</h1>
+  </div>
+
+  <div class="form-con">
+    <form class="flex align-center">
+
+      <mat-form-field class="flex ">
+        <mat-icon>search</mat-icon>
+        <input matInput class="search-input"  placeholder="Ex. Physics">
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Add category</mat-label>
+        <mat-select [(value)]="selectedCategory" (selectionChange)="onCategorySelecting()">
+          <mat-option value="tutor">Tutor's advertisements</mat-option>
+          <mat-option value="student">Student's advertisements</mat-option>
+          <mat-option value="all">All advertisements</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="main-btn">Search</button>
+    </form>
+  </div>
+</div>

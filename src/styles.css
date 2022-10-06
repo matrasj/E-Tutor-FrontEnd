@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Dancing+Script:wght@500&family=Inter:wght@200;300;400&family=Montserrat:wght@200;300&family=Open+Sans&family=Oswald:wght@200;500&family=Playfair+Display&family=Roboto+Mono:ital,wght@1,200;1,400&family=Roboto:ital,wght@0,100;1,300&family=Rubik:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  color: #333;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-btn {
+  background: none;
+  color: #f3f3f3;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.4rem;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.main-btn:hover {
+  background-color: #f3f3f3;
+  color: rgba(75, 197, 153);
+  transition: all 0.2s linear;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
