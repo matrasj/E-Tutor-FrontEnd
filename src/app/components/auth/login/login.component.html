@@ -1,0 +1,25 @@
+<div class="login-form-con flex justify-center ">
+  <form class="form flex justify-center" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+    <h1>Login here</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your username</mat-label>
+      <input formControlName="username" matInput type="text">
+      <mat-error *ngIf="username.errors && (username.dirty || username.touched)">
+        Please enter valid username
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+        Please enter valid password
+      </mat-error>
+    </mat-form-field>
+
+    <button class="second-btn">Login</button>
+  </form>
+</div>

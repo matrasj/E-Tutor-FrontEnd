@@ -1,0 +1,18 @@
+<div class="create-advertisement-con">
+  <h1>Create advertisement</h1>
+  <hr/>
+
+  <h2>Basic info</h2>
+  <mat-form-field>
+    <mat-select [formControl]="subjectCtrl" placeholder="Subject" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search placeholderLabel="Search for subjects"
+          [formControl]="subjectFilterCtrl"></ngx-mat-select-search>
+      </mat-option>
+
+      <mat-option *ngFor="let subject of filteredSubjects | async" [value]="subject">
+        {{subject.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

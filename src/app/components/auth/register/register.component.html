@@ -1,0 +1,48 @@
+<div class="login-form-con flex justify-center ">
+  <form class="form flex justify-center" [formGroup]="registerFormGroup" (ngSubmit)="onCreatingAccount()">
+    <h1>Register here</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your First Name</mat-label>
+      <input formControlName="firstName" matInput type="text">
+      <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+        Please enter valid First Name
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your Last Name</mat-label>
+      <input formControlName="lastName" matInput type="text">
+      <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+        Please enter valid Last Name
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your username</mat-label>
+      <input formControlName="username" matInput type="text">
+      <mat-error *ngIf="username.errors && (username.dirty || username.touched)">
+        Please enter valid username
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+        Please enter valid password
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input formControlName="email" matInput type="text">
+      <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
+        Please enter valid email
+      </mat-error>
+    </mat-form-field>
+    <button class="second-btn" type="submit">Register</button>
+  </form>
+</div>

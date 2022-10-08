@@ -1,23 +1,21 @@
 .menu-con {
-
   background-image: linear-gradient(to right bottom, rgba(75, 197, 153, 0.9), rgba(75, 197, 153, 0.99)) , url('src/assets/images/menu_background.jpg');
   padding: 1.8rem;
 }
 
 .nav-links-con {
-  gap: 2.6rem;
+  gap: 2rem;
   margin-bottom: 2.8rem;
 }
 
-.link {
+.link, .menu-link{
   color: #f3f3f3;
   font-size: 1.2rem;
-}
-
-.link {
   position: relative;
   cursor: pointer;
 }
+
+
 
 .link:after {
   content: '';
@@ -48,10 +46,11 @@ h1 {
   font-weight: 10;
   width: 80%;
   text-align: center;
+  margin-bottom: 2.4rem;
 }
 
 .form-con {
-  background-color: #fff;
+  /*background-color: #fff;*/
   /*padding: 2rem;*/
   width: 100%;
 }
@@ -59,12 +58,38 @@ h1 {
 mat-icon {
   transform: scale(2);
 }
+.profile-icon {
+  transform: scale(1.2);
+}
 
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -1.25rem !important;
+}
+
+.profile-button {
+  font-size: 0.8rem;
+}
 .search-input {
   background: none;
   border: none;
   font-size: 1rem;
 }
 
+/* U S E R   M E N U */
+.user-bar {
+  color: #fff;
+  width: max-content;
+  /*z-index: 10;*/
+  /*background-color: #fff;*/
+}
 
 
+
+.profile-img {
+  width: 4rem;
+  border-radius: 50%;
+}
+
+p {
+  margin: 0;
+}

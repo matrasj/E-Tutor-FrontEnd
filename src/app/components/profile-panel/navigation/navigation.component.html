@@ -1,0 +1,33 @@
+<div class="main-nav-con">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true" disableClose="true">
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="activities-list flex-col ">
+        <div class="activity flex align-center justify-start">
+          <mat-icon> email</mat-icon>
+          <p>Message</p>
+        </div>
+        <hr/>
+
+        <div class="activity flex align-center justify-start" routerLink="/profile/dashboard" routerLinkActive="activity-active">
+          <mat-icon>dashboard</mat-icon>
+          <p>Dashboard</p>
+        </div>
+
+        <div class="activity flex align-center justify-start" routerLink="/profile/account" routerLinkActive="activity-active">
+          <mat-icon>account_box</mat-icon>
+          <p>My account</p>
+        </div>
+
+        <div class="activity flex align-center justify-start" routerLink="/profile/advertisements" routerLinkActive="activity-active">
+          <mat-icon> list_alt</mat-icon>
+          <p>Advertisements</p>
+        </div></div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

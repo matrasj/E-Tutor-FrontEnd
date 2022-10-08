@@ -1,6 +1,6 @@
 <div class="menu-con flex flex-col align-center justify-center">
   <div class="nav-links-con flex align-center" >
-    <div class="flex align-center link ">
+    <div class="flex align-center menu-link" routerLink="/" style="gap: 1rem">
       <mat-icon>school</mat-icon>
       <p>E-Tutor</p>
     </div>
@@ -13,27 +13,53 @@
       Students advertisements
     </div>
 
-    <div class="link">
-      Login
+    <div class="flex align-center" style="gap: 2rem;" *ngIf="!isAuthenticated else authenticatedMenu">
+      <div class="link" routerLink="/login" >
+        Login
+      </div>
+
+      <div>
+        <button class="main-btn" routerLink="/register">
+          Register
+        </button>
+      </div>
     </div>
 
-    <div>
-      <button class="main-btn">
-        Register
-      </button>
-    </div>
+    <ng-template #authenticatedMenu>
+      <div class="user-bar" >
+        <div [matMenuTriggerFor]="appMenu" class="flex align-center" style="cursor: pointer; gap: 1rem">
+          <p>Hi {{ currentUser.firstName }} {{ currentUser.lastName}}</p>
+          <img class="profile-img" src="../../../assets/images/avatar.png"/>
+        </div>
+
+        <mat-menu #appMenu="matMenu">
+          <button class="profile-button" mat-menu-item routerLink="/profile">
+            <mat-icon class="profile-icon" >settings</mat-icon>
+            Profile settings
+
+          </button>
+          <button class="profile-button" mat-menu-item (click)="logout()">
+            <mat-icon class="profile-icon">logout</mat-icon>
+            Logout
+          </button>
+
+        </mat-menu>
+
+
+      </div>
+    </ng-template>
   </div>
 
-  <div class="search-bar flex justify-center">
+  <div class="search-bar flex justify-center" *ngIf="shouldBeHeaderVisible">
     <h1>Find the best lessons and offers from over 0 advertisements</h1>
   </div>
 
-  <div class="form-con">
-    <form class="flex align-center">
+  <div class="form-con" *ngIf="shouldBeSearchFormVisible">
+    <form class="flex align-end justify-center" style="gap: 1rem">
+      <mat-icon>search</mat-icon>
+      <mat-form-field class="flex" >
 
-      <mat-form-field class="flex ">
-        <mat-icon>search</mat-icon>
-        <input matInput class="search-input"  placeholder="Ex. Physics">
+        <input  matInput class="search-input" style="color: #333" placeholder="Ex. Physics">
       </mat-form-field>
 
 
@@ -45,7 +71,7 @@
           <mat-option value="all">All advertisements</mat-option>
         </mat-select>
       </mat-form-field>
-      <button class="main-btn">Search</button>
+      <button class="second-btn">Search</button>
     </form>
   </div>
 </div>

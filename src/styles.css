@@ -32,7 +32,7 @@ body {
   flex-direction: column;
 }
 
-.main-btn {
+.main-btn, .second-btn {
   background: none;
   color: #f3f3f3;
   border: none;
@@ -40,6 +40,19 @@ body {
   padding: 0.8rem 1.4rem;
   transition: all 0.2s linear;
   cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.second-btn {
+  background-color: rgba(75, 197, 153);
+  color: #f3f3f3;
+  border: solid 2px rgba(75, 197, 153);
+}
+
+.second-btn:hover {
+  background-color: #fff;
+  color: rgba(75, 197, 153);
+  transition: all 0.2s linear;
 }
 
 .main-btn:hover {
@@ -48,9 +61,25 @@ body {
   transition: all 0.2s linear;
 }
 
+.second-btn:hover {
+
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
   outline: none;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
