@@ -12,7 +12,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import { FooterComponent } from './components/footer/footer.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {AuthService} from "./service/auth-service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -29,14 +29,17 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableModule} from "@angular/material/table";
 import { CreateAdvertisementComponent } from './components/profile-panel/activities/create-advertisement/create-advertisement.component';
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {EditorModule} from "@tinymce/tinymce-angular";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {AdvertisementService} from "./service/advertisement-service";
 
 
 const routes = [
   {path : "login", component: LoginComponent},
   {path : "register", component: RegisterComponent},
   {path : "profile", component: ProfilePanelComponent, children : [
+      {path : "", component: DashboardComponent},
       {path : "messages", component : MessagesComponent},
-      {path : "dashboard", component: DashboardComponent},
       {path : "advertisements", component: AdvertisementsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
       {path : "create-advertisement-student", component: CreateAdvertisementComponent}
@@ -78,10 +81,14 @@ const routes = [
     MatTabsModule,
     MatTableModule,
     MatSelectModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    EditorModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [AuthService,
-    { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true}],
+    { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
+  AdvertisementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

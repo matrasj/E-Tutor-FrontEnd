@@ -1,0 +1,27 @@
+mat-form-field {
+  width: 100%;
+}
+
+.create-advertisement-con {
+  width: 100%;
+  max-width: 50rem;
+  min-width: 35rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1.2rem 2.4rem;
+}
+
+h4 {
+  margin-bottom: 0.6rem;
+}
+
+.hour-input {
+  font-size: 0.8rem;
+}
+
+p {
+  margin: 0;
+}
+
+.add-btn {
+  margin-top: 1.8rem;
+}

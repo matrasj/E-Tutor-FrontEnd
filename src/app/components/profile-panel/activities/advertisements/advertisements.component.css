@@ -5,3 +5,7 @@
 button {
   margin-top: 2.8rem;
 }
+
+.con {
+  min-width: 30rem;
+}

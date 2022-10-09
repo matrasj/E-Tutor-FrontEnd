@@ -3,16 +3,124 @@
   <hr/>
 
   <h2>Basic info</h2>
-  <mat-form-field>
-    <mat-select [formControl]="subjectCtrl" placeholder="Subject" #singleSelect>
-      <mat-option>
-        <ngx-mat-select-search placeholderLabel="Search for subjects"
-          [formControl]="subjectFilterCtrl"></ngx-mat-select-search>
-      </mat-option>
+ <form [formGroup]="advertisementFormGroup" (ngSubmit)="onAdvertisingCreating()">
+  <div formGroupName="advertisement">
+    <div class="flex-col" style="gap: 1.8rem">
+      <mat-form-field>
+        <mat-select required  [formControl]="subjectCtrl" placeholder="Subject" #singleSelect>
+          <mat-option>
+            <ngx-mat-select-search placeholderLabel="Search for subjects"
+                                   [formControl]="subjectFilterCtrl"></ngx-mat-select-search>
+          </mat-option>
 
-      <mat-option *ngFor="let subject of filteredSubjects | async" [value]="subject">
-        {{subject.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+          <mat-option *ngFor="let subject of filteredSubjects | async" [value]="subject">
+            {{subject.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="subjectCtrl.errors && (subjectCtrl.dirty || subjectCtrl.touched)">Subject is required</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Price for lesson</mat-label>
+        <input formControlName="lessonPrice" required matInput placeholder="Ex. 95" value="50" type="number">
+        <mat-error *ngIf="lessonPrice.errors && (lessonPrice.dirty || lessonPrice.touched)">Please enter lesson's price</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Lesson time (minutes)</mat-label>
+        <input formControlName="minutesDuration" required matInput placeholder="Ex. 60" value="60" type="number">
+        <mat-error *ngIf="minutesDuration.errors && (minutesDuration.dirty || minutesDuration.touched)">Please enter lesson's duration</mat-error>
+      </mat-form-field>
+
+      <div>
+        <h4>Lesson place</h4>
+        <div class="flex-col">
+          <mat-checkbox color="primary" *ngFor="let place of places" [value]="place.name" [checked]="place.checked"
+                        (change)="onPlaceSelecting($event)">{{ place.name }}</mat-checkbox>
+
+        </div>
+
+      </div>
+
+      <div>
+        <h4>Short description</h4>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Short description (visible in adds list)</mat-label>
+          <textarea formControlName="shortDescription" matInput placeholder="Ex. I'll give lessons from Java..."></textarea>
+          <mat-error *ngIf="shortDescription.errors && (shortDescription.dirty || shortDescription.touched)">Please describe your advertisement</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <h4>Content of advertisement</h4>
+
+        <editor
+          [ngClass]="content.errors && (content.touched || content.dirty) ? 'is-invalid' : ''"
+          id="content"
+          [init]="{plugins : 'link'}"
+          formControlName="content"
+        >
+        </editor>
+        <mat-error *ngIf="content.errors && (content.dirty || content.touched)">Please describe your advertisement</mat-error>
+      </div>
+
+      <hr/>
+
+      <div>
+        <h1 style="color: #666">Days and hours of lessons</h1>
+        <div class="flex-col" style="gap: 1.8rem">
+          <div *ngFor="let availablity of availabilityWithDaysAndHours" class="flex align-center" style="gap: 2.4rem;">
+            <mat-checkbox color="primary"  [checked]="availablity.checked" [value]="availablity.dayName"
+                          (change)="onAvailabilityChanging($event)">{{ availablity.dayName }}</mat-checkbox>
+            <div *ngIf="availablity.checked" class="flex align-center" style="gap: 1.8rem">
+              <div class="flex align-end" style="gap: 0.4rem">
+                <p>From</p>
+                <mat-form-field  appearance="fill" style="gap: 0.6rem">
+                  <mat-label>Start hour</mat-label>
+                  <input class="hour-input" matInput placeholder="Ex. 12:00"
+                          name="start-hour"
+                         ngDefaultControl
+                         [(ngModel)]="availablity.hourStart"
+                         [ngModelOptions]="{standalone: true}"
+                         >
+                </mat-form-field>
+              </div>
+
+              <div class="flex align-end" style="gap: 0.4rem">
+                <p>Till</p>
+                <mat-form-field appearance="fill" style="gap: 0.6rem">
+                  <input class="hour-input" matInput placeholder="Ex. 18:00"
+                        name="end-hour"
+                         ngDefaultControl
+                         [(ngModel)]="availablity.hourEnd"
+
+                         [ngModelOptions]="{standalone: true}">
+                  <mat-label>End hour</mat-label>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+      <div>
+        <h1>Additional info</h1>
+        <div>
+          <h4>Range of lessons</h4>
+          <div class="flex-col" style="gap: 0.2rem">
+            <mat-checkbox color="primary" *ngFor="let lessonRange of lessonsRanges" [value]="lessonRange.name"
+                          [checked]="lessonRange.checked"
+                          (change)="onLessonRangeSelecting($event)">{{ lessonRange.name }}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <button class="second-btn add-btn">Add advertisement</button>
+  </div>
+ </form>
 </div>
