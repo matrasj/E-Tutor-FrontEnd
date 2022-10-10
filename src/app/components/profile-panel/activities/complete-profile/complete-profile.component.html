@@ -5,19 +5,22 @@
   <form [formGroup]="userFormGroup" (ngSubmit)="onChangesSaving()">
     <div formGroupName="user">
       <h4>Profile image</h4>
-      <div class="content-con flex align-center">
-        <img class="user-img" src="../../../../../assets/images/avatar.png"/>
+      <form class="content-con flex align-center" style="gap: 1.8rem" (submit)="onProfileImageChanging($event)">
+        <img class="user-img"
+             [src]="currentUserModel?.profileImagePath ? sanitizerPhoto(currentUserModel?.profileImagePath)
+             : 'assets/images/default_avatar.png'"/>
         <div class="image-con flex-col align-start">
           <div class="flex-col">
-            <input type="file" class="form-control"  id="image">
+            <input type="file" class="form-control" (change)="onFileSelect($event)" id="image" name="profile-image" >
             <p class="hint">Choose file for your profile image</p>
           </div>
 
-          <div style="padding-left: 0.8rem">
+          <div style="padding-left: 0.8rem; gap: 1rem" class="flex align-center">
             <button class="second-btn">Change</button>
+            <button type="button" (click)="onRemovingProfileImage()" *ngIf="currentUserModel?.profileImagePath" class="second-btn delete-button">Remove</button>
           </div>
         </div>
-      </div>
+      </form>
 
       <hr/>
       <h4>Basic info</h4>

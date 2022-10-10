@@ -12,12 +12,12 @@
         </div>
         <hr/>
 
-        <div class="activity flex align-center justify-start" routerLink="/profile/dashboard" routerLinkActive="activity-active">
+        <div class="activity flex align-center justify-start" routerLink="/profile" [routerLinkActiveOptions]="{exact : true}" routerLinkActive="activity-active">
           <mat-icon>dashboard</mat-icon>
           <p>Dashboard</p>
         </div>
 
-        <div class="activity flex align-center justify-start" routerLink="/profile/account" routerLinkActive="activity-active">
+        <div class="activity flex align-center justify-start" routerLink="/profile/complete" routerLinkActive="activity-active">
           <mat-icon>account_box</mat-icon>
           <p>My account</p>
         </div>

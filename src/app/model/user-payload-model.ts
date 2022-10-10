@@ -6,6 +6,7 @@ export class UserPayloadModel {
   public email : string,
   public phoneNumber : string,
   public address : string,
-  public city : string) {
+  public city : string,
+  public profileImagePath : string) {
   }
 }

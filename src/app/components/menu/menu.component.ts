@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {LoginUserPayloadResponseModel} from "../../model/login-user-payload-response-model";
 import {AuthService} from "../../service/auth-service";
+import {UserPayloadModel} from "../../model/user-payload-model";
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   shouldBeHeaderVisible = true;
   isAuthenticated : boolean = false;
   shouldBeSearchFormVisible : boolean = true;
-  currentUser : LoginUserPayloadResponseModel | any = null;
+  currentUser : UserPayloadModel | any = null;
   constructor(private router : Router,
               private authService : AuthService) { }
 

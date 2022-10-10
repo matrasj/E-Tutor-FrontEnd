@@ -1,3 +1,12 @@
 .home-con {
   background-color: #e9ecef;
+  padding: 2.4rem;
+}
+
+p {
+  margin: 0;
+}
+
+.subject-con {
+  min-width: 10rem;
 }

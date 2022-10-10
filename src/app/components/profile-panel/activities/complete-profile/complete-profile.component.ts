@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Sanitizer} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../service/user-service";
 import {AuthService} from "../../../../service/auth-service";
 import {UserPayloadModel} from "../../../../model/user-payload-model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-complete-profile',
@@ -14,11 +16,13 @@ import {Router} from "@angular/router";
 export class CompleteProfileComponent implements OnInit {
   public userFormGroup : FormGroup | any;
   currentUserModel : UserPayloadModel | any;
+  profileImageFile : File | null = null;
   constructor(private formBuilder : FormBuilder,
               private userService : UserService,
               private authService : AuthService,
               private router : Router,
-              private toastrService : ToastrService) { }
+              private toastrService : ToastrService,
+              private sanitizer : DomSanitizer) { }
 
   ngOnInit(): void {
     this.userFormGroup = this.formBuilder.group({
@@ -42,6 +46,10 @@ export class CompleteProfileComponent implements OnInit {
         this.address.setValue(this.currentUserModel.address);
         this.city.setValue(this.currentUserModel.city);
       });
+  }
+
+  public sanitizerPhoto(url : string) : SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   get firstName() {
@@ -92,4 +100,38 @@ export class CompleteProfileComponent implements OnInit {
     this.currentUserModel.city = this.city.value;
   }
 
+  onFileSelect(event : any) {
+    this.profileImageFile = event.target.files[0];
+  }
+
+  onProfileImageChanging(event: SubmitEvent) {
+    event.preventDefault();
+
+    if (this.profileImageFile !== null) {
+      console.log(this.currentUserModel)
+      this.userService.updateProfileImage(this.currentUserModel.id, this.profileImageFile)
+        .subscribe((res) => {
+          this.profileImageFile = null;
+          window.location.reload();
+          this.toastrService.success(res);
+        }, (error) => {
+          window.location.reload();
+          this.toastrService.error(error);
+        })
+    } else {
+      this.toastrService.info("You need to select file")
+    }
+  }
+
+  onRemovingProfileImage() {
+    this.userService.removeProfileImageByUserId(this.currentUserModel.id)
+      .subscribe((res) => {
+        window.location.reload();
+        this.toastrService.success(res);
+
+      }, (error) => {
+        window.location.reload();
+        this.toastrService.error(error);
+      })
+  }
 }

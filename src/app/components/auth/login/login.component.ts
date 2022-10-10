@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.password.value
         )
       ).subscribe((res) => {
-        this.authService.setCurrentUser(res.userAuthPayloadResponse);
+        this.authService.setCurrentUser(res.userPayload);
           this.authService.setToken(res.jwtToken);
 
 

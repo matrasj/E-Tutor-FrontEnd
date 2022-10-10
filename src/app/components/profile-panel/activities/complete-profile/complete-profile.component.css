@@ -19,6 +19,8 @@ mat-form-field {
 
 .user-img {
   width: 8rem;
+  border-radius: 50%;
+  height: 8rem;
 }
 
 hr {

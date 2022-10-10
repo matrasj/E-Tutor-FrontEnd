@@ -5,11 +5,12 @@ import {Environment} from "@angular/cli/lib/config/workspace-schema";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
 import {LoginPayloadRequestModel} from "../model/login-payload-request-model";
-import {LoginUserPayloadResponseModel} from "../model/login-user-payload-response-model";
+import {UserPayloadModel} from "../model/user-payload-model";
+
 
 interface AuthenticationResponse {
   jwtToken : string,
-  userAuthPayloadResponse : LoginUserPayloadResponseModel
+  userPayload : UserPayloadModel
 }
 
 @Injectable({
@@ -38,8 +39,8 @@ export class AuthService {
     this.isAuthenticated.next(true);
   }
 
-  setCurrentUser(userAuthPayloadResponse: LoginUserPayloadResponseModel) {
-    localStorage.setItem('currentUser', JSON.stringify(userAuthPayloadResponse));
+  setCurrentUser(userPayload: UserPayloadModel) {
+    localStorage.setItem('currentUser', JSON.stringify(userPayload));
   }
 
   getCurrentUser() {

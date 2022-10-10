@@ -32,7 +32,7 @@ body {
   flex-direction: column;
 }
 
-.main-btn, .second-btn {
+.main-btn, .second-btn, .delete-button{
   background: none;
   color: #f3f3f3;
   border: none;
@@ -53,6 +53,16 @@ body {
   background-color: #fff;
   color: rgba(75, 197, 153);
   transition: all 0.2s linear;
+}
+
+.delete-button {
+  background-color: #fa5252;
+  border: solid 2px #fa5252;
+}
+
+.delete-button:hover {
+  background-color: #fff;
+  color: #fa5252;
 }
 
 .main-btn:hover {
@@ -82,4 +92,8 @@ button:focus {
 
 .justify-end {
   justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
 }

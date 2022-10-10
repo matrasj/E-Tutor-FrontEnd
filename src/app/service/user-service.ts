@@ -22,4 +22,20 @@ export class UserService {
     });
   }
 
+  updateProfileImage(userId : number, profileImageFile: File) : Observable<string> {
+    const formData = new FormData();
+    formData.append("imageFile", profileImageFile)
+    return this.httpClient.post(`${this.API_URL}/users/${userId}/profile-image`, formData, {
+      responseType : 'text'
+    });
+
+  }
+
+  removeProfileImageByUserId(userId : number) : Observable<string> {
+    return this.httpClient.delete(`${this.API_URL}/users/${userId}/profile-image`, {
+      responseType : 'text'
+    });
+  }
+
+
 }
