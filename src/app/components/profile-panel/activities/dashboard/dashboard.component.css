@@ -1,0 +1,36 @@
+.grid-con {
+  min-width: 35rem;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  column-gap: 1.2rem;
+  row-gap: 1.2rem;
+}
+
+.user-panel {
+  grid-column: 1 / 3;
+}
+
+.notifications-panel {
+  grid-column: 3 / 5;
+}
+
+.adds-list-panel {
+  width: 100%;
+  grid-column: 1 / 5;
+}
+
+h4 {
+  color: #384047;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.user-username {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.panel {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1.2rem 2.4rem;
+}

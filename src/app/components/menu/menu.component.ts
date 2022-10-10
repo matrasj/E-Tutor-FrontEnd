@@ -23,12 +23,9 @@ export class MenuComponent implements OnInit {
       .subscribe((isAuthenticated) => {
         if (isAuthenticated) {
           this.isAuthenticated = isAuthenticated;
-          console.log(this.authService.getCurrentUser())
           this.currentUser = this.authService.getCurrentUser();
         }
       });
-
-
 
     this.router.events
       .subscribe(

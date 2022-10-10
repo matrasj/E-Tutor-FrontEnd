@@ -1,0 +1,35 @@
+.complete-panel {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1.2rem 2.4rem;
+}
+
+h4 {
+  color: #384047;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.content-con {
+  padding: 1.2rem 2.4rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.user-img {
+  width: 8rem;
+}
+
+hr {
+  margin-top: 1.8rem;
+}
+.hint {
+  font-weight: 200;
+  color: #9999;
+  font-size: 0.8rem;
+  padding-left: 0.8rem;
+}
+.form-control {
+  border: 0;
+}

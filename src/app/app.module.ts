@@ -32,6 +32,9 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {AdvertisementService} from "./service/advertisement-service";
+import {NgCircleProgressModule} from "ng-circle-progress";
+import { CompleteProfileComponent } from './components/profile-panel/activities/complete-profile/complete-profile.component';
+import {UserService} from "./service/user-service";
 
 
 const routes = [
@@ -40,6 +43,7 @@ const routes = [
   {path : "profile", component: ProfilePanelComponent, children : [
       {path : "", component: DashboardComponent},
       {path : "messages", component : MessagesComponent},
+      {path : "complete", component : CompleteProfileComponent},
       {path : "advertisements", component: AdvertisementsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
       {path : "create-advertisement-student", component: CreateAdvertisementComponent}
@@ -60,7 +64,8 @@ const routes = [
     MessagesComponent,
     DashboardComponent,
     AdvertisementsComponent,
-    CreateAdvertisementComponent
+    CreateAdvertisementComponent,
+    CompleteProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,16 @@ const routes = [
     RouterModule.forRoot(routes),
     MatButtonModule,
     ReactiveFormsModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300
+
+    }),
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
@@ -88,7 +103,8 @@ const routes = [
   ],
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
-  AdvertisementService],
+  AdvertisementService,
+  UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
