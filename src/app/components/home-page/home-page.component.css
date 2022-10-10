@@ -10,3 +10,7 @@ p {
 .subject-con {
   min-width: 10rem;
 }
+
+.grid-con {
+  grid-template-columns: repeat(2, 1fr);
+}

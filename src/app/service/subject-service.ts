@@ -15,4 +15,9 @@ export class SubjectService {
   public getAllSubjects() : Observable<SubjectSearchResponseModel[]> {
     return this.httpClient.get<SubjectSearchResponseModel[]>(`${this.API_URL}/subjects`)
   }
+
+  getEntrySubjectsWithAddsQuantities() : Observable<Map<string, number>> {
+    return this.httpClient.get<Map<string, number>>(`${this.API_URL}/subjects/quantity-entry-map`);
+
+  }
 }

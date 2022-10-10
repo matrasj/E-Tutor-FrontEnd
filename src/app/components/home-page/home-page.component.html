@@ -2,12 +2,12 @@
   <h1>Subjects and cities</h1>
   <div class="flex">
     <div class="grid-con">
-      <div class="subject-con flex align-center space-between">
+      <div class="subject-con flex align-center space-between" *ngFor="let subjectWithQuan of subjectsWithAddsQuantity | keyvalue" >
         <div class="flex align-center" style="gap: 0.6rem">
           <mat-icon>school</mat-icon>
-          <p>biologia</p>
+          <p>{{ subjectWithQuan.key}}</p>
         </div>
-        <span>(132)</span>
+        <span>({{ subjectWithQuan.value }})</span>
       </div>
     </div>
   </div>
