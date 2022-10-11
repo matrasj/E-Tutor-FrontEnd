@@ -35,6 +35,7 @@ import {AdvertisementService} from "./service/advertisement-service";
 import {NgCircleProgressModule} from "ng-circle-progress";
 import { CompleteProfileComponent } from './components/profile-panel/activities/complete-profile/complete-profile.component';
 import {UserService} from "./service/user-service";
+import {CityService} from "./service/city-service";
 
 
 const routes = [
@@ -104,6 +105,7 @@ const routes = [
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
   AdvertisementService,
+  CityService,
   UserService],
   bootstrap: [AppComponent]
 })

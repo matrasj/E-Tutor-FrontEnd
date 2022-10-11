@@ -3,6 +3,8 @@ import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {AuthService} from "../../service/auth-service";
 import {UserPayloadModel} from "../../model/user-payload-model";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {UserService} from "../../service/user-service";
 
 @Component({
   selector: 'app-menu',
@@ -16,14 +18,17 @@ export class MenuComponent implements OnInit {
   shouldBeSearchFormVisible : boolean = true;
   currentUser : UserPayloadModel | any = null;
   constructor(private router : Router,
-              private authService : AuthService) { }
+              private authService : AuthService,
+              private sanitizer : DomSanitizer,
+              private userService : UserService) { }
 
   ngOnInit(): void {
     this.authService.isAuthenticated
       .subscribe((isAuthenticated) => {
         if (isAuthenticated) {
           this.isAuthenticated = isAuthenticated;
-          this.currentUser = this.authService.getCurrentUser();
+          this.userService.getCurrentUserById(this.authService.getCurrentUser().id)
+            .subscribe((user) => this.currentUser = user);
         }
       });
 
@@ -39,6 +44,10 @@ export class MenuComponent implements OnInit {
 
   onCategorySelecting() {
     console.log(this.selectedCategory)
+  }
+
+  public sanitizerPhoto(url : string) : SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   logout() {

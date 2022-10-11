@@ -7,7 +7,7 @@
       <h4>Profile image</h4>
       <form class="content-con flex align-center" style="gap: 1.8rem" (submit)="onProfileImageChanging($event)">
         <img class="user-img"
-             [src]="currentUserModel?.profileImagePath ? sanitizerPhoto(currentUserModel?.profileImagePath)
+             [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
              : 'assets/images/default_avatar.png'"/>
         <div class="image-con flex-col align-start">
           <div class="flex-col">
@@ -17,7 +17,7 @@
 
           <div style="padding-left: 0.8rem; gap: 1rem" class="flex align-center">
             <button class="second-btn">Change</button>
-            <button type="button" (click)="onRemovingProfileImage()" *ngIf="currentUserModel?.profileImagePath" class="second-btn delete-button">Remove</button>
+            <button type="button" (click)="onRemovingProfileImage()" *ngIf="currentUser?.profileImagePath" class="second-btn delete-button">Remove</button>
           </div>
         </div>
       </form>
@@ -27,7 +27,7 @@
       <div class="flex-col" style="gap: 1.8rem">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>First Name</mat-label>
-          <input formControlName="firstName" matInput placeholder="Ex. Jakub" [value]="currentUserModel?.firstName">
+          <input formControlName="firstName" matInput placeholder="Ex. Jakub" [value]="currentUser?.firstName">
           <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
             Please enter valid First Name
           </mat-error>
@@ -35,7 +35,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Last Name</mat-label>
-          <input formControlName="lastName" matInput placeholder="Ex. Smith" [value]="currentUserModel?.lastName">
+          <input formControlName="lastName" matInput placeholder="Ex. Smith" [value]="currentUser?.lastName">
           <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
             Please enter valid Last Name
           </mat-error>
@@ -43,7 +43,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Email address</mat-label>
-          <input formControlName="email" matInput placeholder="Ex. your.email@domain.com" [value]="currentUserModel?.email">
+          <input formControlName="email" matInput placeholder="Ex. your.email@domain.com" [value]="currentUser?.email">
           <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
             Please enter valid email
           </mat-error>
@@ -55,7 +55,7 @@
       <div class="flex-col" style="gap: 1.8rem;">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input formControlName="phoneNumber" matInput placeholder="Ex. 433233544" [value]="currentUserModel?.phoneNumber">
+          <input formControlName="phoneNumber" matInput placeholder="Ex. 433233544" [value]="currentUser?.phoneNumber">
           <mat-error *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)">
             Please enter valid phone number
           </mat-error>
@@ -63,7 +63,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Address</mat-label>
-          <input formControlName="address" matInput placeholder="Ex. Wall street 7A/19" [value]="currentUserModel?.address">
+          <input formControlName="address" matInput placeholder="Ex. Wall street 7A/19" [value]="currentUser?.address">
           <mat-error *ngIf="address.errors && (address.dirty || address.touched)">
             Please enter valid address
           </mat-error>
@@ -71,7 +71,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>City</mat-label>
-          <input formControlName="city" matInput placeholder="Ex. Warsaw" [value]="currentUserModel?.city">
+          <input formControlName="city" matInput placeholder="Ex. Warsaw" [value]="currentUser?.city">
           <mat-error *ngIf="city.errors && (city.dirty || city.touched)">
             Please enter city
           </mat-error>

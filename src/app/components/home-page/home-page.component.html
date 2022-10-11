@@ -1,14 +1,28 @@
-<div class="home-con flex-col align-center">
-  <h1>Subjects and cities</h1>
-  <div class="flex">
+<div class="home-con flex-col align-center justify-center">
+  <h1 style="margin-bottom: 2.8rem">Subjects and cities</h1>
+  <div class="flex main-con">
     <div class="grid-con">
-      <div class="subject-con flex align-center space-between" *ngFor="let subjectWithQuan of subjectsWithAddsQuantity | keyvalue" >
+      <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.6rem">
           <mat-icon>school</mat-icon>
-          <p>{{ subjectWithQuan.key}}</p>
+          <p class="subject-name">{{ subjectWithQuan.subjectName}}</p>
         </div>
-        <span>({{ subjectWithQuan.value }})</span>
+        <span>({{ subjectWithQuan.addsQuantity }})</span>
       </div>
+      <p class="see-info">See all subjects</p>
     </div>
+
+    <div class="grid-con">
+      <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
+        <div class="flex align-center" style="gap: 0.6rem">
+          <mat-icon>school</mat-icon>
+          <p class="subject-name">{{ cityWithQuan.cityName}}</p>
+        </div>
+        <span>({{ cityWithQuan.addsQuantity }})</span>
+      </div>
+      <p class="see-info">See all subjects</p>
+    </div>
+
+
   </div>
 </div>

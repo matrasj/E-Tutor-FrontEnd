@@ -1,16 +1,18 @@
 <div class="menu-con flex flex-col align-center justify-center">
-  <div class="nav-links-con flex align-center" >
-    <div class="flex align-center menu-link" routerLink="/" style="gap: 1rem">
-      <mat-icon>school</mat-icon>
-      <p>E-Tutor</p>
-    </div>
+  <div class="nav-links-con flex align-center space-between" >
+    <div class="flex align-center" style="gap: 1.2rem">
+      <div class="flex align-center menu-link" routerLink="/" style="gap: 1rem">
+        <mat-icon>school</mat-icon>
+        <p>E-Tutor</p>
+      </div>
 
-    <div class="link">
-      Tutors advertisements
-    </div>
+      <div class="link">
+        Tutors advertisements
+      </div>
 
-    <div class="link">
-      Students advertisements
+      <div class="link">
+        Students advertisements
+      </div>
     </div>
 
     <div class="flex align-center" style="gap: 2rem;" *ngIf="!isAuthenticated else authenticatedMenu">
@@ -28,8 +30,9 @@
     <ng-template #authenticatedMenu>
       <div class="user-bar" >
         <div [matMenuTriggerFor]="appMenu" class="flex align-center" style="cursor: pointer; gap: 1rem">
-          <p>Hi {{ currentUser.firstName }} {{ currentUser.lastName}}</p>
-          <img class="profile-img" src="../../../assets/images/avatar.png"/>
+          <p class="username">Hi {{ currentUser?.firstName }} {{ currentUser?.lastName}}</p>
+          <img class="profile-img" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
+             : 'assets/images/default_avatar.png'"/>
         </div>
 
         <mat-menu #appMenu="matMenu">

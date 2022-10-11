@@ -1,18 +1,22 @@
 .menu-con {
   background-image: linear-gradient(to right bottom, rgba(75, 197, 153, 0.9), rgba(75, 197, 153, 0.99)) , url('src/assets/images/menu_background.jpg');
   padding: 1.8rem;
+
+
 }
 
 .nav-links-con {
-  gap: 2rem;
+  gap: 1.8rem;
   margin-bottom: 2.8rem;
+  min-width: 60rem;
 }
 
 .link, .menu-link{
   color: #f3f3f3;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   position: relative;
   cursor: pointer;
+  font-weight: 300;
 }
 
 
@@ -92,4 +96,10 @@ mat-icon {
 
 p {
   margin: 0;
+}
+
+.username {
+  font-weight: 300;
+  color: #f3f3f3;
+  font-size: 1.2rem;
 }

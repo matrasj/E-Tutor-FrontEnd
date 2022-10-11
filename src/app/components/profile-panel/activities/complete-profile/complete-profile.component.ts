@@ -15,7 +15,7 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 })
 export class CompleteProfileComponent implements OnInit {
   public userFormGroup : FormGroup | any;
-  currentUserModel : UserPayloadModel | any;
+  currentUser : UserPayloadModel | any;
   profileImageFile : File | null = null;
   constructor(private formBuilder : FormBuilder,
               private userService : UserService,
@@ -38,13 +38,13 @@ export class CompleteProfileComponent implements OnInit {
 
     this.userService.getCurrentUserById(this.authService.getCurrentUser().id)
       .subscribe((user) => {
-        this.currentUserModel = user;
-        this.firstName.setValue(this.currentUserModel.firstName);
-        this.lastName.setValue(this.currentUserModel.lastName);
-        this.email.setValue(this.currentUserModel.email);
-        this.phoneNumber.setValue(this.currentUserModel.phoneNumber);
-        this.address.setValue(this.currentUserModel.address);
-        this.city.setValue(this.currentUserModel.city);
+        this.currentUser = user;
+        this.firstName.setValue(this.currentUser.firstName);
+        this.lastName.setValue(this.currentUser.lastName);
+        this.email.setValue(this.currentUser.email);
+        this.phoneNumber.setValue(this.currentUser.phoneNumber);
+        this.address.setValue(this.currentUser.address);
+        this.city.setValue(this.currentUser.city);
       });
   }
 
@@ -82,7 +82,7 @@ export class CompleteProfileComponent implements OnInit {
     } else {
       this.copyFieldsToCurrentUser();
 
-      this.userService.updateUserById(this.currentUserModel)
+      this.userService.updateUserById(this.currentUser)
         .subscribe((res) => {
           this.userFormGroup.reset();
           this.router.navigate(["/profile"]);
@@ -92,12 +92,12 @@ export class CompleteProfileComponent implements OnInit {
   }
 
   private copyFieldsToCurrentUser() {
-    this.currentUserModel.firstName = this.firstName.value;
-    this.currentUserModel.lastName = this.lastName.value;
-    this.currentUserModel.email = this.email.value;
-    this.currentUserModel.phoneNumber = this.phoneNumber.value;
-    this.currentUserModel.address = this.address.value;
-    this.currentUserModel.city = this.city.value;
+    this.currentUser.firstName = this.firstName.value;
+    this.currentUser.lastName = this.lastName.value;
+    this.currentUser.email = this.email.value;
+    this.currentUser.phoneNumber = this.phoneNumber.value;
+    this.currentUser.address = this.address.value;
+    this.currentUser.city = this.city.value;
   }
 
   onFileSelect(event : any) {
@@ -108,8 +108,8 @@ export class CompleteProfileComponent implements OnInit {
     event.preventDefault();
 
     if (this.profileImageFile !== null) {
-      console.log(this.currentUserModel)
-      this.userService.updateProfileImage(this.currentUserModel.id, this.profileImageFile)
+      console.log(this.currentUser)
+      this.userService.updateProfileImage(this.currentUser.id, this.profileImageFile)
         .subscribe((res) => {
           this.profileImageFile = null;
           window.location.reload();
@@ -124,7 +124,7 @@ export class CompleteProfileComponent implements OnInit {
   }
 
   onRemovingProfileImage() {
-    this.userService.removeProfileImageByUserId(this.currentUserModel.id)
+    this.userService.removeProfileImageByUserId(this.currentUser.id)
       .subscribe((res) => {
         window.location.reload();
         this.toastrService.success(res);
