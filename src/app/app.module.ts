@@ -36,7 +36,8 @@ import {NgCircleProgressModule} from "ng-circle-progress";
 import { CompleteProfileComponent } from './components/profile-panel/activities/complete-profile/complete-profile.component';
 import {UserService} from "./service/user-service";
 import {CityService} from "./service/city-service";
-import { AdvertisementsListComponent } from './components/advertisements-list/advertisements-list.component';
+import { AdvertisementsListComponent } from './components/advertisements/advertisements-list/advertisements-list.component';
+import { SingleAdvertisementViewComponent } from './components/advertisements/single-advertisement-view/single-advertisement-view.component';
 
 
 const routes = [
@@ -51,6 +52,7 @@ const routes = [
       {path : "create-advertisement-student", component: CreateAdvertisementComponent}
     ]},
   {path : "advertisements", component: AdvertisementsListComponent},
+  {path : "advertisements/:id", component: SingleAdvertisementViewComponent},
   {path : "", component: HomePageComponent}
 ]
 @NgModule({
@@ -68,7 +70,8 @@ const routes = [
     AdvertisementsComponent,
     CreateAdvertisementComponent,
     CompleteProfileComponent,
-    AdvertisementsListComponent
+    AdvertisementsListComponent,
+    SingleAdvertisementViewComponent
   ],
   imports: [
     BrowserModule,

@@ -5,8 +5,8 @@
   [ngClass]="showLoaderForRight || showLoaderForLeft ? 'space-around' : ''">
     <div class="grid-con" *ngIf="!showLoaderForLeft">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.6rem">
-          <mat-icon>school</mat-icon>
+        <div class="flex align-center" style="gap: 0.6rem; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
+          <mat-icon style="color: #2AC59B">school</mat-icon>
           <p class="subject-name">{{ subjectWithQuan.subjectName}}</p>
         </div>
         <span>({{ subjectWithQuan.addsQuantity }})</span>
@@ -17,8 +17,8 @@
 
     <div class="grid-con" *ngIf="!showLoaderForRight">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.6rem">
-          <mat-icon>school</mat-icon>
+        <div class="flex align-center" style="gap: 0.6rem; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
+          <mat-icon style="color: #2AC59B">school</mat-icon>
           <p class="subject-name">{{ cityWithQuan.cityName}}</p>
         </div>
         <span>({{ cityWithQuan.addsQuantity }})</span>
@@ -30,4 +30,10 @@
 
 
   </div>
+</div>
+
+<div class="register-commercial flex-col align-center justify-center">
+  <h1 class="com-header">Create free account on e-tutor</h1>
+  <p>Obtain access to post advertisements</p>
+  <button class="com-button">Register</button>
 </div>

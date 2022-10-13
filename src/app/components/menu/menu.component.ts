@@ -44,10 +44,6 @@ export class MenuComponent implements OnInit {
         });
   }
 
-  onCategorySelecting() {
-    console.log(this.selectedCategory)
-  }
-
   public sanitizerPhoto(url : string) : SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
@@ -58,11 +54,14 @@ export class MenuComponent implements OnInit {
 
   onAdvertisementsSearching(event: SubmitEvent) {
     event.preventDefault();
+
     this.router.navigate(['/advertisements'], {
-      queryParams : {
-        keyphrase : this.keyPhrase
-      }
-    })
+        queryParams : {
+          keyphrase : this.keyPhrase,
+          category : this.selectedCategory ? this.selectedCategory : ''
+        }
+      });
+
 
 
   }

@@ -4,6 +4,7 @@ import {SubjectSearchResponseModel} from "../../model/subject-search-response-mo
 import {SubjectQuantityModel} from "../../model/subject-quantity-model";
 import {CityService} from "../../service/city-service";
 import {CityQuantityModel} from "../../model/city-quantity-model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -19,7 +20,8 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(private subjectService : SubjectService,
-              private cityService : CityService) { }
+              private cityService : CityService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.showLoaderForLeft = true;
@@ -36,4 +38,22 @@ export class HomePageComponent implements OnInit {
         this.showLoaderForRight = false;
       })
   }
+
+  selectAdvertisementsWithFilteringBySubject(subjectName: string) {
+    this.router.navigate(['/advertisements'], {
+      queryParams : {
+        subjectName
+      }
+    });
+  }
+
+  selectAdvertisementsWithFilteringByCity(cityName: string) {
+    this.router.navigate(['/advertisements'], {
+      queryParams : {
+        cityName
+      }
+    });
+  }
+
+
 }

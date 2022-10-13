@@ -43,6 +43,25 @@ body {
   border-radius: 0.2rem;
 }
 
+.com-button{
+
+  color: #f3f3f3;
+  border: solid 1px #fcc419;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.4rem;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  background-color: #fcc419;
+}
+
+.com-button:hover {
+  background-color: #fff;
+  border: solid 1px #fcc419;
+  color: #fcc419;
+  transition: all 0.2s linear;
+}
+
 .second-btn {
   background-color: rgba(75, 197, 153);
   color: #f3f3f3;

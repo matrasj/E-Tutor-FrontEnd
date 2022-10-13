@@ -1,8 +1,6 @@
 .menu-con {
   background-image: linear-gradient(to right bottom, rgba(75, 197, 153, 0.9), rgba(75, 197, 153, 0.99)) , url('src/assets/images/menu_background.jpg');
   padding: 1.8rem;
-
-
 }
 
 .nav-links-con {

@@ -1,5 +1,12 @@
 .adds-list-con {
   padding: 4.8rem 1.2rem;
+  min-height: 80vh;
+  width: 100%;
+  background-color: #f1f3f5;
+}
+
+.main-container {
+  width: 60rem;
 }
 
 .star-ratings {
@@ -31,7 +38,7 @@
 }
 
 .add-con {
-  width: 60rem;
+
   padding: 1.8rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-left: solid 5px #38d9a9;
@@ -76,8 +83,8 @@
 }
 
 .profile-img {
-  width: 8rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
 }
 

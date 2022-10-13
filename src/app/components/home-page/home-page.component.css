@@ -88,3 +88,22 @@ h1 {
   }
 }
 
+.register-commercial {
+  background-image: linear-gradient(to right bottom, rgba(75, 197, 153, 0.9), rgba(75, 197, 153, 0.99)) , url('../../../assets/images/menu_background.jpg');
+  padding: 1.8rem;
+}
+
+.com-header {
+  color: #fff;
+  font-weight: 300;
+}
+
+p {
+  color: #fff;
+
+}
+
+
+.com-button {
+  margin-top: 0.8rem;
+}

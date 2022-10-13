@@ -19,8 +19,26 @@ export class AdvertisementService {
     });
   }
 
-  getAdvertisementsWithPagination(pageSize: number, pageNumber : number, keyPhrase : string) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByShortTitleKeyphraseContaining?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}`);
+  getAdvertisementsByKeyphraseWithPagination(pageSize: number, pageNumber : number, keyPhrase : string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByKeyphrase?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}`);
+  }
+
+  getAdvertisementsByKeyphraseAndTypeWithPagination(pageSize: number, pageNumber: number, keyPhrase: string, type: string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByKeyphraseAndType?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}&category=${type}`);
+
+  }
+
+  getAdvertisementsBySubjectWithPagination(pageSize: number, pageNumber: number, subjectName: string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findBySubjectName?pageNumber=${pageNumber}&pageSize=${pageSize}&subjectName=${subjectName}`);
+  }
+
+  getAdvertisementsByCityWithPagination(pageSize: number, pageNumber: number, cityName: string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByCityName?pageNumber=${pageNumber}&pageSize=${pageSize}&cityName=${cityName}`);
+  }
+
+  getAdvertisementById(advertisementId: number) : Observable<AdvertisementPayloadResponseModel> {
+    return this.httpClient.get<AdvertisementPayloadResponseModel>(`${this.API_URL}/advertisements/${advertisementId}`);
+
   }
 }
 
