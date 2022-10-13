@@ -73,6 +73,8 @@ export class AdvertisementsListComponent implements OnInit {
     this.totalPages = data.totalPages;
     this.pageNumber = data.number + 1;
     this.pageSize = data.size;
+
+    console.log(this.advertisements)
   }
 
 }

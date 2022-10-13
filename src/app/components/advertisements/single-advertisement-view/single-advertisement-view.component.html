@@ -1,5 +1,108 @@
-<div class="single-advertisement-con flex align-start">
-  <div class="left-panel">
-    
+<div class="single-advertisement-con flex-col align-center ">
+  <div style="width: 60rem">
+    <div class="all-con flex " style="gap: 3.2rem">
+      <div class="left-panel flex-col align-start">
+        <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath"/>
+        <button class="flex align-center second-btn justify-center" style="gap: 0.2rem">
+          <mat-icon style="color: #fff">email</mat-icon>
+          Send message
+        </button>
+
+        <ul *ngFor="let place of advertisement?.placesNames">
+          <li>
+            <div class="flex align-center">
+              <mat-icon>location_on</mat-icon>
+              <p class="place-name">{{ place | titlecase}}</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="availability-info info-con" >
+          <div class="flex align-center" style="gap: 0.6rem;">
+            <mat-icon>calendar_today</mat-icon>
+            <p>Availability</p>
+          </div>
+        </div>
+        <div class="days-list">
+          <ul class="flex-col" style="gap: 0.6rem">
+            <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
+              <p style="color: #2AC59B;">{{ availability.dayName}}</p>
+              <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right-panel flex-col">
+        <div class="flex space-between" style="margin-bottom: 1.2rem">
+          <p class="subject-name">{{ advertisement?.subjectName | titlecase}}</p>
+          <p class="price">{{ advertisement?.price }}zł / {{ advertisement?.minutesDuration }} min</p>
+        </div>
+        <p class="user-name">{{ advertisement?.userPayload?.firstName | titlecase}} {{ advertisement?.userPayload?.lastName | titlecase }}</p>
+        <div class="flex align-end" style="gap: 0.4rem; margin-bottom: 2.4rem">
+          <div class="star-ratings">
+            <div class="fill-ratings" [ngStyle]="{ width : (advertisement?.ratingAverage) + '%'}">
+              <span>★★★★★</span>
+            </div>
+            <div class="empty-ratings">
+              <span>★★★★★</span>
+            </div>
+          </div>
+          <p style="color: #2AC59B; font-weight: 300;">{{ advertisement?.reviewsQuantity }} reviews</p>
+        </div>
+
+        <div class="add-desc">
+          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <mat-icon>description</mat-icon>
+            <p>Advertisement description</p>
+          </div>
+
+          <p class="add-content" [innerHTML]="advertisement?.content"></p>
+
+          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <mat-icon>schedule</mat-icon>
+            <p>Availability</p>
+          </div>
+          <div class="days-list" style="padding-left: 2.8rem;">
+            <ul class="flex-col" style="gap: 0.6rem">
+              <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
+                <p style="color: #2AC59B;">{{ availability.dayName}}</p>
+                <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <mat-icon>bookmark_border</mat-icon>
+            <p>Lesson's range</p>
+          </div>
+          <ul class="flex-col" style="gap: 0.4rem; padding-left: 2.8rem; list-style: square; margin-bottom: 1.8rem">
+            <li class="lesson-range" *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
+          </ul>
+
+          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <mat-icon> pin_drop</mat-icon>
+            <p>Place of lessons</p>
+          </div>
+
+          <ul *ngFor="let place of advertisement?.placesNames" class="flex-col" style="gap: 0.4rem; padding-left: 2.8rem;">
+            <li>
+              <div class="flex align-center">
+                <mat-icon>location_on</mat-icon>
+                <p class="place-name">{{ place | titlecase}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-con" style="align-self: flex-start">
+      <p style="font-size: 1.4rem">Last opinions</p>
+      <p style="font-size: 0.8rem; color: #999999; margin-bottom: 1.2rem">Opinion's number: {{ advertisement?.reviewsQuantity }}</p>
+      <button class="white-button second-btn flex align-center" style="gap: 0.2rem">
+        <mat-icon>record_voice_over</mat-icon>
+        Opinions
+      </button>
+    </div>
   </div>
 </div>

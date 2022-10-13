@@ -90,10 +90,9 @@ body {
   transition: all 0.2s linear;
 }
 
-.second-btn:hover {
+.white-button {
 
 }
-
 .align-end {
   align-items: flex-end;
 }

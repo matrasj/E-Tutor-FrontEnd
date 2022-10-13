@@ -1,3 +1,113 @@
 .single-advertisement-con {
-  background-color: #fff;
+  background-color: #dee2e6;
 }
+
+.mat-icon {
+  color: #2AC59B;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 1.4rem;
+  font-weight: 300;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+  color: #333;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.info-con {
+  background-color: #f8f9fa;
+  padding: 0.8rem 2.8rem;
+  width: 100%;
+  gap: 0.65rem;
+}
+
+.days-list {
+  padding: 1.2rem 0;
+}
+
+.profile-image {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  margin-bottom: 1.4rem;
+}
+
+.all-con {
+  background-color: #fff;
+  padding: 3.4rem 2.4rem;
+  width: 60rem;
+  margin-bottom: 1.8rem;
+}
+
+
+
+.subject-name {
+  color: #2AC59B;
+  font-size: 1.2rem;
+}
+
+.price {
+  font-size: 1.4rem;
+  color: #999;
+}
+
+.user-name {
+  color: #2AC59B;
+  font-size: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.star-ratings {
+  unicode-bidi: bidi-override;
+  color: #ccc;
+  font-size: 2.2rem;
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+}
+
+.fill-ratings {
+  color: #2AC59B;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.add-desc {
+  width: 75%;
+}
+
+.add-content {
+  padding: 0 1.2rem;margin-bottom: 2.8rem;
+}
+
+.lesson-range {
+  color: #2AC59B;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.white-button {
+  background: none;
+  width: max-content;
+  color: #2AC59B;
+  font-size: 1rem;
+  padding: 0.6rem 2.4rem;
+}
+
+
