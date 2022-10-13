@@ -1,7 +1,9 @@
 import {AvailabilityPayloadModel} from "./availability-payload-model";
+import {UserPayloadModel} from "./user-payload-model";
 
-export class AdvertisementPayloadRequestModel {
-  constructor(public authorId : number,
+export class AdvertisementPayloadResponseModel {
+  constructor(public id : number,
+              public userPayload : UserPayloadModel,
               public subjectName : string,
               public price : number,
               public minutesDuration : number,
@@ -12,6 +14,7 @@ export class AdvertisementPayloadRequestModel {
               public availabilityPayloads : AvailabilityPayloadModel[],
               public lessonRanges : string[],
               public advertisementType : string,
-              public authorImageLink : string) {
+              public reviewsQuantity : number,
+              public ratingAverage : number) {
   }
 }

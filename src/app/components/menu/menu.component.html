@@ -58,17 +58,16 @@
   </div>
 
   <div class="form-con" *ngIf="shouldBeSearchFormVisible">
-    <form class="flex align-end justify-center" style="gap: 1rem">
+    <form class="flex align-end justify-center" style="gap: 1rem" (submit)="onAdvertisementsSearching($event)">
       <mat-icon>search</mat-icon>
       <mat-form-field class="flex" >
-
-        <input  matInput class="search-input" style="color: #333" placeholder="Ex. Physics">
+        <input [(ngModel)]="keyPhrase" name="keyPhrase" matInput class="search-input" style="color: #333" placeholder="Ex. Physics">
       </mat-form-field>
 
 
       <mat-form-field appearance="fill">
         <mat-label>Add category</mat-label>
-        <mat-select [(value)]="selectedCategory" (selectionChange)="onCategorySelecting()">
+        <mat-select  [(value)]="selectedCategory" (selectionChange)="onCategorySelecting()">
           <mat-option value="tutor">Tutor's advertisements</mat-option>
           <mat-option value="student">Student's advertisements</mat-option>
           <mat-option value="all">All advertisements</mat-option>

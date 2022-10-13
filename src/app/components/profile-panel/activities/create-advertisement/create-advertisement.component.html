@@ -40,7 +40,24 @@
                         (change)="onPlaceSelecting($event)">{{ place.name }}</mat-checkbox>
 
         </div>
+      </div>
 
+      <div>
+        <h4>City</h4>
+        <mat-form-field>
+          <mat-select required  [formControl]="cityCtrl" placeholder="City" #singleSelect>
+            <mat-option>
+              <ngx-mat-select-search placeholderLabel="Search for cities"
+                                     [formControl]="cityFilterCtrl"></ngx-mat-select-search>
+            </mat-option>
+
+            <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+              {{city.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="cityCtrl.errors && (cityCtrl.dirty || cityCtrl.touched)">Subject is required</mat-error>
+
+        </mat-form-field>
       </div>
 
       <div>

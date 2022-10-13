@@ -97,3 +97,11 @@ button:focus {
 .space-between {
   justify-content: space-between;
 }
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-end {
+  align-items: flex-end;
+}

@@ -14,20 +14,26 @@ export class HomePageComponent implements OnInit {
   subjectsWithAddsQuantities : SubjectQuantityModel[] = [];
   private RECORDS_QUANTITY: number = 16;
   citiesWithAddsQuantities: CityQuantityModel[] = [];
+  showLoaderForLeft : boolean = false;
+  showLoaderForRight : boolean = false;
+
+
   constructor(private subjectService : SubjectService,
               private cityService : CityService) { }
 
   ngOnInit(): void {
+    this.showLoaderForLeft = true;
     this.subjectService.getSubjectsWithAddsQuantities(this.RECORDS_QUANTITY)
       .subscribe((subjectsWithQuantities) => {
         this.subjectsWithAddsQuantities = subjectsWithQuantities;
+        this.showLoaderForLeft = false;
       });
 
+    this.showLoaderForRight = true;
     this.cityService.getCitiesWithAddsQuantities(this.RECORDS_QUANTITY)
       .subscribe((citiesWithQuantities) => {
         this.citiesWithAddsQuantities = citiesWithQuantities;
+        this.showLoaderForRight = false;
       })
   }
-
-
 }

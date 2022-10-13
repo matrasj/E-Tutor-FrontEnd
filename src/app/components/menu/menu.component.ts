@@ -17,6 +17,8 @@ export class MenuComponent implements OnInit {
   isAuthenticated : boolean = false;
   shouldBeSearchFormVisible : boolean = true;
   currentUser : UserPayloadModel | any = null;
+  keyPhrase : string = '';
+
   constructor(private router : Router,
               private authService : AuthService,
               private sanitizer : DomSanitizer,
@@ -52,5 +54,16 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  onAdvertisementsSearching(event: SubmitEvent) {
+    event.preventDefault();
+    this.router.navigate(['/advertisements'], {
+      queryParams : {
+        keyphrase : this.keyPhrase
+      }
+    })
+
+
   }
 }

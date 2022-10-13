@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {AdvertisementPayloadRequestModel} from "../model/advertisement-payload-request-model";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {AdvertisementPayloadResponseModel} from "../model/advertisement-payload-response-model";
 
 @Injectable({
   providedIn : 'root'
@@ -17,4 +18,16 @@ export class AdvertisementService {
       responseType : 'text'
     });
   }
+
+  getAdvertisementsWithPagination(pageSize: number, pageNumber : number, keyPhrase : string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByShortTitleKeyphraseContaining?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}`);
+  }
+}
+
+export interface PageApiResponse {
+  content : AdvertisementPayloadResponseModel[],
+  totalElements : number,
+  totalPages : number,
+  size : number,
+  number : number,
 }

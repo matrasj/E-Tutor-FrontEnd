@@ -1,7 +1,9 @@
 <div class="home-con flex-col align-center justify-center">
-  <h1 style="margin-bottom: 2.8rem">Subjects and cities</h1>
-  <div class="flex main-con">
-    <div class="grid-con">
+  <h1 style="margin-bottom: 3.8rem">Subjects and cities</h1>
+  <div class="flex main-con align-center justify-center"
+       style="min-height: 25rem"
+  [ngClass]="showLoaderForRight || showLoaderForLeft ? 'space-around' : ''">
+    <div class="grid-con" *ngIf="!showLoaderForLeft">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.6rem">
           <mat-icon>school</mat-icon>
@@ -11,8 +13,9 @@
       </div>
       <p class="see-info">See all subjects</p>
     </div>
+    <div class="loader" *ngIf="showLoaderForLeft">Loading...</div>
 
-    <div class="grid-con">
+    <div class="grid-con" *ngIf="!showLoaderForRight">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.6rem">
           <mat-icon>school</mat-icon>
@@ -22,6 +25,8 @@
       </div>
       <p class="see-info">See all subjects</p>
     </div>
+
+    <div class="loader" *ngIf="showLoaderForRight">Loading...</div>
 
 
   </div>

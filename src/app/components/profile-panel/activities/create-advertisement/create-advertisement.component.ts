@@ -6,10 +6,15 @@ import {ReplaySubject, Subject, take, takeUntil} from "rxjs";
 import {MatSelect} from "@angular/material/select";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {AdvertisementPayloadRequestModel} from "../../../../model/advertisement-payload-request-model";
-import {AvailabilityPayloadRequestModel} from "../../../../model/availability-payload-request-model";
+import {AvailabilityPayloadModel} from "../../../../model/availability-payload-model";
 import {AdvertisementService} from "../../../../service/advertisement-service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CityPayloadModel} from "../../../../model/city-payload-model";
+import {CityService} from "../../../../service/city-service";
+import {UserPayloadModel} from "../../../../model/user-payload-model";
+import {UserService} from "../../../../service/user-service";
+import {AuthService} from "../../../../service/auth-service";
 
 @Component({
   selector: 'app-create-advertisement',
@@ -22,8 +27,14 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
   protected subjects: SubjectSearchResponseModel[] = [];
   public subjectCtrl: UntypedFormControl = new UntypedFormControl();
   public subjectFilterCtrl: UntypedFormControl = new UntypedFormControl();
+  public currentUserModel : UserPayloadModel | any = null;
+
+  protected cities: CityPayloadModel[] = [];
+  public cityCtrl: UntypedFormControl = new UntypedFormControl();
+  public cityFilterCtrl: UntypedFormControl = new UntypedFormControl();
 
   public filteredSubjects: ReplaySubject<SubjectSearchResponseModel[]> = new ReplaySubject<SubjectSearchResponseModel[]>(1);
+  public filteredCities: ReplaySubject<CityPayloadModel[]> = new ReplaySubject<CityPayloadModel[]>(1);
 
   public places : { name : string, checked : boolean}[] = [
     {name : "At tutor", checked : false},
@@ -52,18 +63,21 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
   @Input() placeholderLabel = 'Search';
   protected _onDestroy = new Subject<void>();
   constructor(private subjectService : SubjectService,
+              private cityService : CityService,
               private formBuilder : FormBuilder,
               private advertisementService : AdvertisementService,
               private toastrService : ToastrService,
               private router : Router,
-              private activatedRouter : ActivatedRoute) { }
+              private activatedRouter : ActivatedRoute,
+              private userService : UserService,
+              private authService : AuthService) { }
 
   ngOnInit(): void {
     this.advertisementFormGroup = this.formBuilder.group({
       advertisement : this.formBuilder.group({
         lessonPrice : new FormControl('', [Validators.required]),
         minutesDuration : new FormControl('', [Validators.required]),
-        shortDescription : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(160)]),
+        shortDescription : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(400)]),
         content : new FormControl('', [Validators.required, Validators.minLength(10)]),
       })
     });
@@ -71,6 +85,20 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     this.activatedRouter.queryParamMap.subscribe((queryParamMap) => {
       queryParamMap.get('tutorLooking') === 'true' ? this.ADVERTISEMENT_TYPE = 'LOOKING_FOR_TUTOR' :this.ADVERTISEMENT_TYPE = 'LOOKING_FOR_STUDENT';
     });
+
+    this.userService.getCurrentUserById(this.authService.getCurrentUser().id)
+      .subscribe((user) => this.currentUserModel = user);
+
+    this.cityService.getAllCities()
+      .subscribe((cities) => {
+        this.cities = cities;
+        this.cityCtrl.setValue(this.cities[10]);
+        this.filteredCities.next(this.subjects.slice());
+        this.cityFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy))
+          .subscribe(() => {
+            this.filterCities();
+          });
+      });
 
     this.subjectService.getAllSubjects()
       .subscribe((subjects) => {
@@ -82,9 +110,9 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
             this.filterSubjects();
           });
       });
+
+
   }
-
-
 
   get lessonPrice() {
     return this.advertisementFormGroup.get('advertisement').get('lessonPrice');
@@ -118,12 +146,13 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     this.filteredSubjects
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
         this.singleSelect.compareWith = (a: SubjectSearchResponseModel, b: SubjectSearchResponseModel) => a && b && a.id === b.id;
+      });
+
+    this.filteredCities
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.singleSelect.compareWith = (a: CityPayloadModel, b: CityPayloadModel) => a && b && a.id === b.id;
       });
   }
 
@@ -147,6 +176,24 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     );
   }
 
+  protected filterCities() {
+
+    if (!this.cities) {
+      return;
+    }
+    let search = this.cityFilterCtrl.value;
+
+    if (!search) {
+      this.filteredCities.next(this.cities.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    this.filteredCities.next(
+      this.cities.filter(city => city.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+
   onPlaceSelecting($event: MatCheckboxChange) {
     const place : {name : string, checked : boolean} | undefined
       = this.places.find((place) => place.name === $event.source.value);
@@ -162,6 +209,10 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
 
     if (availability) {
       availability.checked = $event.checked;
+      if (!$event.checked) {
+        availability.hourEnd = null;
+        availability.hourStart = null;
+      }
     }
 
 
@@ -182,21 +233,24 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     } else {
       const advertisementPayloadRequest : AdvertisementPayloadRequestModel
        = new AdvertisementPayloadRequestModel(
-         this.subjectCtrl.value.name,
+        this.currentUserModel.id,
+        this.subjectCtrl.value.name,
         this.lessonPrice.value,
         this.minutesDuration.value,
         this.places.filter((place) => place.checked)
           .map((place) => place.name),
+        this.cityCtrl.value.name,
         this.shortDescription.value,
         this.content.value,
         this.availabilityWithDaysAndHours.filter((availability) => availability.checked)
-          .map((availability) => new AvailabilityPayloadRequestModel(
+          .map((availability) => new AvailabilityPayloadModel(
             availability.dayName,
             availability.hourStart ? availability.hourStart : '',
             availability.hourEnd ? availability.hourEnd : '')),
         this.lessonsRanges.filter((lessonRange) => lessonRange.checked)
           .map((lessonRange) => lessonRange.name),
-        this.ADVERTISEMENT_TYPE
+        this.ADVERTISEMENT_TYPE,
+        this.currentUserModel?.profileImagePath
       );
 
 
