@@ -3,7 +3,7 @@
     <div class="all-con flex " style="gap: 3.2rem">
       <div class="left-panel flex-col align-start">
         <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath"/>
-        <button class="flex align-center second-btn justify-center" style="gap: 0.2rem">
+        <button class="flex align-center second-btn justify-center" style="gap: 0.2rem; width: max-content;">
           <mat-icon style="color: #fff">email</mat-icon>
           Send message
         </button>
@@ -99,10 +99,35 @@
     <div class="reviews-con" style="align-self: flex-start">
       <p style="font-size: 1.4rem">Last opinions</p>
       <p style="font-size: 0.8rem; color: #999999; margin-bottom: 1.2rem">Opinion's number: {{ advertisement?.reviewsQuantity }}</p>
-      <button class="white-button second-btn flex align-center" style="gap: 0.2rem">
+      <button class="white-button second-btn flex align-center" (click)="onOpinionCreating()" style="gap: 0.2rem">
         <mat-icon>record_voice_over</mat-icon>
-        Opinions
+        Opinion
       </button>
+
+      <div class="flex-col " style="width: 100%; gap: 2.4rem; margin-bottom: 3.8rem">
+        <div class="option-con flex align-start" style="gap: 1.2rem;" *ngFor="let review of reviews">
+          <img class="author-profile-image" [src]="review?.user?.profileImagePath"/>
+          <div class="review-content flex-col" style="width: 100%">
+            <p class="review-author-name" style="margin-bottom: 1.8rem">{{ review?.user?.firstName}}</p>
+            <div class="flex space-between" style="margin-bottom: 1.2rem">
+              <div class="flex align-center" style="gap: 0.2rem">
+                <div class="star-ratings">
+                  <div class="fill-ratings" [ngStyle]="{ width : (review.starsNumber / 5) * 100 + '%'}">
+                    <span>★★★★★</span>
+                  </div>
+                  <div class="empty-ratings">
+                    <span>★★★★★</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <p> {{ getFormattedDate(review?.createdAt) }}</p>
+            </div>
+            <p class="content">{{ review?.content}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

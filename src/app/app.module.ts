@@ -38,6 +38,9 @@ import {UserService} from "./service/user-service";
 import {CityService} from "./service/city-service";
 import { AdvertisementsListComponent } from './components/advertisements/advertisements-list/advertisements-list.component';
 import { SingleAdvertisementViewComponent } from './components/advertisements/single-advertisement-view/single-advertisement-view.component';
+import {ReviewService} from "./service/review-service";
+import { ReviewFormComponent } from './components/advertisements/review-form/review-form.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 const routes = [
@@ -71,7 +74,8 @@ const routes = [
     CreateAdvertisementComponent,
     CompleteProfileComponent,
     AdvertisementsListComponent,
-    SingleAdvertisementViewComponent
+    SingleAdvertisementViewComponent,
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,7 @@ const routes = [
     }),
     HttpClientModule,
     MatMenuModule,
+    MatDialogModule,
     MatSidenavModule,
     MatTabsModule,
     MatTableModule,
@@ -111,6 +116,7 @@ const routes = [
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
   AdvertisementService,
   CityService,
+  ReviewService,
   UserService],
   bootstrap: [AppComponent]
 })
