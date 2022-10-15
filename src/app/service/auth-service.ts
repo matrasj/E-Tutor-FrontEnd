@@ -1,11 +1,11 @@
 import {HttpClient} from "@angular/common/http";
-import {RegisterPayloadRequestModel} from "../model/register-payload-request-model";
+import {RegisterPayloadRequestModel} from "../model/auth/register-payload-request-model";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Environment} from "@angular/cli/lib/config/workspace-schema";
 import {environment} from "../../environments/environment";
 import {Injectable, OnInit} from "@angular/core";
-import {LoginPayloadRequestModel} from "../model/login-payload-request-model";
-import {UserPayloadModel} from "../model/user-payload-model";
+import {LoginPayloadRequestModel} from "../model/auth/login-payload-request-model";
+import {UserPayloadModel} from "../model/user/user-payload-model";
 import {UserService} from "./user-service";
 
 

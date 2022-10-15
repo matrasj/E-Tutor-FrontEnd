@@ -31,6 +31,8 @@
   </div>
   <div class="adds-list-panel panel">
     <h4>Advertisement's list</h4>
-      <p class="alert alert-warning">No adds yet.</p>
+      <div class="flex-col" style="gap: 1.8rem">
+        <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
+      </div>
   </div>
 </div>

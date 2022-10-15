@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../../service/auth-service";
+import {UserPayloadModel} from "../../../../model/user/user-payload-model";
 
 @Component({
   selector: 'app-advertisements',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./advertisements.component.css']
 })
 export class AdvertisementsComponent implements OnInit {
-
-  constructor() { }
+  currentUser : UserPayloadModel | any;
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
   }
 
 }

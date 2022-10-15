@@ -132,3 +132,9 @@ p {
   height: 5rem;
   border-radius: 50%;
 }
+
+.second-btn:hover {
+  background-color: #12a27f;
+  color: #fff;
+  border: solid #12a27f 2px;
+}

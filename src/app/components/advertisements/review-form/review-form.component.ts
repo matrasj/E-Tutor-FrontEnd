@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReviewService} from "../../../service/review-service";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {ReviewPayloadRequestModel} from "../../../model/review-payload-request-model";
+import {ReviewPayloadRequestModel} from "../../../model/review/review-payload-request-model";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -60,9 +60,10 @@ export class ReviewFormComponent implements OnInit {
         this.content.value
       )).subscribe((res) => {
         this.dialogRef.closeAll();
+        location.reload();
         this.reviewFormGroup.reset();
         this.toastrService.success(res);
-      })
+      });
     } else {
       this.reviewFormGroup.markAllAsTouched();
     }

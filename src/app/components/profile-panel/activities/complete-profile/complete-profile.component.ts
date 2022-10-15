@@ -2,7 +2,7 @@ import {Component, OnInit, Sanitizer} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../service/user-service";
 import {AuthService} from "../../../../service/auth-service";
-import {UserPayloadModel} from "../../../../model/user-payload-model";
+import {UserPayloadModel} from "../../../../model/user/user-payload-model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {error} from "@angular/compiler-cli/src/transformers/util";

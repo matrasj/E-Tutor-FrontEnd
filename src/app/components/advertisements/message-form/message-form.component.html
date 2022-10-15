@@ -1,0 +1,25 @@
+<div class="message-form-con">
+  <h1 style="font-size: 1.2rem">Send message to <span style="color: #2AC59B">{{ targetFirstName | titlecase }} {{ targetLastName | titlecase }}</span></h1>
+  <form [formGroup]="messageFormGroup" (ngSubmit)="onMessageSending()">
+    <div formGroupName="message">
+      <mat-form-field class="example-full-width" style="width: 100%; margin-bottom: 2.4rem" appearance="fill">
+        <mat-label>Message subject</mat-label>
+        <input formControlName="subject" matInput placeholder="Ex. Question">
+        <mat-error *ngIf="subject.errors && (subject.dirty || subject.touched)">Subject must be valid</mat-error>
+      </mat-form-field>
+
+
+      <editor
+        [ngClass]="content.errors && (content.touched || content.dirty) ? 'is-invalid' : ''"
+        id="content"
+        [init]="{plugins : 'link', height : 300}"
+        style="margin-bottom: 2.4rem;"
+        formControlName="content"
+      >
+      </editor>
+      <mat-error *ngIf="content.errors && (content.dirty || content.touched)">Please describe your advertisement</mat-error>
+
+      <button class="second-btn" style="width: 100%">Send message</button>
+    </div>
+  </form>
+</div>

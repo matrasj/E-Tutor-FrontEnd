@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AdvertisementsComponent} from "../../profile-panel/activities/advertisements/advertisements.component";
-import {AdvertisementPayloadRequestModel} from "../../../model/advertisement-payload-request-model";
+import {AdvertisementPayloadRequestModel} from "../../../model/advertisement/advertisement-payload-request-model";
 import {AdvertisementService} from "../../../service/advertisement-service";
 import {ActivatedRoute} from "@angular/router";
-import {AdvertisementPayloadResponseModel} from "../../../model/advertisement-payload-response-model";
+import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/advertisement-payload-response-model";
 
 @Component({
   selector: 'app-advertisements-list',
@@ -73,8 +73,6 @@ export class AdvertisementsListComponent implements OnInit {
     this.totalPages = data.totalPages;
     this.pageNumber = data.number + 1;
     this.pageSize = data.size;
-
-    console.log(this.advertisements)
   }
 
 }

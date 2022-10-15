@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {CityQuantityModel} from "../model/city-quantity-model";
+import {CityQuantityModel} from "../model/city/city-quantity-model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {CityPayloadModel} from "../model/city-payload-model";
+import {CityPayloadModel} from "../model/city/city-payload-model";
 
 @Injectable({
   providedIn : 'root'

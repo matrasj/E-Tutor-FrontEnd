@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth-service";
-import {LoginPayloadRequestModel} from "../../../model/login-payload-request-model";
+import {LoginPayloadRequestModel} from "../../../model/auth/login-payload-request-model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 
