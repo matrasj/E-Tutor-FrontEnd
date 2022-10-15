@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {SubjectSearchResponseModel} from "../model/subject-search-response-model";
+import {SubjectSearchResponseModel} from "../model/subject/subject-search-response-model";
 import {environment} from "../../environments/environment";
-import {SubjectQuantityModel} from "../model/subject-quantity-model";
+import {SubjectQuantityModel} from "../model/subject/subject-quantity-model";
 
 @Injectable({
   providedIn : 'root'

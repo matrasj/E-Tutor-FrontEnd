@@ -3,7 +3,7 @@
     <div class="all-con flex " style="gap: 3.2rem">
       <div class="left-panel flex-col align-start">
         <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath"/>
-        <button class="flex align-center second-btn justify-center" style="gap: 0.2rem; width: max-content;">
+        <button class="flex align-center second-btn justify-center" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
           <mat-icon style="color: #fff">email</mat-icon>
           Send message
         </button>

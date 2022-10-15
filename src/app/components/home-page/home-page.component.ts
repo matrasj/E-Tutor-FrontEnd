@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SubjectService} from "../../service/subject-service";
-import {SubjectSearchResponseModel} from "../../model/subject-search-response-model";
-import {SubjectQuantityModel} from "../../model/subject-quantity-model";
+import {SubjectSearchResponseModel} from "../../model/subject/subject-search-response-model";
+import {SubjectQuantityModel} from "../../model/subject/subject-quantity-model";
 import {CityService} from "../../service/city-service";
-import {CityQuantityModel} from "../../model/city-quantity-model";
+import {CityQuantityModel} from "../../model/city/city-quantity-model";
 import {Router} from "@angular/router";
 
 @Component({

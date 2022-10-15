@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {AuthService} from "../../service/auth-service";
-import {UserPayloadModel} from "../../model/user-payload-model";
+import {UserPayloadModel} from "../../model/user/user-payload-model";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {UserService} from "../../service/user-service";
 

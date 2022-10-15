@@ -7,6 +7,8 @@ export class UserPayloadModel {
   public phoneNumber : string,
   public address : string,
   public city : string,
+  public advertisementsForTutorQuantity : number,
+  public advertisementsForStudentQuantity : number,
   public profileImagePath : string) {
   }
 }

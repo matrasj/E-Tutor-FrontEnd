@@ -41,6 +41,10 @@ import { SingleAdvertisementViewComponent } from './components/advertisements/si
 import {ReviewService} from "./service/review-service";
 import { ReviewFormComponent } from './components/advertisements/review-form/review-form.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { AdvertisementRowComponent } from './components/advertisements/advertisement-row/advertisement-row.component';
+import {MessageService} from "./service/message-service";
+import { MessageFormComponent } from './components/advertisements/message-form/message-form.component';
+import { MessagesListComponent } from './components/profile-panel/activities/messages/messages-list/messages-list.component';
 
 
 const routes = [
@@ -49,6 +53,9 @@ const routes = [
   {path : "profile", component: ProfilePanelComponent, children : [
       {path : "", component: DashboardComponent},
       {path : "messages", component : MessagesComponent},
+      {path : "messages/sent", component: MessagesComponent},
+      {path : "messages/received", component: MessagesComponent},
+      {path : "messages/bin", component: MessagesComponent},
       {path : "complete", component : CompleteProfileComponent},
       {path : "advertisements", component: AdvertisementsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
@@ -75,7 +82,10 @@ const routes = [
     CompleteProfileComponent,
     AdvertisementsListComponent,
     SingleAdvertisementViewComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    AdvertisementRowComponent,
+    MessageFormComponent,
+    MessagesListComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +127,7 @@ const routes = [
   AdvertisementService,
   CityService,
   ReviewService,
+  MessageService,
   UserService],
   bootstrap: [AppComponent]
 })

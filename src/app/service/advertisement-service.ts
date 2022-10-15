@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {AdvertisementPayloadRequestModel} from "../model/advertisement-payload-request-model";
+import {AdvertisementPayloadRequestModel} from "../model/advertisement/advertisement-payload-request-model";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import {AdvertisementPayloadResponseModel} from "../model/advertisement-payload-response-model";
+import {AdvertisementPayloadResponseModel} from "../model/advertisement/advertisement-payload-response-model";
 
 @Injectable({
   providedIn : 'root'
@@ -24,7 +24,7 @@ export class AdvertisementService {
   }
 
   getAdvertisementsByKeyphraseAndTypeWithPagination(pageSize: number, pageNumber: number, keyPhrase: string, type: string) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByKeyphraseAndType?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}&category=${type}`);
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByKeyphraseAndType?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}&type=${type}`);
 
   }
 
@@ -39,6 +39,10 @@ export class AdvertisementService {
   getAdvertisementById(advertisementId: number) : Observable<AdvertisementPayloadResponseModel> {
     return this.httpClient.get<AdvertisementPayloadResponseModel>(`${this.API_URL}/advertisements/${advertisementId}`);
 
+  }
+
+  getAdvertisementsByUserId(userId: number) : Observable<AdvertisementPayloadResponseModel[]> {
+    return this.httpClient.get<AdvertisementPayloadResponseModel[]>(`${this.API_URL}/advertisements/findByUserId/${userId}`);
   }
 }
 

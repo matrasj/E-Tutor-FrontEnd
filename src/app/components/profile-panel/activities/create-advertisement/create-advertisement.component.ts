@@ -1,18 +1,18 @@
 import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {SubjectSearchResponseModel} from "../../../../model/subject-search-response-model";
+import {SubjectSearchResponseModel} from "../../../../model/subject/subject-search-response-model";
 import {SubjectService} from "../../../../service/subject-service";
 import {FormBuilder, FormControl, FormGroup, UntypedFormControl, Validators} from "@angular/forms";
 import {ReplaySubject, Subject, take, takeUntil} from "rxjs";
 import {MatSelect} from "@angular/material/select";
 import {MatCheckboxChange} from "@angular/material/checkbox";
-import {AdvertisementPayloadRequestModel} from "../../../../model/advertisement-payload-request-model";
-import {AvailabilityPayloadModel} from "../../../../model/availability-payload-model";
+import {AdvertisementPayloadRequestModel} from "../../../../model/advertisement/advertisement-payload-request-model";
+import {AvailabilityPayloadModel} from "../../../../model/advertisement/availability-payload-model";
 import {AdvertisementService} from "../../../../service/advertisement-service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CityPayloadModel} from "../../../../model/city-payload-model";
+import {CityPayloadModel} from "../../../../model/city/city-payload-model";
 import {CityService} from "../../../../service/city-service";
-import {UserPayloadModel} from "../../../../model/user-payload-model";
+import {UserPayloadModel} from "../../../../model/user/user-payload-model";
 import {UserService} from "../../../../service/user-service";
 import {AuthService} from "../../../../service/auth-service";
 

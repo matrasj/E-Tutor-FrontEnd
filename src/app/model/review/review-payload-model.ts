@@ -1,4 +1,4 @@
-import {UserPayloadModel} from "./user-payload-model";
+import {UserPayloadModel} from "../user/user-payload-model";
 
 export  class ReviewPayloadModel {
   constructor(public id : number,

@@ -1,0 +1,45 @@
+<div class="add-con flex align-start space-between"  [routerLink]="['/advertisements', advertisement.id]">
+  <div class="flex" style="gap: 2.4rem">
+    <div>
+      <img [src]="advertisement.userPayload.profileImagePath" class="profile-img"/>
+    </div>
+    <div class="flex-col align-start main-info-con">
+      <p class="subject">{{ advertisement.subjectName }}</p>
+      <p class="author-name">{{ advertisement.userPayload.firstName }}  {{ advertisement.userPayload.lastName}}</p>
+      <p class="short-desc">{{ advertisement.shortDescription }}</p>
+      <div class="flex align-center places-con" style="gap: 1.2rem">
+        <div class="places-list flex align-center" style="gap: 0.8rem">
+          <div class="flex align-center" *ngFor="let location of advertisement.placesNames">
+            <mat-icon>location_on</mat-icon>
+            <p class="places">{{ location | titlecase}}</p>
+          </div>
+
+        </div>
+        <div class="flex align-center" style="gap: 0.2rem">
+          <div class="star-ratings">
+            <div class="fill-ratings" [ngStyle]="{ width : (advertisement.ratingAverage) + '%'}">
+              <span>★★★★★</span>
+            </div>
+            <div class="empty-ratings">
+              <span>★★★★★</span>
+            </div>
+          </div>
+          <p style="color: #2AC59B; font-weight: 300;">{{ advertisement.reviewsQuantity }} reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-col flex-end info-container">
+    <div class="price-con flex align-center">
+      <p class="price">{{ advertisement.price }} zł / {{ advertisement.minutesDuration }} min</p>
+    </div>
+    <div class="flex align-center phone-con">
+      <mat-icon>phone</mat-icon>
+      <p>{{ advertisement.userPayload.phoneNumber}}</p>
+    </div>
+    <button class="send-message second-btn">
+      Send message
+    </button>
+  </div>
+</div>

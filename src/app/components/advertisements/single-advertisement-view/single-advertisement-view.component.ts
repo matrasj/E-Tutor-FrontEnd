@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {UserPayloadModel} from "../../../model/user-payload-model";
+import {UserPayloadModel} from "../../../model/user/user-payload-model";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../../service/user-service";
-import {AdvertisementPayloadResponseModel} from "../../../model/advertisement-payload-response-model";
+import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/advertisement-payload-response-model";
 import {AdvertisementService} from "../../../service/advertisement-service";
 import {ReviewService} from "../../../service/review-service";
-import {ReviewPayloadModel} from "../../../model/review-payload-model";
+import {ReviewPayloadModel} from "../../../model/review/review-payload-model";
 import {MatDialog} from "@angular/material/dialog";
 import {ReviewFormComponent} from "../review-form/review-form.component";
 import {AuthService} from "../../../service/auth-service";
+import {MessageFormComponent} from "../message-form/message-form.component";
 
 @Component({
   selector: 'app-single-advertisement-view',
@@ -59,5 +60,17 @@ export class SingleAdvertisementViewComponent implements OnInit {
         advertisementId : this.advertisement.id
       }
     });
+  }
+
+  onMessageCreating() {
+    this.dialogRef.open(MessageFormComponent, {
+      data : {
+        targetFirstName : this.currentUser.firstName,
+        targetLastName : this.currentUser.lastName,
+        authorId : this.currentUser.id,
+        recipientId : this.advertisement.userPayload.id,
+        advertisementId : this.advertisement.id
+      }
+    })
   }
 }

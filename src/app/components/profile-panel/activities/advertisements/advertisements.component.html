@@ -3,16 +3,25 @@
     <mat-tab label="I give lessons" style="width: 50%;" >
       <div class="flex-col content-con">
         <h1>I give lessons</h1>
-        <p class="alert alert-warning">No advertisements yet</p>
+        <p class="alert alert-info" *ngIf="currentUser?.advertisementsForStudentQuantity > 0; else noAdds">You have created
+          <span style="color: #2AC59B">{{ currentUser?.advertisementsForStudentQuantity}} </span>
+          advertisements for students
+        </p>
         <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : false}">Add advertisement</button>
       </div>
     </mat-tab>
     <mat-tab label="I'm looking for a teacher">
       <div class="flex-col content-con">
         <h1>I'm looking for a tutor</h1>
-        <p class="alert alert-warning">No advertisements yet</p>
+        <p class="alert alert-warning" *ngIf="currentUser?.advertisementsForTutorQuantity > 0; else noAdds">You have
+          <span style="color: #2AC59B">{{ currentUser?.advertisementsForTutorQuantity}} advertisements for students</span>
+        </p>
         <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : true}">Add advertisement</button>
       </div>
     </mat-tab>
   </mat-tab-group>
 </div>
+
+<ng-template #noAdds>
+  <p class="alert alert-warning">No advertisements posted yet</p>
+</ng-template>

@@ -1,5 +1,5 @@
 import {AvailabilityPayloadModel} from "./availability-payload-model";
-import {UserPayloadModel} from "./user-payload-model";
+import {UserPayloadModel} from "../user/user-payload-model";
 
 export class AdvertisementPayloadResponseModel {
   constructor(public id : number,

@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ReviewPayloadModel} from "../model/review-payload-model";
+import {ReviewPayloadModel} from "../model/review/review-payload-model";
 import {environment} from "../../environments/environment";
-import {ReviewPayloadRequestModel} from "../model/review-payload-request-model";
+import {ReviewPayloadRequestModel} from "../model/review/review-payload-request-model";
 
 @Injectable({
   providedIn : 'root'
