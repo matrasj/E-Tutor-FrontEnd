@@ -57,8 +57,7 @@ export class MessageFormComponent implements OnInit {
           this.subject.value,
           this.content.value,
           this.authorId,
-          this.recipientId,
-          this.advertisementId
+          this.recipientId
         )
       ).subscribe((res) => {
         this.messageFormGroup.reset();

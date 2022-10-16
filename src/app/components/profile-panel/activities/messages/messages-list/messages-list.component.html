@@ -1,3 +1,15 @@
-<div class="adds-chats-con" style="width: 100%">
-
+<div class="conversations-con flex-col" style="width: 100%; gap: 1rem;">
+  <div class="conversation-simple-view flex align-center"
+       [routerLink]="['/profile', 'messages', 'chat', 'user', user?.id]"
+       style="gap: 0.8rem;" *ngFor="let user of userConversations">
+    <img class="profile-image" [src]="user?.profileImagePath"/>
+    <p class="user-name"> {{ user?.firstName }} {{ user?.lastName }}</p>
+  </div>
+  <ngb-pagination
+    [collectionSize]="totalElements"
+    [(page)]="pageNumber"
+    [boundaryLinks]="true"
+    [pageSize]="pageSize"
+    (pageChange)="fetchProductsData()"
+  ></ngb-pagination>
 </div>

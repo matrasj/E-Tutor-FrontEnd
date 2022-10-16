@@ -4,6 +4,7 @@ import {MessagePayloadRequestModel} from "../model/message/message-payload-reque
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {PageApiResponse} from "./advertisement-service";
+import {MessagePayloadResponseModel} from "../model/message/message-payload-response-model";
 
 @Injectable({
   providedIn : 'root'
@@ -20,5 +21,7 @@ export class MessageService {
   }
 
 
-
+  getMessagesForConversation(userId: number, targetUserId: number) : Observable<MessagePayloadResponseModel[]> {
+    return this.httpClient.get<MessagePayloadResponseModel[]>(`${this.API_URL}/messages/conversation?firstUserId=${userId}&secondUserId=${targetUserId}`);
+  }
 }

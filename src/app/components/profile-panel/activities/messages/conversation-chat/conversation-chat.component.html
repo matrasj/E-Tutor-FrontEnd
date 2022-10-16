@@ -1,0 +1,47 @@
+<div class="chat-con">
+  <h1 style="color: #333; font-weight: 300; margin-bottom: 1.8rem;">Messages</h1>
+  <div class="flex-col" >
+    <div class="message-con flex-col" *ngFor="let message of messages">
+      <div class="flex align-center" style="margin-bottom: 1.8rem; gap: 0.8rem;">
+        <img class="user-img" [src]="message.sender.profileImagePath"/>
+        <div class="flex-col">
+          <div class="flex align-center space-between" style="gap: 3.8rem;">
+            <p class="author">{{ message.sender.username === currentUser.username ? "You" : message.sender.username}}</p>
+            <p class="subject">{{ message?.subject}}</p>
+          </div>
+          <p class="date">{{ getFormattedDate(message?.createdAt)}}</p>
+        </div>
+      </div>
+      <p class="content" [innerHTML]="message?.content"></p>
+      <hr/>
+    </div>
+
+    <div class="write-message-form-con">
+      <form (ngSubmit)="onMessageSending()" [formGroup]="messageFormGroup">
+        <div formGroupName="message" class="message-con">
+          <div class="flex align-center" style="gap: 1rem; margin-bottom: 1.8rem">
+            <img class="user-img" [src]="currentUser?.profileImagePath"/>
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+              <mat-label>Subject</mat-label>
+              <input matInput formControlName="subject"  placeholder="Ex. Question">
+              <mat-error *ngIf="subject.errors && (subject.dirty || subject.touched)">Subject must be valid</mat-error>
+            </mat-form-field>
+          </div>
+
+          <editor
+            [ngClass]="content.errors && (content.touched || content.dirty) ? 'is-invalid' : ''"
+            id="content"
+            [init]="{plugins : 'link'}"
+            formControlName="content"
+          >
+          </editor>
+          <mat-error *ngIf="content.errors && (content.dirty || content.touched)">Please describe your advertisement</mat-error>
+        </div>
+
+        <div class="message-con">
+          <button type="submit" class="second-btn " style="width: 100%;">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

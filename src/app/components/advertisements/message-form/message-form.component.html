@@ -8,7 +8,6 @@
         <mat-error *ngIf="subject.errors && (subject.dirty || subject.touched)">Subject must be valid</mat-error>
       </mat-form-field>
 
-
       <editor
         [ngClass]="content.errors && (content.touched || content.dirty) ? 'is-invalid' : ''"
         id="content"
