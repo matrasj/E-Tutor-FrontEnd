@@ -19,12 +19,6 @@ export class MessageService {
     });
   }
 
-  getSentMessagesByUserId(userId : number, pageNumber : number, pageSize : number) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/messages/pagination/sent/findByUserId/${userId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-  }
 
-  getReceivedMessagesByUserId(userId: any, pageNumber: number, pageSize: number) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/messages/pagination/received/findByUserId/${userId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 
-  }
 }

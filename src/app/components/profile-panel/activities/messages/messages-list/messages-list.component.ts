@@ -4,6 +4,9 @@ import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-es
 import {MessagePayloadResponseModel} from "../../../../../model/message/message-payload-response-model";
 import {AuthService} from "../../../../../service/auth-service";
 import {MessageService} from "../../../../../service/message-service";
+import {
+  AdvertisementPayloadResponseModel
+} from "../../../../../model/advertisement/advertisement-payload-response-model";
 
 @Component({
   selector: 'app-messages-list',
@@ -11,7 +14,6 @@ import {MessageService} from "../../../../../service/message-service";
   styleUrls: ['./messages-list.component.css']
 })
 export class MessagesListComponent implements OnInit {
-  messages : MessagePayloadResponseModel[] = [];
   totalElements : number = 0;
   totalPages : number = 0;
   pageSize : number = 5;
@@ -25,27 +27,19 @@ export class MessagesListComponent implements OnInit {
       .subscribe((res) => {
         const currentPath : string | undefined = res.at(1)?.path;
         if (currentPath === 'sent') {
-          this.messageService.getSentMessagesByUserId(this.authService.getCurrentUser()?.id, this.pageNumber - 1, this.pageSize)
-            .subscribe((res) => {
-              this.handleResponse(res);
-              console.log(this.messages)
-            });
+
         } else if (currentPath === 'received') {
-          this.messageService.getReceivedMessagesByUserId(this.authService.getCurrentUser()?.id, this.pageNumber - 1, this.pageSize)
-            .subscribe((res) => {
-              this.handleResponse(res);
-              console.log(this.messages)
-            });
+
         }
       });
   }
 
   handleResponse(data : any) {
-    this.messages = data.content;
-    this.totalElements = data.totalElements;
-    this.totalPages = data.totalPages;
-    this.pageNumber = data.number + 1;
-    this.pageSize = data.size;
+    // this.advertisements = data.content;
+    // this.totalElements = data.totalElements;
+    // this.totalPages = data.totalPages;
+    // this.pageNumber = data.number + 1;
+    // this.pageSize = data.size;
   }
 
 
