@@ -1,12 +1,7 @@
 <div class="messages-con" style="min-width: 30rem">
-  <div class="flex justify-center align-center" style="width: 100% !important;">
-    <button routerLink="/profile/messages/sent" [routerLinkActiveOptions]="{exact : true}"
-            routerLinkActive="link-active" mat-raised-button>Sent</button>
-    <button routerLink="/profile/messages/received" [routerLinkActiveOptions]="{exact : true}"
-            routerLinkActive="link-active" mat-raised-button>Received</button>
-    <button routerLink="/profile/messages/bin" [routerLinkActiveOptions]="{exact : true}"
-            routerLinkActive="link-active" mat-raised-button>Bin</button>
+  <div class="flex-col align-start" style="width: 100%">
+    <div class="conversation-con">
+    </div>
   </div>
-
-  <app-messages-list ></app-messages-list>
+  <app-messages-list></app-messages-list>
 </div>

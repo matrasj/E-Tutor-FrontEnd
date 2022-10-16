@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserPayloadModel} from "../model/user/user-payload-model";
 import {environment} from "../../environments/environment";
+import {PageApiResponse} from "./advertisement-service";
 
 @Injectable({
   providedIn : 'root'
@@ -38,4 +39,7 @@ export class UserService {
   }
 
 
+  getUsersForConversations(userId : number, pageSize : number, pageNumber : number) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/users/conversations-list/${userId}?pageSize=${pageSize}&pageNumber=${pageNumber}`);
+  }
 }

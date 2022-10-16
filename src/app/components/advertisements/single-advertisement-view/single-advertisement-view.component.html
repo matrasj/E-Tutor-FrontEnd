@@ -3,7 +3,7 @@
     <div class="all-con flex " style="gap: 3.2rem">
       <div class="left-panel flex-col align-start">
         <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath"/>
-        <button class="flex align-center second-btn justify-center" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
+        <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username" class="flex align-center second-btn justify-center" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
           <mat-icon style="color: #fff">email</mat-icon>
           Send message
         </button>
@@ -25,7 +25,7 @@
         </div>
         <div class="days-list">
           <ul class="flex-col" style="gap: 0.6rem">
-            <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
+            <li class="flex align-center" style="gap: 1.2rem; width: max-content" *ngFor="let availability of advertisement?.availabilityPayloads">
               <p style="color: #2AC59B;">{{ availability.dayName}}</p>
               <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
             </li>

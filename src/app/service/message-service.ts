@@ -4,6 +4,7 @@ import {MessagePayloadRequestModel} from "../model/message/message-payload-reque
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {PageApiResponse} from "./advertisement-service";
+import {MessagePayloadResponseModel} from "../model/message/message-payload-response-model";
 
 @Injectable({
   providedIn : 'root'
@@ -19,12 +20,8 @@ export class MessageService {
     });
   }
 
-  getSentMessagesByUserId(userId : number, pageNumber : number, pageSize : number) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/messages/pagination/sent/findByUserId/${userId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-  }
 
-  getReceivedMessagesByUserId(userId: any, pageNumber: number, pageSize: number) : Observable<PageApiResponse> {
-    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/messages/pagination/received/findByUserId/${userId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-
+  getMessagesForConversation(userId: number, targetUserId: number) : Observable<MessagePayloadResponseModel[]> {
+    return this.httpClient.get<MessagePayloadResponseModel[]>(`${this.API_URL}/messages/conversation?firstUserId=${userId}&secondUserId=${targetUserId}`);
   }
 }

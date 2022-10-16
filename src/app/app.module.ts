@@ -45,6 +45,8 @@ import { AdvertisementRowComponent } from './components/advertisements/advertise
 import {MessageService} from "./service/message-service";
 import { MessageFormComponent } from './components/advertisements/message-form/message-form.component';
 import { MessagesListComponent } from './components/profile-panel/activities/messages/messages-list/messages-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConversationChatComponent } from './components/profile-panel/activities/messages/conversation-chat/conversation-chat.component';
 
 
 const routes = [
@@ -53,9 +55,7 @@ const routes = [
   {path : "profile", component: ProfilePanelComponent, children : [
       {path : "", component: DashboardComponent},
       {path : "messages", component : MessagesComponent},
-      {path : "messages/sent", component: MessagesComponent},
-      {path : "messages/received", component: MessagesComponent},
-      {path : "messages/bin", component: MessagesComponent},
+      {path : "messages/chat/user/:id", component : ConversationChatComponent},
       {path : "complete", component : CompleteProfileComponent},
       {path : "advertisements", component: AdvertisementsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
@@ -85,7 +85,8 @@ const routes = [
     ReviewFormComponent,
     AdvertisementRowComponent,
     MessageFormComponent,
-    MessagesListComponent
+    MessagesListComponent,
+    ConversationChatComponent
   ],
   imports: [
     BrowserModule,
@@ -120,7 +121,8 @@ const routes = [
     NgxMatSelectSearchModule,
     EditorModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},

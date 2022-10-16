@@ -65,8 +65,8 @@ export class SingleAdvertisementViewComponent implements OnInit {
   onMessageCreating() {
     this.dialogRef.open(MessageFormComponent, {
       data : {
-        targetFirstName : this.currentUser.firstName,
-        targetLastName : this.currentUser.lastName,
+        targetFirstName : this.advertisement?.userPayload?.firstName,
+        targetLastName : this.advertisement?.userPayload?.lastName,
         authorId : this.currentUser.id,
         recipientId : this.advertisement.userPayload.id,
         advertisementId : this.advertisement.id

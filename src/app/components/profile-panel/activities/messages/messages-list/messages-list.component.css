@@ -1,0 +1,44 @@
+.add-author-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.user-name {
+  color: #12a27f;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.conversation-simple-view {
+  padding: 0.8rem 2.4rem;
+  background-color: #f1f3f5;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.conversation-simple-view:hover {
+  background-color: #ced4da;
+  transition: all 0.2s linear;
+  border-color: #12a27f;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: #fff !important;
+  color: #333 !important;
+  border-color: #12a27f !important;
+
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: #12a27f !important;
+  border-color: #12a27f !important;
+
+}
