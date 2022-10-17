@@ -36,6 +36,13 @@ p {
   color: #2AC59B;
   margin-top: 1.4rem;
   font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.see-info:hover {
+  transition: all 0.2s linear;
+  text-decoration: underline;
 }
 
 h1 {

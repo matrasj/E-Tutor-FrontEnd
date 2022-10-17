@@ -73,4 +73,8 @@ export class SingleAdvertisementViewComponent implements OnInit {
       }
     })
   }
+
+  isAuthenticated() {
+    return this.authService.isAuth();
+  }
 }

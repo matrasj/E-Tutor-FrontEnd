@@ -11,7 +11,7 @@
         </div>
         <span>({{ subjectWithQuan.addsQuantity }})</span>
       </div>
-      <p class="see-info">See all subjects</p>
+      <p class="see-info" [routerLink]="['/subjects']">See all subjects</p>
     </div>
     <div class="loader" *ngIf="showLoaderForLeft">Loading...</div>
 
@@ -23,7 +23,7 @@
         </div>
         <span>({{ cityWithQuan.addsQuantity }})</span>
       </div>
-      <p class="see-info">See all subjects</p>
+      <p class="see-info" [routerLink]="['/cities']" >See all cities</p>
     </div>
 
     <div class="loader" *ngIf="showLoaderForRight">Loading...</div>

@@ -3,5 +3,14 @@
   <div class="main-container flex-col" style="gap: 1.4rem">
     <h1 style="justify-self: flex-start; width: 100%">Found <span style="color: #2AC59B">{{ totalElements }}</span> advertisements</h1>
     <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
+    <p class="alert alert-warning" *ngIf="advertisements.length === 0" style="width: 100%">No advertisements found</p>
+    <ngb-pagination
+      [collectionSize]="totalElements"
+      [(page)]="pageNumber"
+      [boundaryLinks]="true"
+      [pageSize]="pageSize"
+      (pageChange)="fetchData()"
+
+    ></ngb-pagination>
   </div>
 </div>

@@ -44,6 +44,10 @@ export class AdvertisementService {
   getAdvertisementsByUserId(userId: number) : Observable<AdvertisementPayloadResponseModel[]> {
     return this.httpClient.get<AdvertisementPayloadResponseModel[]>(`${this.API_URL}/advertisements/findByUserId/${userId}`);
   }
+
+  getAdvertisementByType(advertisementType: string, pageSize: number, pageNumber: number) : Observable<PageApiResponse>{
+    return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByType?type=${advertisementType}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+  }
 }
 
 export interface PageApiResponse {

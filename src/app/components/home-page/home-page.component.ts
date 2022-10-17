@@ -36,7 +36,7 @@ export class HomePageComponent implements OnInit {
       .subscribe((citiesWithQuantities) => {
         this.citiesWithAddsQuantities = citiesWithQuantities;
         this.showLoaderForRight = false;
-      })
+      });
   }
 
   selectAdvertisementsWithFilteringBySubject(subjectName: string) {

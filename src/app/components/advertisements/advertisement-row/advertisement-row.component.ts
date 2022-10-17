@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/advertisement-payload-response-model";
+import {AuthService} from "../../../service/auth-service";
+import {UserPayloadModel} from "../../../model/user/user-payload-model";
 
 @Component({
   selector: 'app-advertisement-row',
@@ -7,10 +9,19 @@ import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/ad
   styleUrls: ['./advertisement-row.component.css']
 })
 export class AdvertisementRowComponent implements OnInit {
+  currentUser : UserPayloadModel | any;
+
   @Input() advertisement : AdvertisementPayloadResponseModel | any;
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
   }
+
+  isAuthenticated() {
+    return this.authService.isAuth();
+  }
+
+
 
 }

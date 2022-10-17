@@ -7,6 +7,7 @@ import {MessagePayloadResponseModel} from "../../../../../model/message/message-
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessagePayloadRequestModel} from "../../../../../model/message/message-payload-request-model";
 import {ToastrService} from "ngx-toastr";
+import {UserService} from "../../../../../service/user-service";
 
 @Component({
   selector: 'app-conversation-chat',
@@ -22,10 +23,11 @@ export class ConversationChatComponent implements OnInit {
               private messageService : MessageService,
               private activatedRoute : ActivatedRoute,
               private formBuilder : FormBuilder,
-              private toastrService : ToastrService) { }
+              private toastrService : ToastrService,
+              private userService : UserService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.getCurrentUser();
+
 
     this.messageFormGroup = this.formBuilder.group({
       message : this.formBuilder.group({
@@ -36,9 +38,16 @@ export class ConversationChatComponent implements OnInit {
 
     this.activatedRoute.paramMap
       .subscribe((paramMap) => {
-        this.targetUserId = Number(paramMap.get('id'));
-        this.messageService.getMessagesForConversation(this.currentUser.id, this.targetUserId)
-          .subscribe((messages) =>  this.messages = messages);
+        this.userService.getCurrentUserById(this.authService.getCurrentUser().id)
+          .subscribe((user) => {
+            this.currentUser = user;
+
+            this.targetUserId = Number(paramMap.get('id'));
+            this.messageService.getMessagesForConversation(this.currentUser.id, this.targetUserId)
+              .subscribe((messages) =>  this.messages = messages);
+          });
+
+
       })
   }
 

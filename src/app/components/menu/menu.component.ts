@@ -54,15 +54,19 @@ export class MenuComponent implements OnInit {
 
   onAdvertisementsSearching(event: SubmitEvent) {
     event.preventDefault();
-
     this.router.navigate(['/advertisements'], {
         queryParams : {
           keyphrase : this.keyPhrase,
           category : this.selectedCategory ? this.selectedCategory : ''
         }
       });
+  }
 
-
-
+  onAdvertisementsForCategorySearching(type : string) {
+    this.router.navigate(['/advertisements'], {
+      queryParams : {
+        type
+      }
+    })
   }
 }

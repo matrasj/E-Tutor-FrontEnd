@@ -47,11 +47,15 @@ import { MessageFormComponent } from './components/advertisements/message-form/m
 import { MessagesListComponent } from './components/profile-panel/activities/messages/messages-list/messages-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConversationChatComponent } from './components/profile-panel/activities/messages/conversation-chat/conversation-chat.component';
-
+import {AuthGuard} from "./config/auth-guard";
+import { SubjectOrCitiesListComponent } from './components/home-page/subject-or-cities-list/subject-or-cities-list.component';
+import {StateService} from "./service/state-service";
 
 const routes = [
   {path : "login", component: LoginComponent},
   {path : "register", component: RegisterComponent},
+  {path : "subjects", component: SubjectOrCitiesListComponent},
+  {path : "cities", component: SubjectOrCitiesListComponent},
   {path : "profile", component: ProfilePanelComponent, children : [
       {path : "", component: DashboardComponent},
       {path : "messages", component : MessagesComponent},
@@ -60,7 +64,7 @@ const routes = [
       {path : "advertisements", component: AdvertisementsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
       {path : "create-advertisement-student", component: CreateAdvertisementComponent}
-    ]},
+    ], canActivate : [AuthGuard]},
   {path : "advertisements", component: AdvertisementsListComponent},
   {path : "advertisements/:id", component: SingleAdvertisementViewComponent},
   {path : "", component: HomePageComponent}
@@ -86,7 +90,8 @@ const routes = [
     AdvertisementRowComponent,
     MessageFormComponent,
     MessagesListComponent,
-    ConversationChatComponent
+    ConversationChatComponent,
+    SubjectOrCitiesListComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +135,8 @@ const routes = [
   CityService,
   ReviewService,
   MessageService,
-  UserService],
+  UserService,
+  StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

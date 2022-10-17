@@ -22,12 +22,24 @@ export class AdvertisementsListComponent implements OnInit {
               private activatedRouter : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  handleResponse(data : any) {
+    this.advertisements = data.content;
+    this.totalElements = data.totalElements;
+    this.totalPages = data.totalPages;
+    this.pageNumber = data.number + 1;
+    this.pageSize = data.size;
+  }
+
+  fetchData() {
     this.activatedRouter.queryParamMap
       .subscribe((queryParamMap) => {
+        const type : string = String(queryParamMap.get('category'));
+        this.keyPhrase = String(queryParamMap.get('keyphrase'));
         if (queryParamMap.has('category') && String(queryParamMap.get('category')).length > 0
-        && queryParamMap.has('keyphrase')) { // KEYPHRASE AND TYPE
-
-          const type : string = String(queryParamMap.get('category'));
+          && queryParamMap.has('keyphrase')) { // KEYPHRASE AND TYPE
           this.advertisementService.getAdvertisementsByKeyphraseAndTypeWithPagination(this.pageSize,
             this.pageNumber - 1,
             this.keyPhrase,
@@ -47,7 +59,8 @@ export class AdvertisementsListComponent implements OnInit {
         }
 
         else if (queryParamMap.has('cityName')) { // SUBJECT_NAME
-          this.advertisementService.getAdvertisementsByCityWithPagination(this.pageSize,
+          this.advertisementService.getAdvertisementsByCityWithPagination(
+            this.pageSize,
             this.pageNumber - 1,
             String(queryParamMap.get('cityName'))
           ) .subscribe((res) => {
@@ -55,6 +68,14 @@ export class AdvertisementsListComponent implements OnInit {
           });
         }
 
+        else if (queryParamMap.has('type')) {
+          const advertisementType : string = String(queryParamMap.get('type'));
+          this.advertisementService.getAdvertisementByType(
+            advertisementType,
+            this.pageSize,
+            this.pageNumber - 1
+          ).subscribe((res) => this.handleResponse(res));
+        }
         else { // KEYPHRASE
           this.advertisementService.getAdvertisementsByKeyphraseWithPagination(this.pageSize,
             this.pageNumber - 1,
@@ -63,16 +84,7 @@ export class AdvertisementsListComponent implements OnInit {
               this.handleResponse(res);
             });
         }
-
-      })
-  }
-
-  handleResponse(data : any) {
-    this.advertisements = data.content;
-    this.totalElements = data.totalElements;
-    this.totalPages = data.totalPages;
-    this.pageNumber = data.number + 1;
-    this.pageSize = data.size;
+      });
   }
 
 }

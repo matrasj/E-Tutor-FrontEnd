@@ -20,7 +20,7 @@ export class MessagesListComponent implements OnInit {
   userConversations : UserPayloadModel[] = [];
   totalElements : number = 0;
   totalPages : number = 0;
-  pageSize : number = 1;
+  pageSize : number = 5;
   pageNumber : number = 1;
   constructor(private activatedRouter : ActivatedRoute,
               private authService : AuthService,
@@ -28,7 +28,7 @@ export class MessagesListComponent implements OnInit {
               private userService : UserService) { }
 
   ngOnInit(): void {
-    this.fetchProductsData();
+    this.fetchData();
   }
 
   handleResponse(data : any) {
@@ -39,7 +39,7 @@ export class MessagesListComponent implements OnInit {
     this.pageSize = data.size;
   }
 
-  fetchProductsData() {
+  fetchData() {
     this.currentUser = this.authService.getCurrentUser();
     this.userService.getUsersForConversations(this.currentUser.id, this.pageSize, this.pageNumber - 1)
       .subscribe((userConversations) => {

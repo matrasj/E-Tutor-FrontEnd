@@ -37,3 +37,17 @@ p {
 .content {
   padding: 0.2rem 2.4rem;
 }
+
+.last-label, .first-label {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  background-color: #fa5252;
+  border: none;
+  padding: 0.2rem 0.8rem;
+}
+
+.first-label {
+  background-color: #12a27f;
+}

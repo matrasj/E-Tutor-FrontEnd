@@ -1,7 +1,7 @@
 <div class="add-con flex align-start space-between"  [routerLink]="['/advertisements', advertisement.id]">
   <div class="flex" style="gap: 2.4rem">
     <div>
-      <img [src]="advertisement.userPayload.profileImagePath" class="profile-img"/>
+      <img [src]="advertisement.userPayload.profileImagePath ? advertisement.userPayload.profileImagePath : 'assets/images/default_avatar.png'" class="profile-img"/>
     </div>
     <div class="flex-col align-start main-info-con">
       <p class="subject">{{ advertisement.subjectName }}</p>
@@ -38,7 +38,8 @@
       <mat-icon>phone</mat-icon>
       <p>{{ advertisement.userPayload.phoneNumber}}</p>
     </div>
-    <button class="send-message second-btn">
+    <button class="send-message second-btn flex align-center" *ngIf="isAuthenticated() && advertisement.userPayload.id !== currentUser.id" style="gap: 0.6rem;">
+      <mat-icon>message</mat-icon>
       Send message
     </button>
   </div>

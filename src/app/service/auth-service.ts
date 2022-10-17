@@ -59,6 +59,10 @@ export class AuthService {
     this.isAuthenticated.next(false);
     window.location.reload();
   }
+
+  isAuth() {
+    return this.getCurrentUser() !== null && this.getCurrentUser() !== undefined;
+  }
 }
 
 
