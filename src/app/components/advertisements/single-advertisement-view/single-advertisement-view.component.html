@@ -63,7 +63,7 @@
             <mat-icon>schedule</mat-icon>
             <p>Availability</p>
           </div>
-          <div class="days-list" style="padding-left: 2.8rem;">
+          <div class="days-list" style="padding-left: rem;">
             <ul class="flex-col" style="gap: 0.6rem">
               <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
                 <p style="color: #2AC59B;">{{ availability.dayName}}</p>
@@ -75,16 +75,16 @@
             <mat-icon>bookmark_border</mat-icon>
             <p>Lesson's range</p>
           </div>
-          <ul class="flex-col" style="gap: 0.4rem; padding-left: 2.8rem; list-style: square; margin-bottom: 1.8rem">
+          <ul class="flex-col" style="gap: 0.4rem; padding-left: 2.4rem; list-style: square; margin-bottom: 1.8rem">
             <li class="lesson-range" *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
           </ul>
 
-          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+          <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem;">
             <mat-icon> pin_drop</mat-icon>
             <p>Place of lessons</p>
           </div>
 
-          <ul *ngFor="let place of advertisement?.placesNames" class="flex-col" style="gap: 0.4rem; padding-left: 2.8rem;">
+          <ul *ngFor="let place of advertisement?.placesNames" class="flex-col" style="gap: 0.4rem;">
             <li>
               <div class="flex align-center">
                 <mat-icon>location_on</mat-icon>
