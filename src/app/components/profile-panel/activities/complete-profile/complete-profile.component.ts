@@ -108,7 +108,6 @@ export class CompleteProfileComponent implements OnInit {
     event.preventDefault();
 
     if (this.profileImageFile !== null) {
-      console.log(this.currentUser)
       this.userService.updateProfileImage(this.currentUser.id, this.profileImageFile)
         .subscribe((res) => {
           this.profileImageFile = null;
