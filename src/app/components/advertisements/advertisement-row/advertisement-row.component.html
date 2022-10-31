@@ -1,4 +1,4 @@
-<div class="add-con flex align-start space-between"  [routerLink]="['/advertisements', advertisement.id]">
+<div class="add-con flex align-start space-between"  (click)="onAdvertisementClicking($event)">
   <div class="flex" style="gap: 2.4rem">
     <div>
       <img [src]="advertisement.userPayload.profileImagePath ? advertisement.userPayload.profileImagePath : 'assets/images/default_avatar.png'" class="profile-img"/>
@@ -36,9 +36,12 @@
     <div class="price-con flex align-center">
       <p class="price">{{ advertisement.price }} zł / {{ advertisement.minutesDuration }} min</p>
     </div>
-    <div class="flex align-center phone-con">
+    <div class="flex align-center phone-con" style="gap: 0.4rem">
       <mat-icon>phone</mat-icon>
-      <p>{{ advertisement.userPayload.phoneNumber}}</p>
+      <p class="phone-number" *ngIf="advertisement.userPayload.phoneNumber else noPhone">{{ advertisement.userPayload.phoneNumber}}</p>
+      <ng-template #noPhone>
+        <p class="phone-number">No phone</p>
+      </ng-template>
     </div>
     <button class="send-message second-btn flex align-center" *ngIf="isAuthenticated() && advertisement.userPayload.id !== currentUser.id" style="gap: 0.6rem;">
       <mat-icon>message</mat-icon>

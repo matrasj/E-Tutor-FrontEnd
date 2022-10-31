@@ -1,5 +1,5 @@
 <div class="single-advertisement-con flex-col align-center ">
-  <div >
+  <div style="width: 65rem">
     <div class="all-con flex " style="gap: 3.2rem">
       <div class="left-panel flex-col align-start">
         <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath"/>
@@ -8,8 +8,8 @@
           Send message
         </button>
 
-        <ul *ngFor="let place of advertisement?.placesNames">
-          <li>
+        <ul class="flex flex-col" style="gap: 0.6rem">
+          <li *ngFor="let place of advertisement?.placesNames">
             <div class="flex align-center">
               <mat-icon>location_on</mat-icon>
               <p class="place-name">{{ place | titlecase}}</p>
@@ -39,7 +39,7 @@
           <p class="price">{{ advertisement?.price }}zł / {{ advertisement?.minutesDuration }} min</p>
         </div>
         <p class="user-name">{{ advertisement?.userPayload?.firstName | titlecase}} {{ advertisement?.userPayload?.lastName | titlecase }}</p>
-        <div class="flex align-end" style="gap: 0.4rem; margin-bottom: 2.4rem">
+        <div class="flex align-end" style="gap: 0.6rem; margin-bottom: 2.4rem">
           <div class="star-ratings">
             <div class="fill-ratings" [ngStyle]="{ width : (advertisement?.ratingAverage) + '%'}">
               <span>★★★★★</span>
@@ -75,7 +75,7 @@
             <mat-icon>bookmark_border</mat-icon>
             <p>Lesson's range</p>
           </div>
-          <ul class="flex-col" style="gap: 0.4rem; padding-left: 2.4rem; list-style: square; margin-bottom: 1.8rem">
+          <ul class="flex-col" style="gap: 0.6rem; padding-left: 2.2rem; list-style: square; margin-bottom: 1.8rem">
             <li class="lesson-range" *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
           </ul>
 
@@ -84,8 +84,8 @@
             <p>Place of lessons</p>
           </div>
 
-          <ul *ngFor="let place of advertisement?.placesNames" class="flex-col" style="gap: 0.4rem;">
-            <li>
+          <ul  class="flex-col" style="gap: 0.6rem;">
+            <li *ngFor="let place of advertisement?.placesNames">
               <div class="flex align-center">
                 <mat-icon>location_on</mat-icon>
                 <p class="place-name">{{ place | titlecase}}</p>
