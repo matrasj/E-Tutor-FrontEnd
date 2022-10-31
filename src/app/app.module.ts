@@ -49,7 +49,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConversationChatComponent } from './components/profile-panel/activities/messages/conversation-chat/conversation-chat.component';
 import {AuthGuard} from "./config/auth-guard";
 import {StateService} from "./service/state-service";
-import { CitiesOrSubjectsFullViewComponent } from './components/cities-or-subjects-full-view/cities-or-subjects-full-view.component';
+import {SubjectsFullViewComponent} from "./components/subjects-full-view/subjects-full-view.component";
+import {CitiesFullViewComponent} from "./components/cities-full-view/cities-full-view.component";
+
 
 const routes = [
   {path : "login", component: LoginComponent},
@@ -65,6 +67,8 @@ const routes = [
     ], canActivate : [AuthGuard]},
   {path : "advertisements", component: AdvertisementsListComponent},
   {path : "advertisements/:id", component: SingleAdvertisementViewComponent},
+  {path : "subjects", component: SubjectsFullViewComponent},
+  {path : "cities", component: CitiesFullViewComponent},
   {path : "", component: HomePageComponent}
 ]
 @NgModule({
@@ -88,8 +92,7 @@ const routes = [
     AdvertisementRowComponent,
     MessageFormComponent,
     MessagesListComponent,
-    ConversationChatComponent,
-    CitiesOrSubjectsFullViewComponent
+    ConversationChatComponent
   ],
   imports: [
     BrowserModule,
