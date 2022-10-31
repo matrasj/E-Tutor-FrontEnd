@@ -5,6 +5,7 @@ import {AuthService} from "../../service/auth-service";
 import {UserPayloadModel} from "../../model/user/user-payload-model";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {UserService} from "../../service/user-service";
+import {AdvertisementService} from "../../service/advertisement-service";
 
 @Component({
   selector: 'app-menu',
@@ -18,11 +19,13 @@ export class MenuComponent implements OnInit {
   shouldBeSearchFormVisible : boolean = true;
   currentUser : UserPayloadModel | any = null;
   keyPhrase : string = '';
+  public totalAdvertisementsQuantity: number = 0;
 
   constructor(private router : Router,
               private authService : AuthService,
               private sanitizer : DomSanitizer,
-              private userService : UserService) { }
+              private userService : UserService,
+              private advertisementService : AdvertisementService) { }
 
   ngOnInit(): void {
     this.authService.isAuthenticated
@@ -33,6 +36,10 @@ export class MenuComponent implements OnInit {
             .subscribe((user) => this.currentUser = user);
         }
       });
+
+    this.advertisementService.getTotalAdvertisementsQuantity().subscribe((quantity) => {
+      this.totalAdvertisementsQuantity = quantity;
+    })
 
     this.router.events
       .subscribe(

@@ -1,0 +1,26 @@
+<div class="main-con flex-col align-center">
+  <div class="inner-con flex-col align-center" >
+    <h1>States and cities</h1>
+    <div class="main-grid-con">
+      <div class="state" *ngFor="let state of statesWithCitiesAndQuantities">
+        <div class="flex align-center" style="gap: 1.2rem; margin-bottom: 1.8rem">
+          <p class="main-name" >{{ state?.name }}</p>
+          <p class="main-quan">({{ state?.totalAddsQuantity }})</p>
+        </div>
+        <div class="cities-grid-con">
+          <div class="city-con flex align-center space-between" *ngFor="let city of state.citiesWithQuantities">
+            <div class="flex align-center" style="color: #12a27f; cursor: pointer" (click)="onAdvertisementsFilteringByCity(city.cityName)">
+              <mat-icon>location_on</mat-icon>
+              <p class="sub-name" >{{ city.cityName.length > 15 ?
+                city.cityName.slice(0, 15) + '...' : city?.cityName}}</p>
+            </div>
+
+            <p class="sub-quan">
+              ( {{ city?.addsQuantity }} )
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

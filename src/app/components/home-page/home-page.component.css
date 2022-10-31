@@ -74,6 +74,7 @@ h1 {
   -webkit-animation: load8 1.1s infinite linear;
   animation: load8 1.1s infinite linear;
 }
+
 @-webkit-keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -113,4 +114,52 @@ p {
 
 .com-button {
   margin-top: 0.8rem;
+}
+
+.light-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.light-add {
+  background-color: #fff;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.light-add:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: all 0.2s linear;
+}
+
+p, span {
+  margin: 0;
+}
+.profile-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.location {
+  color: #12a27f;
+}
+
+.price {
+  color: #333;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reviews-quan {
+  color: #12a27f;
+}
+
+.best-adds {
+  background-color: #e9ecef;
+  padding: 2.4rem;
 }

@@ -5,6 +5,8 @@ import {SubjectQuantityModel} from "../../model/subject/subject-quantity-model";
 import {CityService} from "../../service/city-service";
 import {CityQuantityModel} from "../../model/city/city-quantity-model";
 import {Router} from "@angular/router";
+import {AdvertisementService} from "../../service/advertisement-service";
+import {AdvertisementPayloadLightModel} from "../../model/advertisement/advertisement-payload-light-model";
 
 @Component({
   selector: 'app-home-page',
@@ -17,11 +19,14 @@ export class HomePageComponent implements OnInit {
   citiesWithAddsQuantities: CityQuantityModel[] = [];
   showLoaderForLeft : boolean = false;
   showLoaderForRight : boolean = false;
+  limit : number = 9;
+  public lightAdvertisements: AdvertisementPayloadLightModel[] = [];
 
 
   constructor(private subjectService : SubjectService,
               private cityService : CityService,
-              private router : Router) { }
+              private router : Router,
+              private advertisementService : AdvertisementService) { }
 
   ngOnInit(): void {
     this.showLoaderForLeft = true;
@@ -36,6 +41,11 @@ export class HomePageComponent implements OnInit {
       .subscribe((citiesWithQuantities) => {
         this.citiesWithAddsQuantities = citiesWithQuantities;
         this.showLoaderForRight = false;
+      });
+
+    this.advertisementService.getLightAdvertisementsForHomePage(this.limit)
+      .subscribe((lightAdvertisements) => {
+        this.lightAdvertisements = lightAdvertisements;
       });
   }
 

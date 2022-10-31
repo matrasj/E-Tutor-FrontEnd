@@ -1,0 +1,19 @@
+<div class="main-con flex-col align-center">
+  <div class="inner-con flex-col align-center" >
+    <h1>Subjects</h1>
+    <div class="main-grid-con" >
+      <div class="subject-con flex align-center space-between"
+           *ngFor="let subjectWithQuan of subjectsWithQuantities"
+           style="cursor: pointer"
+        (click)="onAdvertisementsFilteringBySubject(subjectWithQuan.subjectName)">
+        <div class="flex align-center" style="gap: 0.6rem">
+          <mat-icon style="color: #12a27f">book</mat-icon>
+          <p class="sub-name">{{ subjectWithQuan.subjectName.length > 15 ?
+            subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName }}</p>
+        </div>
+
+        <p class="sub-quan">({{ subjectWithQuan?.addsQuantity}})</p>
+      </div>
+    </div>
+  </div>
+</div>

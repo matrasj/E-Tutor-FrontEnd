@@ -1,0 +1,45 @@
+.main-con {
+  background-color: #e9ecef;
+}
+
+p {
+  margin: 0;
+}
+
+.main-grid-con, .cities-grid-con {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1.2rem;
+  column-gap: 1.6rem;
+}
+
+.main-grid-con {
+  column-gap: 3.8rem;
+  row-gap: 3.8rem;
+}
+
+.inner-con {
+  background-color: #fff;
+  padding: 2.8rem 3.8rem;
+  margin-top: 2.4rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 3.8rem;
+}
+
+.main-name, .sub-name, .sub-quan, .main-quan{
+  font-weight: 300;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+.sub-name, .sub-quan {
+  font-size: 1rem;
+}
+
+
+

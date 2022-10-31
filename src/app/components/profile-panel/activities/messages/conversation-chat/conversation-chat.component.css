@@ -46,7 +46,9 @@ p {
   background-color: #fa5252;
   border: none;
   padding: 0.2rem 0.8rem;
+  width: max-content;
 }
+
 
 .first-label {
   background-color: #12a27f;

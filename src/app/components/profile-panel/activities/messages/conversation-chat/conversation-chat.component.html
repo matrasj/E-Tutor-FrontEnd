@@ -5,7 +5,7 @@
       <div class="flex align-center" style="margin-bottom: 1.8rem; gap: 0.8rem; position:  relative">
         <p class="last-label" *ngIf="i === messages.length - 1">Last</p>
         <p class="first-label" *ngIf="i === 0">First</p>
-        <img class="user-img" [src]="message.sender.profileImagePath"/>
+        <img class="user-img" [src]="message.sender.profileImagePath" alt="Image shows user's profile image"/>
         <div class="flex-col">
           <div class="flex align-center space-between" style="gap: 3.8rem;">
             <p class="author">{{ message.sender.username === currentUser.username ? "You" : message.sender.username}}</p>

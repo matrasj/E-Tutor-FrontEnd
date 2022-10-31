@@ -49,6 +49,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConversationChatComponent } from './components/profile-panel/activities/messages/conversation-chat/conversation-chat.component';
 import {AuthGuard} from "./config/auth-guard";
 import {StateService} from "./service/state-service";
+import { CitiesOrSubjectsFullViewComponent } from './components/cities-or-subjects-full-view/cities-or-subjects-full-view.component';
 
 const routes = [
   {path : "login", component: LoginComponent},
@@ -87,14 +88,15 @@ const routes = [
     AdvertisementRowComponent,
     MessageFormComponent,
     MessagesListComponent,
-    ConversationChatComponent
+    ConversationChatComponent,
+    CitiesOrSubjectsFullViewComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatInputModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes,{ scrollPositionRestoration: 'enabled' }),
     MatButtonModule,
     ReactiveFormsModule,
     NgCircleProgressModule.forRoot({

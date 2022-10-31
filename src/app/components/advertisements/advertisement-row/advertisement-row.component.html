@@ -9,10 +9,12 @@
       <p class="short-desc">{{ advertisement.shortDescription }}</p>
       <div class="flex align-center places-con" style="gap: 1.2rem">
         <div class="places-list flex align-center" style="gap: 0.8rem">
-          <div class="flex align-center" *ngFor="let location of advertisement.placesNames">
+          <div class="flex align-center" *ngFor="let location of advertisement.placesNames.slice(0, 2)">
             <mat-icon>location_on</mat-icon>
-            <p class="places">{{ location | titlecase}}</p>
+            <p class="places" style="width: max-content">{{ location | titlecase}}</p>
+
           </div>
+          <span *ngIf="advertisement.placesNames.length > 2">...</span>
 
         </div>
         <div class="flex align-center" style="gap: 0.2rem">

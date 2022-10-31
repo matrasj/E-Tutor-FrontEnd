@@ -10,7 +10,8 @@
         <mat-select required  [formControl]="subjectCtrl" placeholder="Subject" #singleSelect>
           <mat-option>
             <ngx-mat-select-search placeholderLabel="Search for subjects"
-                                   [formControl]="subjectFilterCtrl"></ngx-mat-select-search>
+                                   [formControl]="subjectFilterCtrl"
+                                   noEntriesFoundLabel = "We can not find such subject"></ngx-mat-select-search>
           </mat-option>
 
           <mat-option *ngFor="let subject of filteredSubjects | async" [value]="subject">
@@ -48,7 +49,8 @@
           <mat-select required  [formControl]="cityCtrl" placeholder="City" #singleSelect>
             <mat-option>
               <ngx-mat-select-search placeholderLabel="Search for cities"
-                                     [formControl]="cityFilterCtrl"></ngx-mat-select-search>
+                                     [formControl]="cityFilterCtrl"
+                                     noEntriesFoundLabel = "We can not find this city"></ngx-mat-select-search>
             </mat-option>
 
             <mat-option *ngFor="let city of filteredCities | async" [value]="city">

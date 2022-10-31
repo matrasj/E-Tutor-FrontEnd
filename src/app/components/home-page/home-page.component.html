@@ -7,7 +7,8 @@
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.6rem; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
           <mat-icon style="color: #2AC59B">school</mat-icon>
-          <p class="subject-name">{{ subjectWithQuan.subjectName}}</p>
+          <p class="subject-name">{{ subjectWithQuan.subjectName.length > 15 ?
+            subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName}}</p>
         </div>
         <span>({{ subjectWithQuan.addsQuantity }})</span>
       </div>
@@ -19,7 +20,8 @@
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.6rem; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
           <mat-icon style="color: #2AC59B">school</mat-icon>
-          <p class="subject-name">{{ cityWithQuan.cityName}}</p>
+          <p class="subject-name">{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' :
+            cityWithQuan?.cityName}}</p>
         </div>
         <span>({{ cityWithQuan.addsQuantity }})</span>
       </div>
@@ -29,6 +31,39 @@
     <div class="loader" *ngIf="showLoaderForRight">Loading...</div>
 
 
+  </div>
+</div>
+
+<div class="flex-col align-center justify-center best-adds" >
+  <h1 style="text-align: center; color: #333; font-weight: 300; margin-bottom: 3.8rem">Most popular advertisements</h1>
+  <div class="light-grid">
+    <div *ngFor="let lightAdvertisement of lightAdvertisements"
+         class="flex space-between light-add"
+         style="gap: 1rem"
+         [routerLink]="['/advertisements', lightAdvertisement.id]"
+    >
+      <div class="flex align-start" style="gap: 0.8rem">
+        <img alt="Photo show author profile image"
+             class="profile-img" [src]="lightAdvertisement?.profileImagePath"/>
+        <div class="flex-column align-start">
+          <p class="subject-name"
+             style="margin-bottom: 1rem">{{ lightAdvertisement.subjectName.length > 15 ?
+            lightAdvertisement.subjectName.slice(0, 15) + '...' : lightAdvertisement?.subjectName}}</p>
+          <p class="location flex align-center" style="gap: 0" ><span style="width: max-content"
+                                                                      class="flex align-center"
+                                                                      *ngFor="let location of lightAdvertisement.placesNames.slice(0, 2)">
+          <mat-icon>location_on</mat-icon>
+            <span style="color: #333; font-weight: 300; font-size: 0.8rem; margin-right: 0.4rem">{{ location }}</span>
+            </span>
+            {{ lightAdvertisement.placesNames.length > 2 ? '...' : ''}}</p>
+        </div>
+      </div>
+
+      <div class="flex-col align-end">
+        <p class="price">{{ lightAdvertisement?.price }} zl / {{ lightAdvertisement?.minutesDuration }} min</p>
+        <p class="reviews-quan">{{ lightAdvertisement?.reviewsQuantity }} reviews</p>
+      </div>
+    </div>
   </div>
 </div>
 

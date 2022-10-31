@@ -4,6 +4,7 @@ import {AdvertisementPayloadRequestModel} from "../model/advertisement/advertise
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {AdvertisementPayloadResponseModel} from "../model/advertisement/advertisement-payload-response-model";
+import {AdvertisementPayloadLightModel} from "../model/advertisement/advertisement-payload-light-model";
 
 @Injectable({
   providedIn : 'root'
@@ -47,6 +48,14 @@ export class AdvertisementService {
 
   getAdvertisementByType(advertisementType: string, pageSize: number, pageNumber: number) : Observable<PageApiResponse>{
     return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByType?type=${advertisementType}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+  }
+
+  getTotalAdvertisementsQuantity() : Observable<number>{
+    return this.httpClient.get<number>(`${this.API_URL}/advertisements/total-quantity`);
+  }
+
+  getLightAdvertisementsForHomePage(limit : number) : Observable<AdvertisementPayloadLightModel[]> {
+    return this.httpClient.get<AdvertisementPayloadLightModel[]>(`${this.API_URL}/advertisements/limit/${limit}`);
   }
 }
 
