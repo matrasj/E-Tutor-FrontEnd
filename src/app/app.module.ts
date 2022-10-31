@@ -92,7 +92,9 @@ const routes = [
     AdvertisementRowComponent,
     MessageFormComponent,
     MessagesListComponent,
-    ConversationChatComponent
+    ConversationChatComponent,
+    SubjectsFullViewComponent,
+    CitiesFullViewComponent
   ],
   imports: [
     BrowserModule,
