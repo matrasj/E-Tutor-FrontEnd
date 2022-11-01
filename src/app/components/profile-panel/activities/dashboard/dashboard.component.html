@@ -33,6 +33,7 @@
     <h4 style="margin-bottom: 2.8rem">Your advertisements</h4>
       <div class="flex-col" style="gap: 1.8rem">
         <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
+        <p *ngIf="advertisements.length === 0" class="alert alert-warning">No advertisement posted yet</p>
       </div>
   </div>
 </div>

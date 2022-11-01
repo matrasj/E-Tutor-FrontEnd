@@ -139,9 +139,6 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     this._onDestroy.complete();
   }
 
-  /**
-   * Sets the initial value after the filteredBanks are loaded initially
-   */
   protected setInitialValue() {
     this.filteredSubjects
       .pipe(take(1), takeUntil(this._onDestroy))

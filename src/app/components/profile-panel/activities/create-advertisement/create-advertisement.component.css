@@ -25,3 +25,25 @@ p {
 .add-btn {
   margin-top: 1.8rem;
 }
+
+@media only screen and (max-width: 850px) {
+  .create-advertisement-con {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+
+}
+
+@media only screen and (max-width: 680px) {
+  .hours-con {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem !important;
+  }
+
+  .responsive-margin {
+    margin-bottom: 1.8rem;
+  }
+}
