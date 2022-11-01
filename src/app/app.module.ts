@@ -51,6 +51,7 @@ import {AuthGuard} from "./config/auth-guard";
 import {StateService} from "./service/state-service";
 import {SubjectsFullViewComponent} from "./components/subjects-full-view/subjects-full-view.component";
 import {CitiesFullViewComponent} from "./components/cities-full-view/cities-full-view.component";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 
 const routes = [
@@ -94,14 +95,14 @@ const routes = [
     MessagesListComponent,
     ConversationChatComponent,
     SubjectsFullViewComponent,
-    CitiesFullViewComponent
+    CitiesFullViewComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatInputModule,
-    RouterModule.forRoot(routes,{ scrollPositionRestoration: 'enabled' }),
+    RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
     MatButtonModule,
     ReactiveFormsModule,
     NgCircleProgressModule.forRoot({
@@ -130,7 +131,9 @@ const routes = [
     EditorModule,
     MatCheckboxModule,
     FormsModule,
-    NgbModule
+    MatSidenavModule,
+    NgbModule,
+    MatToolbarModule
   ],
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},

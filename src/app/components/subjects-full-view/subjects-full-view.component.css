@@ -36,5 +36,23 @@ h1 {
   font-size: 1rem;
 }
 
+@media only screen and (max-width: 1150px) {
+  .main-grid-con {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media only screen and (max-width: 780px) {
+  .main-grid-con {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
 
+@media only screen and (max-width: 450px) {
+  .inner-con {
+    padding: 1rem;
+    width: 100%;
+  }
+}

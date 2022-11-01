@@ -1,0 +1,44 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100% !important;
+}
+mat-sidenav {
+  width: 300px;
+  background-color: #12a27f;
+  padding: 1rem;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+
+
+p, h2 {
+  margin: 0;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+mat-icon {
+  color: #fff;
+  transform: scale(2);
+  width: max-content;
+}
+
+.link {
+  padding: 0.8rem 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  width: 100%;
+}
+
+.link:hover {
+  background-color: #057f62;
+  transition: all 0.2s linear;
+}

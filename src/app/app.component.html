@@ -1,5 +1,31 @@
 <div>
-  <app-menu></app-menu>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav [(opened)]="opened">
+      <div class="flex flex-col align-start" style="padding: 1rem; gap: 0.6rem ">
+        <div (click)="onBasicNavigating('')"
+             class="flex align-center"
+             style="gap: 1.4rem; margin-bottom: 1.8rem; width: 100%; cursor: pointer">
+          <mat-icon>school</mat-icon>
+          <h2>E-Tutor</h2>
+        </div>
+        <div (click)="onBasicNavigating('profile')" class="flex align-center link" style="gap: 0.7rem">
+          <img class="profile-img" [src]="currentUser?.profileImagePath"/>
+          <p>{{ currentUser?.firstName }} {{ currentUser?.lastName }}</p>
+        </div>
+
+        <p (click)="onNavigating(sidenav, 'tutor')" class="link">Tutors advertisements</p>
+        <p (click)="onNavigating(sidenav, 'student')" class="link">Students advertisements</p>
+      </div>
+
+
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <app-menu (responsiveNavOpen)="opened = true"></app-menu>
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

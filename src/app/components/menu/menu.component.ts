@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {AuthService} from "../../service/auth-service";
@@ -6,6 +6,7 @@ import {UserPayloadModel} from "../../model/user/user-payload-model";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {UserService} from "../../service/user-service";
 import {AdvertisementService} from "../../service/advertisement-service";
+import {BreakpointObserver, BreakpointState, MediaMatcher} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +14,9 @@ import {AdvertisementService} from "../../service/advertisement-service";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  @Output() responsiveNavOpen : EventEmitter<any> = new EventEmitter<any>();
+  showHamburgerIcon : boolean = false;
+  opened : boolean = false;
   selectedCategory : string = '';
   shouldBeHeaderVisible = true;
   isAuthenticated : boolean = false;
@@ -25,9 +29,18 @@ export class MenuComponent implements OnInit {
               private authService : AuthService,
               private sanitizer : DomSanitizer,
               private userService : UserService,
-              private advertisementService : AdvertisementService) { }
+              private advertisementService : AdvertisementService,
+              public breakpointObserver: BreakpointObserver) {
+
+  }
 
   ngOnInit(): void {
+    this.breakpointObserver
+      .observe(['(max-width: 1000px)'])
+      .subscribe((state: BreakpointState) => {
+        state.matches ? this.showHamburgerIcon = true : this.showHamburgerIcon = false;
+      });
+
     this.authService.isAuthenticated
       .subscribe((isAuthenticated) => {
         if (isAuthenticated) {
@@ -75,5 +88,9 @@ export class MenuComponent implements OnInit {
         type
       }
     })
+  }
+
+  onMenuOpening() {
+    this.responsiveNavOpen.emit();
   }
 }

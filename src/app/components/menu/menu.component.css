@@ -104,3 +104,44 @@ p {
   color: #f3f3f3;
   font-size: 1.2rem;
 }
+
+.responsive-icon {
+  color: #fff;
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav-links-con {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .form-con {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    border-radius: 0.1rem;
+    padding: 1rem;
+  }
+
+  .menu-con {
+    padding: 1.8rem 1rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  form * {
+    width: 100%;
+  }
+
+  form mat-icon {
+    width: min-content;
+  }
+}

@@ -1,13 +1,13 @@
 <div class="home-con flex-col align-center justify-center">
   <h1 style="margin-bottom: 3.8rem">Subjects and cities</h1>
-  <div class="flex main-con align-center justify-center"
+  <div class="flex main-con align-start justify-center"
        style="min-height: 25rem"
   [ngClass]="showLoaderForRight || showLoaderForLeft ? 'space-around' : ''">
     <div class="grid-con" *ngIf="!showLoaderForLeft">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.6rem; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
-          <mat-icon style="color: #2AC59B">school</mat-icon>
-          <p class="subject-name">{{ subjectWithQuan.subjectName.length > 15 ?
+        <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
+          <mat-icon style="color: #2AC59B; width: max-content">school</mat-icon>
+          <p class="subject-name" style="width: 100%">{{ subjectWithQuan.subjectName.length > 15 ?
             subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName}}</p>
         </div>
         <span>({{ subjectWithQuan.addsQuantity }})</span>
@@ -18,9 +18,9 @@
 
     <div class="grid-con" *ngIf="!showLoaderForRight">
       <div class="subject-con flex align-center space-between" style="gap: 1rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.6rem; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
+        <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
           <mat-icon style="color: #2AC59B">school</mat-icon>
-          <p class="subject-name">{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' :
+          <p class="subject-name" style="width: 100%">{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' :
             cityWithQuan?.cityName}}</p>
         </div>
         <span>({{ cityWithQuan.addsQuantity }})</span>
@@ -44,15 +44,15 @@
     >
       <div class="flex align-start" style="gap: 0.8rem">
         <img alt="Photo show author profile image"
-             class="profile-img" [src]="lightAdvertisement?.profileImagePath"/>
-        <div class="flex-column align-start">
+             class="profile-img light-img" [src]="lightAdvertisement?.profileImagePath"/>
+        <div class="flex-column align-start" style="width: 100%">
           <p class="subject-name"
              style="margin-bottom: 1rem">{{ lightAdvertisement.subjectName.length > 15 ?
             lightAdvertisement.subjectName.slice(0, 15) + '...' : lightAdvertisement?.subjectName}}</p>
-          <p class="location flex align-center" style="gap: 0" ><span style="width: max-content"
+          <p class="location flex align-center" style="gap: 0; width: 100%" ><span style="width: max-content"
                                                                       class="flex align-center"
                                                                       *ngFor="let location of lightAdvertisement.placesNames.slice(0, 2)">
-          <mat-icon>location_on</mat-icon>
+          <mat-icon style="width: max-content">location_on</mat-icon>
             <span style="color: #333; font-weight: 300; font-size: 0.8rem; margin-right: 0.4rem">{{ location }}</span>
             </span>
             {{ lightAdvertisement.placesNames.length > 2 ? '...' : ''}}</p>
@@ -68,7 +68,7 @@
 </div>
 
 <div class="register-commercial flex-col align-center justify-center">
-  <h1 class="com-header">Create free account on e-tutor</h1>
-  <p>Obtain access to post advertisements</p>
+  <h1 class="com-header" style="text-align: center">Create free account on e-tutor</h1>
+  <p style="text-align: center">Obtain access to post advertisements</p>
   <button class="com-button" [routerLink]="['/register']">Register</button>
 </div>
