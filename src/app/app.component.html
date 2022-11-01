@@ -8,10 +8,17 @@
           <mat-icon>school</mat-icon>
           <h2>E-Tutor</h2>
         </div>
-        <div (click)="onBasicNavigating('profile')" class="flex align-center link" style="gap: 0.7rem">
+        <div *ngIf="currentUser; else authenticate" (click)="onBasicNavigating('profile')" class="flex align-center link" style="gap: 0.7rem">
           <img class="profile-img" [src]="currentUser?.profileImagePath"/>
           <p>{{ currentUser?.firstName }} {{ currentUser?.lastName }}</p>
         </div>
+
+        <ng-template #authenticate>
+          <div class="flex-col" style="gap: 0.4rem; width: 100%">
+            <button (click)="onBasicNavigating('login')" class="auth-btn" style="width: 100%">Login</button>
+            <button (click)="onBasicNavigating('register')" class="auth-btn" style="width: 100%">Signup</button>
+          </div>
+        </ng-template>
 
         <p (click)="onNavigating(sidenav, 'tutor')" class="link">Tutors advertisements</p>
         <p (click)="onNavigating(sidenav, 'student')" class="link">Students advertisements</p>

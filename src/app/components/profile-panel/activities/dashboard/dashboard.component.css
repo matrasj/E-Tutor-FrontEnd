@@ -42,3 +42,24 @@ h4 {
   border-radius: 50%;
   margin-bottom: 1.2rem;
 }
+
+@media only screen and (max-width: 1200px) {
+  .grid-con {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .res-flex {
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+  }
+}
+

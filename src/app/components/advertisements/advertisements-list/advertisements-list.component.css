@@ -20,3 +20,11 @@ ngb-pagination ::ng-deep ul > li.active > a {
   border-color: #12a27f !important;
 
 }
+
+@media only screen and (max-width: 1000px) {
+  .main-container {
+    width: 100%;
+  }
+
+
+}

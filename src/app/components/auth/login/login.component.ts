@@ -46,9 +46,8 @@ export class LoginComponent implements OnInit {
       ).subscribe((res) => {
         this.authService.setCurrentUser(res.userPayload);
           this.authService.setToken(res.jwtToken);
-
-
           this.router.navigate(['/']);
+
           this.toastrService.success("Successfully logged in!")
           this.loginFormGroup.reset();
       }, (error) => {

@@ -32,7 +32,7 @@ body {
   flex-direction: column;
 }
 
-.main-btn, .second-btn, .delete-button{
+.main-btn, .second-btn, .delete-button, .auth-btn{
   background: none;
   color: #f3f3f3;
   border: none;
@@ -41,6 +41,11 @@ body {
   transition: all 0.2s linear;
   cursor: pointer;
   border-radius: 0.2rem;
+}
+
+.auth-btn {
+  background-color: #2AC59B;
+  color: #fff;
 }
 
 .com-button{
@@ -68,7 +73,7 @@ body {
   border: solid 2px rgba(75, 197, 153);
 }
 
-.second-btn:hover {
+.second-btn:hover, .auth-btn:hover {
   background-color: #fff;
   color: rgba(75, 197, 153);
   transition: all 0.2s linear;

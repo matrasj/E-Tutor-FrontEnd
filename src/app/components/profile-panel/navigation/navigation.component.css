@@ -46,4 +46,9 @@ p {
   gap: 0.8rem;
 }
 
-
+@media only screen and (max-width: 1200px) {
+  .main-nav-con, mat-sidenav-content {
+    min-height: min-content;
+    width: 100%;
+  }
+}

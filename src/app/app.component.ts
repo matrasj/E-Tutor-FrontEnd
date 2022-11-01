@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class AppComponent implements OnInit{
   title = 'ETutorFrontned';
   opened : boolean = false;
+  isAuth : boolean = false;
   public currentUser: any;
 
   constructor(private authService : AuthService,
@@ -19,7 +20,13 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.getCurrentUser();
+    this.authService.isAuthenticated
+      .subscribe((isAuth) => {
+        this.isAuth = isAuth
+        if (this.isAuth) {
+          this.currentUser = this.authService.getCurrentUser();
+        }
+      });
 
   }
 
