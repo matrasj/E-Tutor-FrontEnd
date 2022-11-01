@@ -10,7 +10,7 @@
           <mat-icon> email</mat-icon>
           <p>Messages</p>
         </div>
-        <hr/>
+
 
         <div class="activity flex align-center justify-start" routerLink="/profile" [routerLinkActiveOptions]="{exact : true}" routerLinkActive="activity-active">
           <mat-icon>dashboard</mat-icon>
@@ -25,7 +25,15 @@
         <div class="activity flex align-center justify-start" routerLink="/profile/advertisements" routerLinkActive="activity-active">
           <mat-icon> list_alt</mat-icon>
           <p>Advertisements</p>
-        </div></div>
+        </div>
+
+
+        <div class="activity flex align-center justify-start" (click)="onLoggingOut()" >
+          <mat-icon> logout</mat-icon>
+          <p>Logout</p>
+        </div>
+
+      </div>
     </mat-sidenav-content>
 
   </mat-sidenav-container>

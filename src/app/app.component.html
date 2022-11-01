@@ -22,6 +22,8 @@
 
         <p (click)="onNavigating(sidenav, 'tutor')" class="link">Tutors advertisements</p>
         <p (click)="onNavigating(sidenav, 'student')" class="link">Students advertisements</p>
+
+        <button class="auth-btn" *ngIf="isAuth" (click)="onLoggingOut()">Logout</button>
       </div>
 
 

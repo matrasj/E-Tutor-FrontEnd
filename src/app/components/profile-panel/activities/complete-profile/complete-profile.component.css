@@ -32,6 +32,16 @@ hr {
   font-size: 0.8rem;
   padding-left: 0.8rem;
 }
+
 .form-control {
   border: 0;
+}
+
+@media only screen and (max-width: 560px) {
+  .content-con {
+    flex-direction: column;
+
+  }
+
+
 }

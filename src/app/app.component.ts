@@ -46,4 +46,8 @@ export class AppComponent implements OnInit{
 
     this.opened = false;
   }
+
+  onLoggingOut() {
+    this.authService.logout();
+  }
 }

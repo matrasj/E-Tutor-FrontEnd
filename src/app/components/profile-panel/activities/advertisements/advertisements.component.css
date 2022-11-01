@@ -9,3 +9,9 @@ button {
 .con {
   min-width: 35rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .con {
+    min-width: 100%;
+  }
+}

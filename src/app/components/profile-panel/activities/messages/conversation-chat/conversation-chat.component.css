@@ -47,9 +47,17 @@ p {
   border: none;
   padding: 0.2rem 0.8rem;
   width: max-content;
+  transform: translateY(-100%);
 }
 
 
 .first-label {
   background-color: #12a27f;
+}
+
+@media only screen and (max-width: 510px) {
+  .chat-con {
+    min-width: 100% !important;
+  }
+
 }

@@ -5,3 +5,10 @@ button {
 .link-active {
   background-color: #f1f3f5;
 }
+
+@media only screen and (max-width: 510px) {
+  .messages-con {
+    min-width: 100% !important;
+  }
+
+}
