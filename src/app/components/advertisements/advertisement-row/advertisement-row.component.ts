@@ -5,7 +5,7 @@ import {UserPayloadModel} from "../../../model/user/user-payload-model";
 import {ReviewFormComponent} from "../review-form/review-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-
+//add
 @Component({
   selector: 'app-advertisement-row',
   templateUrl: './advertisement-row.component.html',
