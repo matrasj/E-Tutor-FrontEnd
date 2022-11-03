@@ -19,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor{
     }
 
     const jwtToken = this.authService.getJwtToken();
-    console.log(jwtToken ? 'tue' : 'fal')
     const requestWithJwtToken = jwtToken ? AuthInterceptor.addToken(req, jwtToken) : req;
 
     return next.handle(requestWithJwtToken).pipe(
