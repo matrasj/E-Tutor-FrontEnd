@@ -15,11 +15,12 @@ export class AuthInterceptor implements HttpInterceptor{
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes("api/v1/auth")) {
-      return next.handle(req.clone());
+      return next.handle(req);
     }
 
     const jwtToken = this.authService.getJwtToken();
-    const requestWithJwtToken = AuthInterceptor.addToken(req, jwtToken);
+    console.log(jwtToken ? 'tue' : 'fal')
+    const requestWithJwtToken = jwtToken ? AuthInterceptor.addToken(req, jwtToken) : req;
 
     return next.handle(requestWithJwtToken).pipe(
       catchError(
@@ -38,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor{
   private static addToken(req : HttpRequest<any>, jwtToken : any) {
     return req.clone({
       setHeaders : {
-        Authorization : 'Bearer ' + jwtToken
+        Authorization : `Bearer ${jwtToken}`
       }
     })
   }
