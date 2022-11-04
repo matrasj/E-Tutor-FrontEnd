@@ -11,7 +11,7 @@ Backend has been written in Java with help of SpringBoot framework and MySQL db.
 
 Below I attach gallery for E-Tutor project.
 
-# Main page 
+#Main page 
 
 Cities and subject are sorted by number of advertisements
 ![image](https://user-images.githubusercontent.com/95829811/199787188-ca93edf2-5905-4860-b9c2-cfbc04e5daef.png)
@@ -20,7 +20,7 @@ Cities and subject are sorted by number of advertisements
 Most popular advertisements are sorted by the number of opinions
 ![image](https://user-images.githubusercontent.com/95829811/199787495-5eb2ac25-f298-457a-b0cd-64273c30dfa3.png)
 
-# Login and register form (all fields are dynamicly validated)
+#Login and register form (all fields are dynamicly validated)
 ![image](https://user-images.githubusercontent.com/95829811/199787925-50ee02b7-08e2-4daa-a00a-85e80d22d483.png)
 ![image](https://user-images.githubusercontent.com/95829811/199788352-804d2ec2-3d10-4371-b050-3683dfe25b3e.png)
 
@@ -28,11 +28,11 @@ For email confirmation I used MAILDEV hosted on docker container
 ![image](https://user-images.githubusercontent.com/95829811/199788584-843d31ca-291a-4cbe-a9b9-004dab928c06.png)
 
 
-# Search for advertisements
+#Search for advertisements
 ![image](https://user-images.githubusercontent.com/95829811/199788775-4362659a-1859-44e4-b7e0-e75f90359226.png)
 ![image](https://user-images.githubusercontent.com/95829811/199788932-31b8d818-e0c5-4360-8ac6-6fa01ee49df0.png)
 
-# Single advertisements
+#Single advertisements
 ![image](https://user-images.githubusercontent.com/95829811/199790007-b6dc2bca-9b3c-4302-b28e-b3828e45cc69.png)
 ![image](https://user-images.githubusercontent.com/95829811/199790129-706f4ebc-e4fa-42d9-9272-64d022ab39ea.png)
 ![image](https://user-images.githubusercontent.com/95829811/199790195-201577a8-8aa4-4091-9238-d6b46819be70.png)
@@ -42,7 +42,7 @@ For email confirmation I used MAILDEV hosted on docker container
 Number of stars is equal to average of opinions value
 ![image](https://user-images.githubusercontent.com/95829811/199790411-e85afe72-3c0d-4ed3-825f-c5ce90680971.png)
 
-# Authenticated view
+#Authenticated view
 ![image](https://user-images.githubusercontent.com/95829811/199789083-bd75c158-df51-4cdd-8b50-5d24a6b1af68.png)
 
 Profile dashboard (percent of completion is calculated based on number of field we had filled
@@ -50,10 +50,10 @@ Profile dashboard (percent of completion is calculated based on number of field 
 ![image](https://user-images.githubusercontent.com/95829811/199789560-3db498e5-33be-42e0-9f42-d745256ba80b.png)
 ![image](https://user-images.githubusercontent.com/95829811/199789754-400ce30d-cb35-4ba0-8631-c16d5f93cec2.png)
 
-# My advertisements list
+#My advertisements list
 ![image](https://user-images.githubusercontent.com/95829811/199789844-05922d12-84f9-44ad-bb3f-ae911d0aa217.png)
 
-# Let's create an advertisement
+#Let's create an advertisement
 ![image](https://user-images.githubusercontent.com/95829811/199790754-a7a0bf24-1117-40b8-9c9c-305f4f46ae45.png)
 
 Dynamic search
@@ -70,7 +70,7 @@ Our advertisement
 ![image](https://user-images.githubusercontent.com/95829811/199794927-7ce3091a-9208-462d-8be5-89b9140693f1.png)
 
 
-# Chats with users
+#Chats with users
 ![image](https://user-images.githubusercontent.com/95829811/199795117-875d38f3-ae15-46f1-9e8f-8dce409a1aa4.png)
 ![image](https://user-images.githubusercontent.com/95829811/199795225-4c7f51b1-dace-49e2-b6c2-4fc9319fcafd.png)
 ![image](https://user-images.githubusercontent.com/95829811/199795284-8f5f37f0-4291-4844-bc3d-6c1d86386335.png)
@@ -78,7 +78,7 @@ Our advertisement
 ![image](https://user-images.githubusercontent.com/95829811/199795461-bdc4f20f-f64c-452f-8ea8-15d2b1b5e1b5.png)
 
 
-# Responsive screenshots
+#Responsive screenshots
 ![image](https://user-images.githubusercontent.com/95829811/199795572-53f784de-246e-46a2-aa4d-e41be250b38c.png)
 ![image](https://user-images.githubusercontent.com/95829811/199795620-d6b45819-d0ca-44a2-97d1-dc871a1ef209.png)
 ![image](https://user-images.githubusercontent.com/95829811/199795701-81864856-2c67-404c-88cb-fcf5b1726a3d.png)
