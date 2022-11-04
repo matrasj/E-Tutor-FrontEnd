@@ -7,7 +7,7 @@ Moreover app is fully responsive.
 Because of complex DOM manipulation I used Angular framework for app development at the frontend side.
 Backend has been written in Java with help of SpringBoot framework and MySQL db.
 
-#Backend repo is under this link: https://github.com/pozerinhooo/E-Tutor-Backend
+# Backend repo is under this link: https://github.com/pozerinhooo/E-Tutor-Backend
 
 Below I attach gallery for E-Tutor project.
 
