@@ -1,5 +1,5 @@
 The main goal of E-Tutor project was to create place in web where people can post advertisements about tutority. 
-As a user we cant create advertisement either as a person who gives lessons and a person that needs help. In application we have
+As a user we can create advertisements either as a person who gives lessons and a person that needs help. In application we have
 many various options to filter advertisements, manipulate with your profile account, review advertisements, chat with other users etc. 
 
 Moreover app is fully responsive.
