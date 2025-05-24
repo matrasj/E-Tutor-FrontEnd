@@ -12,6 +12,8 @@ export class AdvertisementPayloadRequestModel {
               public availabilityPayloads : AvailabilityPayloadModel[],
               public lessonRanges : string[],
               public advertisementType : string,
-              public authorImageLink : string) {
+              public authorImageLink : string,
+              public longitude: number,
+              public latitude: number) {
   }
 }

@@ -9,7 +9,7 @@
           <h2>E-Tutor</h2>
         </div>
         <div *ngIf="currentUser; else authenticate" (click)="onBasicNavigating('profile')" class="flex align-center link" style="gap: 0.7rem">
-          <img class="profile-img" [src]="currentUser?.profileImagePath"/>
+          <img class="profile-img" [src]="currentUser?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
           <p>{{ currentUser?.firstName }} {{ currentUser?.lastName }}</p>
         </div>
 

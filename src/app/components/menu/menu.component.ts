@@ -72,8 +72,8 @@ export class MenuComponent implements OnInit {
     this.authService.logout();
   }
 
-  onAdvertisementsSearching(event: SubmitEvent) {
-    event.preventDefault();
+  onAdvertisementsSearching(event?: SubmitEvent) {
+    event?.preventDefault();
     this.router.navigate(['/advertisements'], {
         queryParams : {
           keyphrase : this.keyPhrase,

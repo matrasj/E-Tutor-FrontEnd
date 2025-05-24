@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Form, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth-service";
 import {LoginPayloadRequestModel} from "../../../model/auth/login-payload-request-model";
 import {ToastrService} from "ngx-toastr";
@@ -50,10 +50,9 @@ export class LoginComponent implements OnInit {
 
           this.toastrService.success("Successfully logged in!")
           this.loginFormGroup.reset();
-      }, (error) => {
+      }, () => {
         this.toastrService.error("Something went wrong")
       })
     }
   }
-
 }

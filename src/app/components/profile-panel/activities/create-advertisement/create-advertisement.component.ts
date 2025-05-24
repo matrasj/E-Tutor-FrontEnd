@@ -15,13 +15,25 @@ import {CityService} from "../../../../service/city-service";
 import {UserPayloadModel} from "../../../../model/user/user-payload-model";
 import {UserService} from "../../../../service/user-service";
 import {AuthService} from "../../../../service/auth-service";
+import * as L from 'leaflet';
+
+// Fix: Leaflet's default icon path for Angular
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'assets/marker-icon-2x.png',
+  iconUrl: 'assets/marker-icon.png',
+  shadowUrl: 'assets/marker-shadow.png',
+});
 
 @Component({
   selector: 'app-create-advertisement',
   templateUrl: './create-advertisement.component.html',
   styleUrls: ['./create-advertisement.component.css']
 })
-export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDestroy{
+export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDestroy {
+  private map!: L.Map;
+  private marker!: L.Marker;
   advertisementFormGroup : FormGroup | any;
   private ADVERTISEMENT_TYPE : string = '';
   protected subjects: SubjectSearchResponseModel[] = [];
@@ -73,12 +85,15 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
               private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.initMap();
     this.advertisementFormGroup = this.formBuilder.group({
       advertisement : this.formBuilder.group({
         lessonPrice : new FormControl('', [Validators.required]),
         minutesDuration : new FormControl('', [Validators.required]),
         shortDescription : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(400)]),
         content : new FormControl('', [Validators.required, Validators.minLength(10)]),
+        longitude: new FormControl(null),
+        latitude: new FormControl(null),
       })
     });
 
@@ -129,6 +144,15 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
   get content() {
     return this.advertisementFormGroup.get('advertisement').get('content');
   }
+
+  get longitude() {
+    return this.advertisementFormGroup.get('advertisement').get('longitude');
+  }
+
+  get latitude() {
+    return this.advertisementFormGroup.get('advertisement').get('latitude');
+  }
+
 
   ngAfterViewInit() {
     this.setInitialValue();
@@ -247,10 +271,10 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
         this.lessonsRanges.filter((lessonRange) => lessonRange.checked)
           .map((lessonRange) => lessonRange.name),
         this.ADVERTISEMENT_TYPE,
-        this.currentUserModel?.profileImagePath
+        this.currentUserModel?.profileImagePath,
+        this.longitude.value,
+        this.latitude.value
       );
-
-
 
       this.advertisementService.createAdvertisement(advertisementPayloadRequest)
         .subscribe((res) => {
@@ -262,5 +286,56 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
           this.router.navigate(['/profile']);
         })
     }
+  }
+
+  private initMap(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          this.longitude.setValue(lng);
+          this.latitude.setValue(lat);
+
+          this.map = L.map('map').setView([lat, lng], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+          }).addTo(this.map);
+
+          this.marker = L.marker([lat, lng]).addTo(this.map)
+            .bindPopup("Twoja lokalizacja").openPopup();
+
+          this.map.on('click', (e: L.LeafletMouseEvent) => {
+            const { lat, lng } = e.latlng;
+
+            if (this.marker) {
+              this.marker.setLatLng([lat, lng]);
+            } else {
+              this.marker = L.marker([lat, lng]).addTo(this.map);
+            }
+
+            this.longitude.setValue(lng);
+            this.latitude.setValue(lat);
+          });
+        },
+        (error) => {
+          console.error("Geolokalizacja niedostępna:", error);
+          this.initMapFallback();
+        }
+      );
+    } else {
+      console.warn("Geolokalizacja nieobsługiwana.");
+      this.initMapFallback();
+    }
+  }
+
+  private initMapFallback(): void {
+    const defaultLatLng: L.LatLngExpression = [52.2297, 21.0122]; // Warszawa
+    this.map = L.map('map').setView(defaultLatLng, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
   }
 }
