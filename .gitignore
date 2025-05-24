@@ -41,4 +41,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/src/assets/images/profile-images
+# Ignoruj wszystkie pliki obrazów profilowych
+/src/assets/images/profile-images/*
+
+# Ale nie ignoruj samego folderu (żeby istniał w repo)
+!/src/assets/images/profile-images/.gitkeep
