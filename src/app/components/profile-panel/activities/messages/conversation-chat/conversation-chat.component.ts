@@ -8,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessagePayloadRequestModel} from "../../../../../model/message/message-payload-request-model";
 import {ToastrService} from "ngx-toastr";
 import {UserService} from "../../../../../service/user-service";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-conversation-chat',
@@ -19,6 +20,7 @@ export class ConversationChatComponent implements OnInit {
   currentUser : UserPayloadModel | any;
   targetUserId : number = 0;
   messages : MessagePayloadResponseModel[] = [];
+  isLoading: boolean = false;
   constructor(private authService : AuthService,
               private messageService : MessageService,
               private activatedRoute : ActivatedRoute,
@@ -43,12 +45,15 @@ export class ConversationChatComponent implements OnInit {
             this.currentUser = user;
 
             this.targetUserId = Number(paramMap.get('id'));
+            this.isLoading = true;
             this.messageService.getMessagesForConversation(this.currentUser.id, this.targetUserId)
-              .subscribe((messages) =>  this.messages = messages);
+              .pipe(finalize(() => this.isLoading = false))
+              .subscribe({
+                next: (res) => this.messages = res,
+                error: (err) => this.toastrService.error('An error occurred during fetching data')
+              });
           });
-
-
-      })
+      });
   }
 
   get subject() {

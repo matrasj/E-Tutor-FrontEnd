@@ -23,7 +23,7 @@
 }
 
 .subject {
-  color: rgb(42, 197, 155);
+  color: rgb(70, 142, 245);
   font-size: 1.2rem;
   font-weight: 300;
   margin-bottom: 1rem;
@@ -32,10 +32,10 @@
 .add-con {
   background-color: #fff;
   padding: 1.8rem;
-  border-left: solid 5px #38d9a9;
+  border-left: solid 5px rgb(70, 142, 245);
   transition: all 0.2s linear;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgb(70, 142, 245) 1.95px 1.95px 2.6px;
 }
 
 .add-con:hover {
@@ -66,7 +66,7 @@
 .author-name {
   font-size: 1.6rem;
   font-weight: 300;
-  color: rgb(42, 197, 155);
+  color: rgb(70, 142, 245);
   margin-bottom: 1.8rem;
 }
 

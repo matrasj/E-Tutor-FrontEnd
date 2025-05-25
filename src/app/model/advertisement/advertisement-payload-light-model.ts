@@ -6,6 +6,9 @@ export class AdvertisementPayloadLightModel {
   public minutesDuration : number,
   public placesNames : string[],
   public reviewsQuantity : number,
-  public advertisementType : string) {
+  public advertisementType : string,
+  public longitude: number,
+  public latitude: number,
+  public author: string) {
   }
 }

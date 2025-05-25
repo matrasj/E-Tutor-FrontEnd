@@ -22,12 +22,12 @@
 }
 
 .activity:hover {
-  border-left: solid 5px #38d9a9;
+  border-left: solid 5px rgb(70, 142, 245);
   background-color: #dee2e6;
 }
 
 .activity-active {
-  border-left: solid 5px #38d9a9;
+  border-left: solid 5px rgb(70, 142, 245);
   background-color: #dee2e6;
 }
 

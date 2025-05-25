@@ -20,7 +20,6 @@ export class MessageService {
     });
   }
 
-
   getMessagesForConversation(userId: number, targetUserId: number) : Observable<MessagePayloadResponseModel[]> {
     return this.httpClient.get<MessagePayloadResponseModel[]>(`${this.API_URL}/messages/conversation?firstUserId=${userId}&secondUserId=${targetUserId}`);
   }

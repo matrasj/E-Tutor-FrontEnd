@@ -1,7 +1,6 @@
 .footer-con {
-  background-image: linear-gradient(to right bottom, rgba(75, 197, 153, 0.9), rgba(75, 197, 153, 0.99)) , url('../../../assets/images/menu_background.jpg');
+  background-image: linear-gradient(to right bottom, rgba(70, 142, 245, 0.9), rgba(40, 110, 210, 0.99)), url('src/assets/background.png');
   padding: 2.4rem;
-
 }
 
 .footer-con p {

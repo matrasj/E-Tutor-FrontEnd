@@ -15,6 +15,8 @@ export class AdvertisementPayloadResponseModel {
               public lessonRanges : string[],
               public advertisementType : string,
               public reviewsQuantity : number,
-              public ratingAverage : number) {
+              public ratingAverage : number,
+              public longitude: number | null,
+              public latitude: number | null) {
   }
 }

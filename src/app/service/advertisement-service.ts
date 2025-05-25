@@ -20,6 +20,10 @@ export class AdvertisementService {
     });
   }
 
+  getAdvertisementsBySubjectId(subjectId: number): Observable<AdvertisementPayloadLightModel[]> {
+    return this.httpClient.get<AdvertisementPayloadLightModel[]>(`${this.API_URL}/advertisements/all-by-subject/${subjectId}`);
+  }
+
   getAdvertisementsByKeyphraseWithPagination(pageSize: number, pageNumber : number, keyPhrase : string) : Observable<PageApiResponse> {
     return this.httpClient.get<PageApiResponse>(`${this.API_URL}/advertisements/pagination/findByKeyphrase?pageNumber=${pageNumber}&pageSize=${pageSize}&keyPhrase=${keyPhrase}`);
   }

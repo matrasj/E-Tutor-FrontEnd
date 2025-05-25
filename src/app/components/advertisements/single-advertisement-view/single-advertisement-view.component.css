@@ -145,9 +145,9 @@ p {
 }
 
 .second-btn:hover {
-  background-color: #12a27f;
+  background-color: rgb(70, 142, 245);
   color: #fff;
-  border: solid #12a27f 2px;
+  border: solid rgb(70, 142, 245) 2px;
 }
 
 ul {

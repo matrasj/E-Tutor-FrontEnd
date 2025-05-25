@@ -36,7 +36,7 @@ body {
   background: none;
   color: #f3f3f3;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0.8rem 1.4rem;
   transition: all 0.2s linear;
   cursor: pointer;
@@ -68,14 +68,14 @@ body {
 }
 
 .second-btn {
-  background-color: rgba(75, 197, 153);
+  background-color: rgb(70, 142, 245);
   color: #f3f3f3;
-  border: solid 2px rgba(75, 197, 153);
+  border: solid 2px rgb(70, 142, 245);
 }
 
 .second-btn:hover, .auth-btn:hover {
   background-color: #fff;
-  color: rgba(75, 197, 153);
+  color: rgb(70, 142, 245);
   transition: all 0.2s linear;
 }
 
@@ -91,7 +91,7 @@ body {
 
 .main-btn:hover {
   background-color: #f3f3f3;
-  color: rgba(75, 197, 153);
+  color: rgb(70, 142, 245);
   transition: all 0.2s linear;
 }
 
@@ -127,4 +127,39 @@ button:focus {
 
 .flex-end {
   align-items: flex-end;
+}
+
+.offer-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+}
+
+.offer-header {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.subject {
+  color: rgb(70, 142, 245);
+}
+
+.author {
+  color: #666;
+  font-weight: normal;
+}
+
+.offer-price {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 12px;
 }

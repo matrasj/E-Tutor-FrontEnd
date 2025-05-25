@@ -52,6 +52,8 @@ import {StateService} from "./service/state-service";
 import {SubjectsFullViewComponent} from "./components/subjects-full-view/subjects-full-view.component";
 import {CitiesFullViewComponent} from "./components/cities-full-view/cities-full-view.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { FindClosestTutorModalComponent } from './components/menu/find-closest-tutor-modal/find-closest-tutor-modal.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 const routes = [
@@ -96,6 +98,8 @@ const routes = [
     ConversationChatComponent,
     SubjectsFullViewComponent,
     CitiesFullViewComponent,
+    FindClosestTutorModalComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

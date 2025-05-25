@@ -13,7 +13,7 @@ export class AdvertisementPayloadRequestModel {
               public lessonRanges : string[],
               public advertisementType : string,
               public authorImageLink : string,
-              public longitude: number,
-              public latitude: number) {
+              public longitude: number | null,
+              public latitude: number | null) {
   }
 }

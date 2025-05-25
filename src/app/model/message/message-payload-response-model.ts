@@ -1,7 +1,8 @@
 import {UserPayloadModel} from "../user/user-payload-model";
 
 export class MessagePayloadResponseModel {
-  constructor( public id : number,
+  constructor(
+  public id : number,
   public advertisementId : number,
   public sender : UserPayloadModel,
   public receiver : UserPayloadModel,
