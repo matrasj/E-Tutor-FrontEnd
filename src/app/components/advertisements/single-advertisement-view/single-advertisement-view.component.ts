@@ -63,16 +63,6 @@ export class SingleAdvertisementViewComponent implements OnInit {
 
     this.marker = L.marker([lat, lng]).addTo(this.map)
       .bindPopup("Place of tutority").openPopup();
-
-    this.map.on('click', (e: L.LeafletMouseEvent) => {
-      const { lat, lng } = e.latlng;
-
-      if (this.marker) {
-        this.marker.setLatLng([lat, lng]);
-      } else {
-        this.marker = L.marker([lat, lng]).addTo(this.map);
-      }
-    });
   }
 
   getFormattedDate(createdAt: any) {
