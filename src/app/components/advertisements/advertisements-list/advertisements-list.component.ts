@@ -11,6 +11,7 @@ import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/ad
   styleUrls: ['./advertisements-list.component.css']
 })
 export class AdvertisementsListComponent implements OnInit {
+  isLoading: boolean = false;
   advertisements : AdvertisementPayloadResponseModel[] = [];
   totalElements : number = 0;
   totalPages : number = 0;
@@ -31,6 +32,7 @@ export class AdvertisementsListComponent implements OnInit {
     this.totalPages = data.totalPages;
     this.pageNumber = data.number + 1;
     this.pageSize = data.size;
+    this.isLoading = false;
   }
 
   fetchData() {
@@ -38,6 +40,7 @@ export class AdvertisementsListComponent implements OnInit {
       .subscribe((queryParamMap) => {
         const type : string = String(queryParamMap.get('category'));
         this.keyPhrase = String(queryParamMap.get('keyphrase'));
+        this.isLoading = true;
         if (queryParamMap.has('category') && String(queryParamMap.get('category')).length > 0
           && queryParamMap.has('keyphrase')) { // KEYPHRASE AND TYPE
           this.advertisementService.getAdvertisementsByKeyphraseAndTypeWithPagination(this.pageSize,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserPayloadModel} from "../../../model/user/user-payload-model";
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../../../service/user-service";
 import {AdvertisementPayloadResponseModel} from "../../../model/advertisement/advertisement-payload-response-model";
 import {AdvertisementService} from "../../../service/advertisement-service";
 import {ReviewService} from "../../../service/review-service";
@@ -10,6 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ReviewFormComponent} from "../review-form/review-form.component";
 import {AuthService} from "../../../service/auth-service";
 import {MessageFormComponent} from "../message-form/message-form.component";
+import * as L from "leaflet";
 
 @Component({
   selector: 'app-single-advertisement-view',
@@ -20,6 +20,9 @@ export class SingleAdvertisementViewComponent implements OnInit {
   currentUser : UserPayloadModel | any;
   advertisement : AdvertisementPayloadResponseModel | any;
   reviews : ReviewPayloadModel[] = [];
+  isLoading: boolean = false;
+  private map!: L.Map;
+  private marker!: L.Marker;
   constructor(private activatedRoute : ActivatedRoute,
               private advertisementService : AdvertisementService,
               private reviewService : ReviewService,
@@ -27,20 +30,49 @@ export class SingleAdvertisementViewComponent implements OnInit {
               private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.activatedRoute.paramMap
       .subscribe((paramMap) => {
         this.advertisementService.getAdvertisementById(Number(paramMap.get('id')))
           .subscribe((advertisement) => {
             this.advertisement = advertisement;
+            if (this.advertisement.latitude && this.advertisement.longitude) {
+              this.initMap();
+            }
+            this.isLoading = false;
           });
 
         this.reviewService.getReviewsByAdvertisementsId(Number(paramMap.get('id')))
           .subscribe((reviews) => {
             this.reviews = reviews;
+            this.isLoading = false;
           });
 
         this.currentUser = this.authService.getCurrentUser();
       })
+  }
+
+  private initMap(): void {
+    const lat = this.advertisement.latitude;
+    const lng = this.advertisement.longitude;
+    this.map = L.map('map').setView([lat, lng], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+
+    this.marker = L.marker([lat, lng]).addTo(this.map)
+      .bindPopup("Place of tutority").openPopup();
+
+    this.map.on('click', (e: L.LeafletMouseEvent) => {
+      const { lat, lng } = e.latlng;
+
+      if (this.marker) {
+        this.marker.setLatLng([lat, lng]);
+      } else {
+        this.marker = L.marker([lat, lng]).addTo(this.map);
+      }
+    });
   }
 
   getFormattedDate(createdAt: any) {

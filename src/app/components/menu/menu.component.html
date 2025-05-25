@@ -64,8 +64,8 @@
   </div>
 
   <div class="form-con" *ngIf="shouldBeSearchFormVisible">
-    <form class="flex align-end justify-center" style="gap: 1rem" (submit)="onAdvertisementsSearching($event)">
-      <div class="flex align-end" style="gap: 1rem">
+    <form class="flex align-items-center justify-center " style="gap: 1rem" (submit)="onAdvertisementsSearching($event)">
+      <div class="flex align-items-center" style="gap: 1rem">
         <mat-icon>search</mat-icon>
         <mat-form-field class="flex" >
           <input [(ngModel)]="keyPhrase" name="keyPhrase" matInput class="search-input" style="color: #333" placeholder="Ex. Physics">
@@ -81,7 +81,10 @@
           <mat-option value="all">All advertisements</mat-option>
         </mat-select>
       </mat-form-field>
-      <button class="second-btn" (click)="onAdvertisementsSearching()">Search</button>
+      <div class="d-flex align-items-center" style="gap: 0.8rem">
+        <button class="second-btn" (click)="onAdvertisementsSearching()">Search</button>
+        <button class="second-btn" (click)="onFindClosestTutorClick()">Find on map</button>
+      </div>
     </form>
   </div>
 </div>

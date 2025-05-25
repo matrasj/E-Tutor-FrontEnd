@@ -1,0 +1,29 @@
+<div>
+  <h1 style="text-align: center">Find on map</h1>
+  <div class="row mb-2" style="width: 35rem">
+    <mat-form-field>
+      <mat-select required  [(value)]="subject.value" (selectionChange)="onSubjectChange()" placeholder="Select subject to find advertisements">
+        <mat-option>
+          <ngx-mat-select-search placeholderLabel="Search for subjects"
+                                 [(ngModel)]="subjectFilter"
+                                 (ngModelChange)="filterSubjects()"
+                                 noEntriesFoundLabel = "We can not find such subject"></ngx-mat-select-search>
+        </mat-option>
+
+        <mat-option *ngFor="let subject of filteredSubjects" [value]="subject.id">
+          {{subject.name + ' (' + subject.advertisementsQuantity + ' advertisements)' }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-container *ngIf="!isLoading; else loader">
+    <ng-container *ngIf="!!subject.value">
+      <div id="map" style="height: 400px;"></div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

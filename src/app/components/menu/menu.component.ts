@@ -1,12 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NavigationStart, Router} from "@angular/router";
 import {AuthService} from "../../service/auth-service";
 import {UserPayloadModel} from "../../model/user/user-payload-model";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {UserService} from "../../service/user-service";
 import {AdvertisementService} from "../../service/advertisement-service";
-import {BreakpointObserver, BreakpointState, MediaMatcher} from "@angular/cdk/layout";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
+import {MatDialog} from "@angular/material/dialog";
+import {ReviewFormComponent} from "../advertisements/review-form/review-form.component";
+import {FindClosestTutorModalComponent} from "./find-closest-tutor-modal/find-closest-tutor-modal.component";
 
 @Component({
   selector: 'app-menu',
@@ -26,12 +28,12 @@ export class MenuComponent implements OnInit {
   public totalAdvertisementsQuantity: number = 0;
 
   constructor(private router : Router,
+              private dialogRef : MatDialog,
               private authService : AuthService,
               private sanitizer : DomSanitizer,
               private userService : UserService,
               private advertisementService : AdvertisementService,
               public breakpointObserver: BreakpointObserver) {
-
   }
 
   ngOnInit(): void {
@@ -80,6 +82,10 @@ export class MenuComponent implements OnInit {
           category : this.selectedCategory ? this.selectedCategory : ''
         }
       });
+  }
+
+  onFindClosestTutorClick() {
+    this.dialogRef.open(FindClosestTutorModalComponent);
   }
 
   onAdvertisementsForCategorySearching(type : string) {

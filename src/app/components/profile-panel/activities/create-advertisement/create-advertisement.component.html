@@ -19,7 +19,6 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="subjectCtrl.errors && (subjectCtrl.dirty || subjectCtrl.touched)">Subject is required</mat-error>
-
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
@@ -125,7 +124,14 @@
 
       <hr/>
       <h1 class="mb-0">Choose place of tutority</h1>
-      <div id="map" style="height: 500px;"></div>
+      <mat-checkbox
+        color="primary"
+        [checked]="selectPlaceOnMap"
+        (change)="onSelectPlaceOnMapClick()"
+      >
+        Select place on map
+      </mat-checkbox>
+      <div *ngIf="selectPlaceOnMap" id="map" style="height: 500px;"></div>
       <hr/>
       <div>
         <h1>Additional info</h1>

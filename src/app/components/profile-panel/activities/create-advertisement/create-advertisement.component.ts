@@ -74,6 +74,7 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
 
   @Input() placeholderLabel = 'Search';
   protected _onDestroy = new Subject<void>();
+  public selectPlaceOnMap: boolean = true;
   constructor(private subjectService : SubjectService,
               private cityService : CityService,
               private formBuilder : FormBuilder,
@@ -125,8 +126,6 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
             this.filterSubjects();
           });
       });
-
-
   }
 
   get lessonPrice() {
@@ -272,9 +271,14 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
           .map((lessonRange) => lessonRange.name),
         this.ADVERTISEMENT_TYPE,
         this.currentUserModel?.profileImagePath,
-        this.longitude.value,
-        this.latitude.value
+        this.longitude?.value,
+        this.latitude?.value
       );
+
+      if (!this.selectPlaceOnMap) {
+        advertisementPayloadRequest.longitude = null;
+        advertisementPayloadRequest.latitude = null;
+      }
 
       this.advertisementService.createAdvertisement(advertisementPayloadRequest)
         .subscribe((res) => {
@@ -304,7 +308,7 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
           }).addTo(this.map);
 
           this.marker = L.marker([lat, lng]).addTo(this.map)
-            .bindPopup("Twoja lokalizacja").openPopup();
+            .bindPopup("You are here! Select place of tutority.").openPopup();
 
           this.map.on('click', (e: L.LeafletMouseEvent) => {
             const { lat, lng } = e.latlng;
@@ -331,11 +335,16 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
   }
 
   private initMapFallback(): void {
-    const defaultLatLng: L.LatLngExpression = [52.2297, 21.0122]; // Warszawa
+    const defaultLatLng: L.LatLngExpression = [52.2297, 21.0122];
     this.map = L.map('map').setView(defaultLatLng, 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+  }
+
+  public onSelectPlaceOnMapClick(): void  {
+    this.selectPlaceOnMap = !this.selectPlaceOnMap;
+    this.initMap();
   }
 }
