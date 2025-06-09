@@ -11,7 +11,7 @@
 }
 
 .fill-ratings {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   padding: 0;
   position: absolute;
   z-index: 1;
@@ -26,7 +26,7 @@
   color: rgb(70, 142, 245);
   font-size: 1.2rem;
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .add-con {
@@ -58,9 +58,9 @@
 }
 
 .places-list {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .author-name {
@@ -93,7 +93,7 @@ span {
 
 
 .phone-con {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
 }
 
 .phone-con p {
@@ -116,7 +116,7 @@ span {
 }
 
 .phone-number {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 300;
 }
 
@@ -124,7 +124,7 @@ span {
   .inner-main-con {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.8rem;
   }
 
   .info-container {

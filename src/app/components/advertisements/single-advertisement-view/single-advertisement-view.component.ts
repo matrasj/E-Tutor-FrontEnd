@@ -10,6 +10,7 @@ import {ReviewFormComponent} from "../review-form/review-form.component";
 import {AuthService} from "../../../service/auth-service";
 import {MessageFormComponent} from "../message-form/message-form.component";
 import * as L from "leaflet";
+import {MakeAppointmentModalComponent} from "../make-appointment-modal/make-appointment-modal.component";
 
 @Component({
   selector: 'app-single-advertisement-view',
@@ -93,7 +94,15 @@ export class SingleAdvertisementViewComponent implements OnInit {
         recipientId : this.advertisement.userPayload.id,
         advertisementId : this.advertisement.id
       }
-    })
+    });
+  }
+
+  onMakingAppointment() {
+    this.dialogRef.open(MakeAppointmentModalComponent, {
+      data: {
+        advertisement: this.advertisement
+      }
+    });
   }
 
   isAuthenticated() {

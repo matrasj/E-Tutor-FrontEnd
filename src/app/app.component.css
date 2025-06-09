@@ -4,7 +4,7 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
 mat-sidenav {
   width: 300px;
   background-color: #12a27f;
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .profile-img {

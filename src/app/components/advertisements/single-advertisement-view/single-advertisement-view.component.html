@@ -4,9 +4,13 @@
       <div class="all-con flex " style="gap: 3.2rem">
         <div class="left-panel flex-col align-start">
           <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
-          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center mb-2" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
             <mat-icon style="color: #fff">email</mat-icon>
             Send message
+          </button>
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center" (click)="onMakingAppointment()" style="gap: 0.2rem; width: max-content;">
+            <mat-icon style="color: #fff">event</mat-icon>
+            Make an appointment
           </button>
 
           <ul class="flex flex-col" style="gap: 0.6rem">
@@ -53,14 +57,14 @@
           </div>
 
           <div class="add-desc">
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
               <mat-icon>description</mat-icon>
               <p>Advertisement description</p>
             </div>
 
             <p class="add-content" [innerHTML]="advertisement?.content"></p>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
               <mat-icon>schedule</mat-icon>
               <p>Availability</p>
             </div>
@@ -72,7 +76,7 @@
                 </li>
               </ul>
             </div>
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
               <mat-icon>bookmark_border</mat-icon>
               <p>Lesson's range</p>
             </div>
@@ -80,7 +84,7 @@
               <li class="lesson-range" *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
             </ul>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem;">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem;">
               <mat-icon> pin_drop</mat-icon>
               <p>Place of lessons</p>
             </div>
@@ -94,7 +98,7 @@
               </li>
             </ul>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 1rem" *ngIf="!!advertisement.latitude && !!advertisement.longitude">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem" *ngIf="!!advertisement.latitude && !!advertisement.longitude">
               <mat-icon>location_on</mat-icon>
               <p>Tutority location on map</p>
             </div>

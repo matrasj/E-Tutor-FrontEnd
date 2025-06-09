@@ -21,7 +21,7 @@ p {
   margin: 0;
   color: #333;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .info-con {
@@ -102,15 +102,15 @@ p {
 .lesson-range {
   color: #2AC59B;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .white-button {
   background: none;
   width: max-content;
   color: #2AC59B;
-  font-size: 1rem;
-  padding: 0.6rem 2.4rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
 }
 
 .white-button:hover {
@@ -129,8 +129,8 @@ p {
 
 .content {
   background-color: #fff;
-  padding: 1rem 1.2rem;
-  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.8rem;
   font-style: italic;
   font-weight: 300;
   color: #888;
@@ -160,7 +160,7 @@ ul {
   }
 
   .single-advertisement-con {
-    padding: 1rem;
+    padding: 0.8rem;
   }
 }
 
