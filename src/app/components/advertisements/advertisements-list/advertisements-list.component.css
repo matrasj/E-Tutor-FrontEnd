@@ -11,13 +11,13 @@
 ngb-pagination ::ng-deep ul > li:not(.active) > a {
   background-color: #fff !important;
   color: #333 !important;
-  border-color: #12a27f !important;
+  border-color: rgb(70, 142, 245) !important;
 
 }
 
 ngb-pagination ::ng-deep ul > li.active > a {
-  background-color: #12a27f !important;
-  border-color: #12a27f !important;
+  background-color: rgb(70, 142, 245) !important;
+  border-color: rgb(70, 142, 245) !important;
 
 }
 

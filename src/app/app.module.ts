@@ -54,6 +54,9 @@ import {CitiesFullViewComponent} from "./components/cities-full-view/cities-full
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { FindClosestTutorModalComponent } from './components/menu/find-closest-tutor-modal/find-closest-tutor-modal.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import { MakeAppointmentModalComponent } from './components/advertisements/make-appointment-modal/make-appointment-modal.component';
 
 
 const routes = [
@@ -100,6 +103,7 @@ const routes = [
     CitiesFullViewComponent,
     FindClosestTutorModalComponent,
     LoaderComponent,
+    MakeAppointmentModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,7 +141,9 @@ const routes = [
     FormsModule,
     MatSidenavModule,
     NgbModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},

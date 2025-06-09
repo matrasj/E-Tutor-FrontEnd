@@ -3,7 +3,7 @@
   <div class="nav-links-con flex align-center space-between" >
 
     <div class="flex align-center" style="gap: 1.2rem">
-      <div class="flex align-center menu-link" routerLink="/" style="gap: 1rem">
+      <div class="flex align-center menu-link" routerLink="/" style="gap: 0.8rem">
         <mat-icon>school</mat-icon>
         <p>E-Tutor</p>
       </div>
@@ -35,7 +35,7 @@
 
     <ng-template #authenticatedMenu >
       <div class="user-bar" *ngIf="!showHamburgerIcon">
-        <div [matMenuTriggerFor]="appMenu" class="flex align-center" style="cursor: pointer; gap: 1rem">
+        <div [matMenuTriggerFor]="appMenu" class="flex align-center" style="cursor: pointer; gap: 0.8rem">
           <p class="username">Hi {{ currentUser?.firstName }} {{ currentUser?.lastName}}</p>
           <img class="profile-img" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
              : 'assets/images/default_avatar.png'"/>
@@ -64,8 +64,8 @@
   </div>
 
   <div class="form-con" *ngIf="shouldBeSearchFormVisible">
-    <form class="flex align-items-center justify-center " style="gap: 1rem" (submit)="onAdvertisementsSearching($event)">
-      <div class="flex align-items-center" style="gap: 1rem">
+    <form class="flex align-items-center justify-center " style="gap: 0.8rem" (submit)="onAdvertisementsSearching($event)">
+      <div class="flex align-items-center" style="gap: 0.8rem">
         <mat-icon>search</mat-icon>
         <mat-form-field class="flex" >
           <input [(ngModel)]="keyPhrase" name="keyPhrase" matInput class="search-input" style="color: #333" placeholder="Ex. Physics">

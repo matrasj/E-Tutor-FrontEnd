@@ -22,7 +22,7 @@
       <div class="write-message-form-con">
         <form (ngSubmit)="onMessageSending()" [formGroup]="messageFormGroup">
           <div formGroupName="message" class="message-con">
-            <div class="flex align-center" style="gap: 1rem; margin-bottom: 1.8rem">
+            <div class="flex align-center" style="gap: 0.8rem; margin-bottom: 1.8rem">
               <img class="user-img" [src]="currentUser?.profileImagePath ? currentUser?.profileImagePath : 'assets/images/default_avatar.png'"/>
               <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
                 <mat-label>Subject</mat-label>

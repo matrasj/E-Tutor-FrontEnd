@@ -36,8 +36,8 @@ body {
   background: none;
   color: #f3f3f3;
   border: none;
-  font-size: 1rem;
-  padding: 0.8rem 1.4rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
   transition: all 0.2s linear;
   cursor: pointer;
   border-radius: 0.2rem;
@@ -49,11 +49,10 @@ body {
 }
 
 .com-button{
-
   color: #f3f3f3;
   border: solid 1px #fcc419;
   font-size: 1.2rem;
-  padding: 0.8rem 1.4rem;
+  padding: 0.2rem 0.4rem;
   transition: all 0.2s linear;
   cursor: pointer;
   border-radius: 0.2rem;
@@ -141,7 +140,7 @@ button:focus {
 
 .offer-header {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.0.8rem;
   margin-bottom: 8px;
   color: #333;
   display: flex;
@@ -159,7 +158,7 @@ button:focus {
 }
 
 .offer-price {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #444;
   margin-bottom: 12px;
 }
