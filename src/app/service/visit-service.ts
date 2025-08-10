@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AdvertisementWithVisitsPayloadModel} from "../model/advertisement/advertisement-with-visits-payload-model";
 import {VisitPayloadModel} from "../model/visit/visit-payload-model";
 
 @Injectable({
@@ -13,11 +12,23 @@ export class VisitService {
   constructor(private httpClient : HttpClient) {
   }
 
-  public getAllVisitsByAuthorId(authorId: number) : Observable<VisitPayloadModel[]> {
-    return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/author/${authorId}`);
+  public makeAppointment(payload: VisitPayloadModel): Observable<VisitPayloadModel> {
+    return this.httpClient.post<VisitPayloadModel>(`${this.API_URL}/visits`, payload);
   }
 
-  public getAllVisitsForAdvertisementsByUserId(userId: number) : Observable<AdvertisementWithVisitsPayloadModel[]> {
-    return this.httpClient.get<AdvertisementWithVisitsPayloadModel[]>(`${this.API_URL}/get-visits-for-advertisements-by-user-id/${userId}`);
+  public getAllVisitRequestsAsStudent(userId: number) : Observable<VisitPayloadModel[]> {
+    return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/visits/as-student/${userId}`);
+  }
+
+  public getAllVisitRequestsAsTutor(userId: number) : Observable<VisitPayloadModel[]> {
+    return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/visits/as-tutor/${userId}`);
+  }
+
+  public getAllAcceptedVisitConnectedToUser(userId: number) : Observable<VisitPayloadModel[]> {
+    return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/visits/accepted/${userId}`);
+  }
+
+  public approveVisit(visitId: number) : Observable<VisitPayloadModel> {
+    return this.httpClient.patch<VisitPayloadModel>(`${this.API_URL}/visits/approve/${visitId}`, {});
   }
 }

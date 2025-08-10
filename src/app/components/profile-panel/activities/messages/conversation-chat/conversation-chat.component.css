@@ -1,63 +1,151 @@
-.chat-con {
-  min-width: 30rem;
-  background-color: #fff;
+.chat-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 1.2rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 100%;
 }
 
-.date {
-  font-size: 12px;
-  color: #666666;
+.chat {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  max-width: 1100px;
+  min-width: 720px;
+  height: 100vh;
+  min-height: 600px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  overflow: hidden;
 }
 
-.author {
-  font-size: 1.2rem;
-  color: #12a27f;
-  margin-bottom: 0;
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .4rem .8rem;
+  border-bottom: 1px solid #eef1f4;
+  background: #fafbfc;
+  height: 50px;
 }
 
-.user-img {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
+.messages {
+  overflow-y: auto;
+  padding: 1rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
 }
 
-p {
-  margin: 0;
+.composer {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: .6rem;
+  padding: .6rem;
+  border-top: 1px solid #eef1f4;
+  background: #fafbfc;
 }
 
-.subject {
-  color: #999;
+.composer-editor {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: visible;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
 }
 
-.message-con {
-  padding: 1.2rem;
+/* TinyMCE – mniejsza wysokość, scroll wewnątrz */
+:host ::ng-deep .composer-editor .tox-tinymce {
+  border-radius: 10px;
+  height: 240px !important;
 }
 
-.content {
-  padding: 0.2rem 2.4rem;
-}
-
-.last-label, .first-label {
-  position: absolute;
-  right: 0;
+:host ::ng-deep .composer-editor .tox-editor-header {
+  position: sticky;
   top: 0;
+  z-index: 2;
+}
+
+:host ::ng-deep .composer-editor .tox .tox-statusbar {
+  display: none;
+}
+
+:host ::ng-deep .composer-editor .tox-edit-area {
+  height: 80px !important;
+  overflow: auto;
+}
+
+.composer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.send-btn { min-width: 120px; }
+
+.msg-row {
+  display: flex;
+  margin-bottom: .6rem;
+}
+
+.bubble {
+  max-width: min(70%, 760px);
+  background: #f1f5f9;
+  color: #111827;
+  padding: .6rem .8rem;
+  border-radius: 14px;
+  border-top-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+.bubble.me {
+  margin-left: auto;
+  background: #468EF5;
   color: #fff;
-  background-color: #fa5252;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 14px;
+}
+
+.bubble-meta {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  margin-bottom: .25rem;
+  opacity: .85;
+  font-size: .78rem;
+}
+
+.peer-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.peer-name {
+  font-weight: 600;
+  color: #111;
+}
+
+.peer-username {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.back-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   border: none;
-  padding: 0.2rem 0.8rem;
-  width: max-content;
-  transform: translateY(-100%);
+  background: #eef2ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-
-.first-label {
-  background-color: #12a27f;
+@media (max-width: 1024px) {
+  .chat { max-width: 100%; min-width: 0; }
 }
 
-@media only screen and (max-width: 510px) {
-  .chat-con {
-    min-width: 100% !important;
-  }
-
+@media (max-width: 640px) {
+  .chat { height: calc(100vh - 140px); }
+  .bubble { max-width: 85%; }
 }

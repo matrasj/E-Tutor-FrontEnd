@@ -2,10 +2,13 @@ import {AdvertisementPayloadLightModel} from "../advertisement/advertisement-pay
 
 export interface VisitPayloadModel {
   id: number;
-  visitContent: string;
+  purpose: string;
   visitDate: string;
   visitTime: string;
   advertisement: AdvertisementPayloadLightModel;
+  advertisementId: number;
   authorId: number;
   accepted: boolean;
+  requesterName: string;
+  tutorName: string;
 }

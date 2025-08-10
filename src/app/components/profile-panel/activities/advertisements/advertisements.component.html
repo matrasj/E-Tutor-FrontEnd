@@ -4,7 +4,7 @@
       <div class="flex-col content-con">
         <h1>I give lessons</h1>
         <p class="alert alert-info" *ngIf="currentUser?.advertisementsForStudentQuantity > 0; else noAdds">You have created
-          <span style="color: #2AC59B">{{ currentUser?.advertisementsForStudentQuantity}} </span>
+          <span style="color: #468EF5">{{ currentUser?.advertisementsForStudentQuantity}} </span>
           advertisements for students
         </p>
         <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : false}">Add advertisement</button>
@@ -14,7 +14,7 @@
       <div class="flex-col content-con">
         <h1>I'm looking for a tutor</h1>
         <p class="alert alert-warning" *ngIf="currentUser?.advertisementsForTutorQuantity > 0; else noAdds">You have
-          <span style="color: #2AC59B">{{ currentUser?.advertisementsForTutorQuantity}} advertisements for students</span>
+          <span style="color: #468EF5">{{ currentUser?.advertisementsForTutorQuantity}} advertisements for students</span>
         </p>
         <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : true}">Add advertisement</button>
       </div>

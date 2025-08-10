@@ -9,7 +9,7 @@
         </div>
         <div class="cities-grid-con">
           <div class="city-con flex align-center space-between" *ngFor="let city of state.citiesWithQuantities">
-            <div class="flex align-center" style="color: #12a27f; cursor: pointer" (click)="onAdvertisementsFilteringByCity(city.cityName)">
+            <div class="flex align-center" style="color: #468EF5; cursor: pointer" (click)="onAdvertisementsFilteringByCity(city.cityName)">
               <mat-icon>location_on</mat-icon>
               <p class="sub-name" >{{ city.cityName.length > 15 ?
                 city.cityName.slice(0, 15) + '...' : city?.cityName}}</p>

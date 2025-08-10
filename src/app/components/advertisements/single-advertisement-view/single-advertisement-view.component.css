@@ -4,7 +4,7 @@
 }
 
 .mat-icon {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
 }
 
 button {
@@ -52,7 +52,7 @@ p {
 
 
 .subject-name {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   font-size: 1.2rem;
 }
 
@@ -62,7 +62,7 @@ p {
 }
 
 .user-name {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
 }
@@ -78,7 +78,7 @@ p {
 }
 
 .fill-ratings {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   padding: 0;
   position: absolute;
   z-index: 1;
@@ -100,7 +100,7 @@ p {
 }
 
 .lesson-range {
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   font-weight: 300;
   font-size: 0.8rem;
 }
@@ -108,7 +108,7 @@ p {
 .white-button {
   background: none;
   width: max-content;
-  color: #2AC59B;
+  color: rgb(70, 142, 245);
   font-size: 0.8rem;
   padding: 0.2rem 0.4rem;
 }
@@ -119,8 +119,6 @@ p {
 
 .right-panel {
   width: 70%;
-
-
 }
 
 .left-panel {

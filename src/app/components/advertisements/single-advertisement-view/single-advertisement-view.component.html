@@ -4,11 +4,11 @@
       <div class="all-con flex " style="gap: 3.2rem">
         <div class="left-panel flex-col align-start">
           <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
-          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center mb-2" (click)="onMessageCreating()" style="gap: 0.2rem; width: max-content;">
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center mb-2" (click)="onMessageCreating()" style="gap: 0.2rem">
             <mat-icon style="color: #fff">email</mat-icon>
             Send message
           </button>
-          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center" (click)="onMakingAppointment()" style="gap: 0.2rem; width: max-content;">
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center" (click)="onMakingAppointment()" style="gap: 0.2rem">
             <mat-icon style="color: #fff">event</mat-icon>
             Make an appointment
           </button>
@@ -31,7 +31,7 @@
           <div class="days-list">
             <ul class="flex-col" style="gap: 0.6rem">
               <li class="flex align-center" style="gap: 1.2rem; width: max-content" *ngFor="let availability of advertisement?.availabilityPayloads">
-                <p style="color: #2AC59B;">{{ availability.dayName}}</p>
+                <p style="color: #468EF5;">{{ availability.dayName}}</p>
                 <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
               </li>
             </ul>
@@ -53,7 +53,7 @@
                 <span>★★★★★</span>
               </div>
             </div>
-            <p style="color: #2AC59B; font-weight: 300;">{{ advertisement?.reviewsQuantity }} reviews</p>
+            <p style="color: #468EF5; font-weight: 300;">{{ advertisement?.reviewsQuantity }} reviews</p>
           </div>
 
           <div class="add-desc">
@@ -71,7 +71,7 @@
             <div class="days-list">
               <ul class="flex-col" style="gap: 0.6rem">
                 <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
-                  <p style="color: #2AC59B;">{{ availability.dayName}}</p>
+                  <p style="color: #468EF5;">{{ availability.dayName}}</p>
                   <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
                 </li>
               </ul>
@@ -98,7 +98,7 @@
               </li>
             </ul>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem" *ngIf="!!advertisement.latitude && !!advertisement.longitude">
+            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem" *ngIf="!!advertisement?.latitude && !!advertisement?.longitude">
               <mat-icon>location_on</mat-icon>
               <p>Tutority location on map</p>
             </div>

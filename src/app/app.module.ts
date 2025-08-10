@@ -57,6 +57,10 @@ import { LoaderComponent } from './components/loader/loader.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { MakeAppointmentModalComponent } from './components/advertisements/make-appointment-modal/make-appointment-modal.component';
+import { AppointmentsComponent } from './components/profile-panel/activities/appointments/appointments.component';
+import {FullCalendarModule} from "@fullcalendar/angular";
+import { ApproveVisitModalComponent } from './components/profile-panel/activities/appointments/approve-visit-modal/approve-visit-modal.component';
+import {MatListModule} from "@angular/material/list";
 
 
 const routes = [
@@ -68,6 +72,7 @@ const routes = [
       {path : "messages/chat/user/:id", component : ConversationChatComponent},
       {path : "complete", component : CompleteProfileComponent},
       {path : "advertisements", component: AdvertisementsComponent},
+      {path : "appointments", component: AppointmentsComponent},
       {path : "create-advertisement-tutor", component: CreateAdvertisementComponent},
       {path : "create-advertisement-student", component: CreateAdvertisementComponent}
     ], canActivate : [AuthGuard]},
@@ -104,6 +109,8 @@ const routes = [
     FindClosestTutorModalComponent,
     LoaderComponent,
     MakeAppointmentModalComponent,
+    AppointmentsComponent,
+    ApproveVisitModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,7 +150,9 @@ const routes = [
     NgbModule,
     MatToolbarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FullCalendarModule,
+    MatListModule
   ],
   providers: [AuthService,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
