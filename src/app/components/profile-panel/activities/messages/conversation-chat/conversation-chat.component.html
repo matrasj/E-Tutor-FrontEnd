@@ -1,55 +1,40 @@
-<div class="chat-con">
-  <h1 style="color: #333; font-weight: 300; margin-bottom: 1.8rem;">Messages</h1>
-  <ng-container *ngIf="!isLoading; else loader">
-    <div class="flex-col" >
-      <div class="message-con flex-col" *ngFor="let message of messages;let i = index">
-        <div class="flex align-center" style="margin-bottom: 1.8rem; gap: 0.8rem; position:  relative">
-          <p class="last-label" *ngIf="i === messages.length - 1">Last</p>
-          <p class="first-label" *ngIf="i === 0">First</p>
-          <img class="user-img" [src]="message.sender.profileImagePath" alt="Image shows user's profile image"/>
-          <div class="flex-col">
-            <div class="flex align-center space-between" style="gap: 3.8rem;">
-              <p class="author">{{ message.sender.username === currentUser.username ? "You" : message.sender.username}}</p>
-              <p class="subject">{{ message?.subject}}</p>
+<div class="chat-page">
+  <div class="chat">
+    <header class="chat-header">
+      <button class="back-btn" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <img class="peer-avatar" [src]="peer?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
+      <span class="peer-name">{{ peer?.firstName }} {{ peer?.lastName }}</span>
+      <span class="peer-username">@{{ peer?.username }}</span>
+    </header>
+
+    <ng-container *ngIf="!isLoading; else loader">
+      <div class="messages" #scrollArea>
+        <div class="msg-row" *ngFor="let m of messages">
+          <div class="bubble" [ngClass]="{ me: m.sender?.id === currentUser?.id }">
+            <div class="bubble-meta">
+              <span class="who">{{ m.sender?.id === currentUser?.id ? 'You' : m.sender?.username }}</span>
+              <span class="when">{{ getFormattedDate(m?.createdAt) }}</span>
             </div>
-            <p class="date">{{ getFormattedDate(message?.createdAt)}}</p>
+            <div class="bubble-content" [innerHTML]="m?.content"></div>
           </div>
         </div>
-        <p class="content" [innerHTML]="message?.content"></p>
-        <hr/>
       </div>
 
-      <div class="write-message-form-con">
-        <form (ngSubmit)="onMessageSending()" [formGroup]="messageFormGroup">
-          <div formGroupName="message" class="message-con">
-            <div class="flex align-center" style="gap: 0.8rem; margin-bottom: 1.8rem">
-              <img class="user-img" [src]="currentUser?.profileImagePath ? currentUser?.profileImagePath : 'assets/images/default_avatar.png'"/>
-              <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
-                <mat-label>Subject</mat-label>
-                <input matInput formControlName="subject"  placeholder="Ex. Question">
-                <mat-error *ngIf="subject.errors && (subject.dirty || subject.touched)">Subject must be valid</mat-error>
-              </mat-form-field>
-            </div>
+      <form class="composer" (ngSubmit)="onMessageSending()" [formGroup]="messageFormGroup">
+        <editor class="composer-editor" formControlName="content"></editor>
 
-            <editor
-              [ngClass]="content.errors && (content.touched || content.dirty) ? 'is-invalid' : ''"
-              id="content"
-              [init]="{plugins : 'link'}"
-              formControlName="content"
-            >
-            </editor>
-            <mat-error *ngIf="content.errors && (content.dirty || content.touched)">Please describe your advertisement</mat-error>
-          </div>
+        <div class="composer-actions">
+          <button type="submit" class="send-btn second-btn" [disabled]="messageFormGroup.invalid || sending">
+            Send
+          </button>
+        </div>
+      </form>
+    </ng-container>
 
-          <div class="message-con">
-            <button type="submit" class="second-btn " style="width: 100%;">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </ng-container>
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
+  </div>
 </div>
-
-<ng-template #loader>
-  <app-loader></app-loader>
-</ng-template>

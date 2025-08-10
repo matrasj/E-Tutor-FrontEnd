@@ -56,7 +56,7 @@ export class SingleAdvertisementViewComponent implements OnInit {
   private initMap(): void {
     const lat = this.advertisement.latitude;
     const lng = this.advertisement.longitude;
-    this.map = L.map('map').setView([lat, lng], 13);
+    this.map = L?.map('map').setView([lat, lng], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -101,7 +101,8 @@ export class SingleAdvertisementViewComponent implements OnInit {
     this.dialogRef.open(MakeAppointmentModalComponent, {
       data: {
         advertisement: this.advertisement
-      }
+      },
+      panelClass: 'big-dialog'
     });
   }
 

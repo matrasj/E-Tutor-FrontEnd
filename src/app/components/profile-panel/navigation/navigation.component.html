@@ -27,11 +27,16 @@
           <p>Advertisements</p>
         </div>
 
+        <div class="activity flex align-center justify-start" routerLink="/profile/appointments" routerLinkActive="appointments">
+          <mat-icon>calendar_today</mat-icon>
+          <p>Appointments</p>
+        </div>
 
         <div class="activity flex align-center justify-start" (click)="onLoggingOut()" >
           <mat-icon> logout</mat-icon>
           <p>Logout</p>
         </div>
+
 
       </div>
     </mat-sidenav-content>

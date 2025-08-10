@@ -1,0 +1,108 @@
+<ng-container *ngIf="!isLoading; else loader">
+  <div class="appointments-container">
+    <mat-tab-group>
+      <mat-tab label="Calendar">
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Lesson Calendar</h2>
+            <p class="panel-subtitle">Overview of scheduled tutoring sessions</p>
+          </div>
+          <div class="panel-body">
+            <full-calendar [options]="calendarOptions"></full-calendar>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Requests to me">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Requests to me</h3>
+            <p class="panel-subtitle">Incoming visit requests that you can approve</p>
+          </div>
+
+          <div class="panel-body">
+            <div class="list" *ngIf="visitsAsTutor.length; else emptyToMe">
+              <div class="visit-row" *ngFor="let v of visitsAsTutor" [ngClass]="{ 'pending': !v.accepted, 'accepted': v.accepted }">
+                <div class="row-main">
+                  <div class="row-top">
+                    <span class="row-title">{{ v.advertisement.subjectName || 'Subject' }}</span>
+                    <span class="status" [ngClass]="v.accepted ? 'st-accepted' : 'st-pending'">
+                    {{ v.accepted ? 'Accepted' : 'Pending' }}
+                  </span>
+                  </div>
+                  <div class="row-meta">
+                  <span class="chip">
+                    <mat-icon>event</mat-icon>
+                    {{ v.visitDate }} • {{ v.visitTime }}
+                  </span>
+                    <span class="chip">
+                    <mat-icon>person</mat-icon>
+                    From: {{ v.requesterName || ('User #' + v.authorId) }}
+                  </span>
+                  </div>
+                  <div class="row-purpose">{{ v.purpose }}</div>
+                </div>
+                <div class="row-actions">
+                  <button mat-stroked-button color="primary" (click)="approve(v.id)" [disabled]="v.accepted">Approve</button>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #emptyToMe>
+              <div class="empty">
+                <mat-icon>inbox</mat-icon>
+                <div>No requests right now</div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="My requests">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">My requests</h3>
+            <p class="panel-subtitle">Visit requests you have sent</p>
+          </div>
+
+          <div class="panel-body">
+            <div class="list" *ngIf="visitsAsStudent.length; else emptyMine">
+              <div class="visit-row" *ngFor="let v of visitsAsStudent" [ngClass]="{ 'pending': !v.accepted, 'accepted': v.accepted }">
+                <div class="row-main">
+                  <div class="row-top">
+                    <span class="row-title">{{ v.advertisement.subjectName || 'Subject' }}</span>
+                    <span class="status" [ngClass]="v.accepted ? 'st-accepted' : 'st-pending'">
+                    {{ v.accepted ? 'Accepted' : 'Pending' }}
+                  </span>
+                  </div>
+                  <div class="row-meta">
+                  <span class="chip">
+                    <mat-icon>event</mat-icon>
+                    {{ v.visitDate }} • {{ v.visitTime }}
+                  </span>
+                    <span class="chip">
+                    <mat-icon>school</mat-icon>
+                    Tutor: {{ v.tutorName || ('Ad #' + v.advertisementId) }}
+                  </span>
+                  </div>
+                  <div class="row-purpose">{{ v.purpose }}</div>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #emptyMine>
+              <div class="empty">
+                <mat-icon>hourglass_empty</mat-icon>
+                <div>You have not requested any visits yet</div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</ng-container>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

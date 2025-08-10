@@ -2,7 +2,7 @@
 <div class="adds-list-con flex-col align-center justify-start">
   <div class="main-container flex-col" style="gap: 1.4rem">
     <ng-container *ngIf="!isLoading; else loader">
-      <h1 style="justify-self: flex-start; width: 100%">Found <span style="color: #2AC59B">{{ totalElements }}</span> advertisements</h1>
+      <h1 style="justify-self: flex-start; width: 100%">Found <span style="color: #468EF5">{{ totalElements }}</span> advertisements</h1>
       <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
       <p class="alert alert-warning" *ngIf="advertisements.length === 0" style="width: 100%">No advertisements found</p>
       <ngb-pagination

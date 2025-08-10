@@ -33,7 +33,7 @@ p {
 .see-info {
   grid-column: 1 / 3;
   justify-self: flex-start;
-  color: #2AC59B;
+  color: #468EF5;
   margin-top: 1.4rem;
   font-size: 1.2rem;
   cursor: pointer;
@@ -145,7 +145,7 @@ p, span {
 }
 
 .location {
-  color: #12a27f;
+  color: #468EF5;
 }
 
 .price {
@@ -157,7 +157,7 @@ p, span {
 }
 
 .reviews-quan {
-  color: #12a27f;
+  color: #468EF5;
 }
 
 .best-adds {

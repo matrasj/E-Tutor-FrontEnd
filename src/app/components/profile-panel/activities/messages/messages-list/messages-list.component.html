@@ -1,15 +1,42 @@
-<div class="conversations-con flex-col" style="width: 100%; gap: 0.8rem;">
-  <div class="conversation-simple-view flex align-center"
-       [routerLink]="['/profile', 'messages', 'chat', 'user', user?.id]"
-       style="gap: 0.8rem;" *ngFor="let user of userConversations">
-    <img class="profile-image" [src]="user?.profileImagePath ? user?.profileImagePath : 'assets/images/default_avatar.png'"/>
-    <p class="user-name"> {{ user?.firstName }} {{ user?.lastName }}</p>
-  </div>
-  <ngb-pagination
-    [collectionSize]="totalElements"
-    [(page)]="pageNumber"
-    [boundaryLinks]="true"
-    [pageSize]="pageSize"
-    (pageChange)="fetchData()"
-  ></ngb-pagination>
+<div class="contacts-container">
+  <header class="contacts-header">
+    <h2>Chats</h2>
+  </header>
+
+  <ng-container *ngIf="userConversations.length > 0; else noChats">
+    <div
+      class="contact-row"
+      *ngFor="let user of userConversations"
+      [routerLink]="['/profile', 'messages', 'chat', 'user', user?.id]"
+    >
+      <img
+        class="contact-avatar"
+        [src]="user?.profileImagePath || 'assets/images/default_avatar.png'"
+        alt="avatar"
+      />
+      <div class="contact-info">
+        <div class="contact-name">{{ user?.firstName }} {{ user?.lastName }}</div>
+        <div class="contact-meta">
+          <span class="contact-username">@{{ user?.username }}</span>
+        </div>
+      </div>
+      <mat-icon class="contact-arrow">chevron_right</mat-icon>
+    </div>
+
+    <div class="contacts-pagination">
+      <ngb-pagination
+        [collectionSize]="totalElements"
+        [(page)]="pageNumber"
+        [boundaryLinks]="true"
+        [pageSize]="pageSize"
+        (pageChange)="fetchData()"
+      ></ngb-pagination>
+    </div>
+  </ng-container>
+
+  <ng-template #noChats>
+    <div class="no-chats">
+      <p>No conversations yet.</p>
+    </div>
+  </ng-template>
 </div>

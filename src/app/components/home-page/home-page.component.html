@@ -6,7 +6,7 @@
     <div class="grid-con" *ngIf="!showLoaderForLeft">
       <div class="subject-con flex align-center space-between" style="gap: 0.8rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
-          <mat-icon style="color: #2AC59B; width: max-content">school</mat-icon>
+          <mat-icon style="color: #468EF5; width: max-content">school</mat-icon>
           <p class="subject-name" style="width: 100%">{{ subjectWithQuan.subjectName.length > 15 ?
             subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName}}</p>
         </div>
@@ -19,7 +19,7 @@
     <div class="grid-con" *ngIf="!showLoaderForRight">
       <div class="subject-con flex align-center space-between" style="gap: 0.8rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
         <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
-          <mat-icon style="color: #2AC59B">school</mat-icon>
+          <mat-icon style="color: #468EF5">school</mat-icon>
           <p class="subject-name" style="width: 100%">{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' :
             cityWithQuan?.cityName}}</p>
         </div>
@@ -44,7 +44,7 @@
     >
       <div class="flex align-start" style="gap: 0.8rem">
         <img alt="Photo show author profile image"
-             class="profile-img light-img" [src]="lightAdvertisement?.profileImagePath"/>
+             class="profile-img light-img" [src]="lightAdvertisement?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
         <div class="flex-column align-start" style="width: 100%">
           <p class="subject-name"
              style="margin-bottom: 0.8rem">{{ lightAdvertisement.subjectName.length > 15 ?

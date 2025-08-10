@@ -1,5 +1,5 @@
 <div class="message-form-con">
-  <h1 style="font-size: 1.2rem">Send message to <span style="color: #2AC59B">{{ targetFirstName | titlecase }} {{ targetLastName | titlecase }}</span></h1>
+  <h1 style="font-size: 1.2rem">Send message to <span style="color: #468EF5">{{ targetFirstName | titlecase }} {{ targetLastName | titlecase }}</span></h1>
   <form [formGroup]="messageFormGroup" (ngSubmit)="onMessageSending()">
     <div formGroupName="message">
       <mat-form-field class="example-full-width" style="width: 100%; margin-bottom: 2.4rem" appearance="fill">
