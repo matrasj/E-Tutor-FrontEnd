@@ -1,74 +1,61 @@
-<div class="home-con flex-col align-center justify-center">
-  <h1 style="margin-bottom: 3.8rem">Subjects and cities</h1>
-  <div class="flex main-con align-start justify-center"
-       style="min-height: 25rem"
-  [ngClass]="showLoaderForRight || showLoaderForLeft ? 'space-around' : ''">
-    <div class="grid-con" *ngIf="!showLoaderForLeft">
-      <div class="subject-con flex align-center space-between" style="gap: 0.8rem;" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor: pointer" (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
-          <mat-icon style="color: #468EF5; width: max-content">school</mat-icon>
-          <p class="subject-name" style="width: 100%">{{ subjectWithQuan.subjectName.length > 15 ?
-            subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName}}</p>
+<div class="subjects-cities">
+  <h1>Subjects and Cities</h1>
+  <div class="lists" [ngClass]="showLoaderForRight || showLoaderForLeft ? 'loading' : ''">
+    <div class="list" *ngIf="!showLoaderForLeft">
+      <div class="list-item" *ngFor="let subjectWithQuan of subjectsWithAddsQuantities"
+           (click)="selectAdvertisementsWithFilteringBySubject(subjectWithQuan.subjectName)">
+        <div class="item-main">
+          <mat-icon>menu_book</mat-icon>
+          <span>{{ subjectWithQuan.subjectName.length > 15 ? subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName}}</span>
         </div>
-        <span>({{ subjectWithQuan.addsQuantity }})</span>
+        <span class="badge">({{ subjectWithQuan.addsQuantity }})</span>
       </div>
-      <p class="see-info" [routerLink]="['/subjects']">See all subjects</p>
+      <a class="see-all" [routerLink]="['/subjects']">See all subjects →</a>
     </div>
     <div class="loader" *ngIf="showLoaderForLeft">Loading...</div>
 
-    <div class="grid-con" *ngIf="!showLoaderForRight">
-      <div class="subject-con flex align-center space-between" style="gap: 0.8rem;" *ngFor="let cityWithQuan of citiesWithAddsQuantities" >
-        <div class="flex align-center" style="gap: 0.8rem; width: 100%; cursor:pointer;" (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
-          <mat-icon style="color: #468EF5">school</mat-icon>
-          <p class="subject-name" style="width: 100%">{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' :
-            cityWithQuan?.cityName}}</p>
+    <div class="list" *ngIf="!showLoaderForRight">
+      <div class="list-item" *ngFor="let cityWithQuan of citiesWithAddsQuantities"
+           (click)="selectAdvertisementsWithFilteringByCity(cityWithQuan.cityName)">
+        <div class="item-main">
+          <mat-icon>location_city</mat-icon>
+          <span>{{ cityWithQuan.cityName.length > 15 ? cityWithQuan.cityName.slice(0, 15) + '...' : cityWithQuan?.cityName}}</span>
         </div>
-        <span>({{ cityWithQuan.addsQuantity }})</span>
+        <span class="badge">({{ cityWithQuan.addsQuantity }})</span>
       </div>
-      <p class="see-info" [routerLink]="['/cities']" >See all cities</p>
+      <a class="see-all" [routerLink]="['/cities']">See all cities →</a>
     </div>
-
     <div class="loader" *ngIf="showLoaderForRight">Loading...</div>
-
-
   </div>
 </div>
 
-<div class="flex-col align-center justify-center best-adds" >
-  <h1 style="text-align: center; color: #333; font-weight: 300; margin-bottom: 3.8rem">Most popular advertisements</h1>
-  <div class="light-grid">
-    <div *ngFor="let lightAdvertisement of lightAdvertisements"
-         class="flex space-between light-add"
-         style="gap: 0.8rem"
-         [routerLink]="['/advertisements', lightAdvertisement.id]"
-    >
-      <div class="flex align-start" style="gap: 0.8rem">
-        <img alt="Photo show author profile image"
-             class="profile-img light-img" [src]="lightAdvertisement?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
-        <div class="flex-column align-start" style="width: 100%">
-          <p class="subject-name"
-             style="margin-bottom: 0.8rem">{{ lightAdvertisement.subjectName.length > 15 ?
-            lightAdvertisement.subjectName.slice(0, 15) + '...' : lightAdvertisement?.subjectName}}</p>
-          <p class="location flex align-center" style="gap: 0; width: 100%" ><span style="width: max-content"
-                                                                      class="flex align-center"
-                                                                      *ngFor="let location of lightAdvertisement.placesNames.slice(0, 2)">
-          <mat-icon style="width: max-content">location_on</mat-icon>
-            <span style="color: #333; font-weight: 300; font-size: 0.8rem; margin-right: 0.4rem">{{ location }}</span>
+<div class="popular">
+  <h1>Most Popular Advertisements</h1>
+  <div class="ads-grid">
+    <div class="ad-card" *ngFor="let lightAdvertisement of lightAdvertisements"
+         [routerLink]="['/advertisements', lightAdvertisement.id]">
+      <div class="ad-info">
+        <img class="avatar" [src]="lightAdvertisement?.profileImagePath ?? 'assets/images/default_avatar.png'" alt="Profile image"/>
+        <div class="ad-details">
+          <p class="ad-subject">{{ lightAdvertisement.subjectName.length > 15 ? lightAdvertisement.subjectName.slice(0, 15) + '...' : lightAdvertisement?.subjectName}}</p>
+          <div class="ad-locations">
+            <span class="loc" *ngFor="let location of lightAdvertisement.placesNames.slice(0,2)">
+              <mat-icon>location_on</mat-icon>{{ location }}
             </span>
-            {{ lightAdvertisement.placesNames.length > 2 ? '...' : ''}}</p>
+            {{ lightAdvertisement.placesNames.length > 2 ? '...' : ''}}
+          </div>
         </div>
       </div>
-
-      <div class="flex-col align-end">
-        <p class="price">{{ lightAdvertisement?.price }} zl / {{ lightAdvertisement?.minutesDuration }} min</p>
-        <p class="reviews-quan">{{ lightAdvertisement?.reviewsQuantity }} reviews</p>
+      <div class="ad-meta">
+        <p class="price">{{ lightAdvertisement?.price }} zł / {{ lightAdvertisement?.minutesDuration }} min</p>
+        <p class="reviews">{{ lightAdvertisement?.reviewsQuantity }} reviews</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="register-commercial flex-col align-center justify-center">
-  <h1 class="com-header" style="text-align: center">Create free account on e-tutor</h1>
-  <p style="text-align: center">Obtain access to post advertisements</p>
-  <button class="com-button" [routerLink]="['/register']">Register</button>
+<div class="cta">
+  <h1>Create a free account on E-Tutor</h1>
+  <p>Gain access to post your own advertisements</p>
+  <button class="cta-btn" [routerLink]="['/register']">Register</button>
 </div>

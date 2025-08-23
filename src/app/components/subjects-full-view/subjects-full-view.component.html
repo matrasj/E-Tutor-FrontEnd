@@ -1,18 +1,13 @@
-<div class="main-con flex-col align-center">
-  <div class="inner-con flex-col align-center" >
+<div class="subjects-wrap">
+  <div class="subjects-box">
     <h1>Subjects</h1>
-    <div class="main-grid-con" >
-      <div class="subject-con flex align-center space-between"
-           *ngFor="let subjectWithQuan of subjectsWithQuantities"
-           style="cursor: pointer"
-        (click)="onAdvertisementsFilteringBySubject(subjectWithQuan.subjectName)">
-        <div class="flex align-center" style="gap: 0.6rem">
-          <mat-icon style="color: #468EF5">book</mat-icon>
-          <p class="sub-name">{{ subjectWithQuan.subjectName.length > 15 ?
-            subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName }}</p>
+    <div class="subjects-grid">
+      <div class="subject-tile" *ngFor="let subjectWithQuan of subjectsWithQuantities" (click)="onAdvertisementsFilteringBySubject(subjectWithQuan.subjectName)">
+        <div class="subject-left">
+          <mat-icon>menu_book</mat-icon>
+          <span class="subject-title">{{ subjectWithQuan.subjectName.length > 15 ? subjectWithQuan.subjectName.slice(0, 15) + '...' : subjectWithQuan?.subjectName }}</span>
         </div>
-
-        <p class="sub-quan">({{ subjectWithQuan?.addsQuantity}})</p>
+        <span class="subject-badge">({{ subjectWithQuan?.addsQuantity }})</span>
       </div>
     </div>
   </div>

@@ -1,58 +1,92 @@
-.main-con {
-  background-color: #e9ecef;
+.subjects-wrap {
+  background: radial-gradient(1200px 600px at 8% -10%, #f0f5ff 0%, #f7f9ff 45%, #ffffff 80%) no-repeat;
+  padding: 2rem 1rem;
 }
 
-p {
-  margin: 0;
+.subjects-box {
+  background: #ffffff;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.2rem 2.4rem;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+  border: 1px solid rgba(16, 24, 40, 0.06);
 }
 
-.main-grid-con {
+.subjects-box h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0b1739;
+  margin: 0 0 1.8rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subjects-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 1.2rem;
-  column-gap: 3.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem 1.2rem;
 }
 
-.inner-con {
-  background-color: #fff;
-  padding: 2.8rem 3.8rem;
-  margin-top: 2.4rem;
+.subject-tile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fdfdff;
+  border: 1px solid #e8ecf7;
+  border-radius: 14px;
+  padding: 0.65rem 0.8rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
 }
 
-h1 {
-  font-size: 1.8rem;
-  font-weight: 300;
-  color: #333;
-  margin-bottom: 3.8rem;
+.subject-tile:hover {
+  background: #f2f6ff;
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+  transform: translateY(-2px);
 }
 
-.main-name, .sub-name, .sub-quan, .main-quan{
-  font-weight: 300;
-  color: #333;
-  font-size: 1.4rem;
+.subject-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
-.sub-name, .sub-quan {
-  font-size: 0.8rem;
+.subject-left mat-icon {
+  color: #3567ff;
 }
 
-@media only screen and (max-width: 1150px) {
-  .main-grid-con {
+.subject-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2240;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subject-badge {
+  font-size: 0.9rem;
+  color: #6476a3;
+}
+
+@media (max-width: 1150px) {
+  .subjects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media only screen and (max-width: 780px) {
-  .main-grid-con {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+@media (max-width: 780px) {
+  .subjects-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media only screen and (max-width: 450px) {
-  .inner-con {
-    padding: 0.8rem;
-    width: 100%;
+@media (max-width: 450px) {
+  .subjects-box {
+    padding: 1rem;
+  }
+  .subjects-box h1 {
+    font-size: 1.6rem;
   }
 }

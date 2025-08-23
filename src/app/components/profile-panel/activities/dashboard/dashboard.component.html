@@ -1,39 +1,40 @@
-<div class="grid-con">
-  <div class="user-panel panel flex-col align-start">
-    <h4>User panel</h4>
-    <div class="flex align-center res-flex" style="gap: 2.4rem">
-      <div class="flex-col align-center" style="gap: 0.6rem">
-        <img class="user-img" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
-             : 'assets/images/default_avatar.png'"/>
-        <p class="user-username">{{ currentUser?.firstName | titlecase}}  {{ currentUser?.lastName | titlecase }}</p>
+<div class="dashboard">
+  <div class="dash-grid">
+    <section class="card card-user">
+      <h4>User panel</h4>
+      <div class="user-row">
+        <div class="user-col">
+          <img class="user-avatar" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath) : 'assets/images/default_avatar.png'"/>
+          <p class="user-name">{{ currentUser?.firstName | titlecase}} {{ currentUser?.lastName | titlecase }}</p>
+        </div>
+        <div class="progress-col">
+          <circle-progress
+            [percent]="completionPercent"
+            [radius]="100"
+            [outerStrokeWidth]="16"
+            [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#78C000'"
+            [innerStrokeColor]="'#C7E596'"
+            [animation]="true"
+            [animationDuration]="300"
+            subtitle="Completing the profile"
+          ></circle-progress>
+          <button class="second-btn" routerLink="/profile/complete">Complete your profile</button>
+        </div>
       </div>
+    </section>
 
-      <div class="flex-col align-center">
-        <circle-progress
-          [percent]="completionPercent"
-          [radius]="100"
-          [outerStrokeWidth]="16"
-          [innerStrokeWidth]="8"
-          [outerStrokeColor]="'#78C000'"
-          [innerStrokeColor]="'#C7E596'"
-          [animation]="true"
-          [animationDuration]="300"
-          subtitle="Completing the profile"
-        ></circle-progress>
-        <button class="second-btn" routerLink="/profile/complete">Complete your profile</button>
-      </div>
+    <section class="card card-notifs">
+      <h4>Notifications</h4>
+      <p class="alert alert-warning">No adds yet.</p>
+    </section>
 
-    </div>
-  </div>
-  <div class="notifications-panel panel">
-    <h4>Notifications</h4>
-    <p class="alert alert-warning">No adds yet.</p>
-  </div>
-  <div class="adds-list-panel panel">
-    <h4 style="margin-bottom: 2.8rem">Your advertisements</h4>
-      <div class="flex-col" style="gap: 1.8rem">
+    <section class="card card-ads">
+      <h4>Your advertisements</h4>
+      <div class="ads-list">
         <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
         <p *ngIf="advertisements.length === 0" class="alert alert-warning">No advertisement posted yet</p>
       </div>
+    </section>
   </div>
 </div>

@@ -1,26 +1,33 @@
-<div class="review-form-con">
-  <h1 style="text-align: center">Create opinion</h1>
+<div class="review-form">
+  <h1>Create opinion</h1>
   <form [formGroup]="reviewFormGroup" (ngSubmit)="onReviewCreating()">
-    <div class="flex-col" style="gap: 2.4rem" formGroupName="review">
-      <mat-form-field appearance="fill">
-        <mat-label>Select rate</mat-label>
-        <mat-select formControlName="rate">
-          <mat-option *ngFor="let rate of ratings" [value]="rate.value" >
-            {{rate.name}}
-          </mat-option>
-
-        </mat-select>
+    <div class="form-body" formGroupName="review">
+      <div class="form-field">
+        <label class="form-label">Select rate</label>
+        <div class="stars" role="radiogroup" aria-label="Select rate">
+          <button type="button" class="star"
+                  *ngFor="let n of [1,2,3,4,5]"
+                  [attr.aria-pressed]="(reviewFormGroup.get('review.rate')?.value || 0) === n"
+                  (click)="reviewFormGroup.get('review.rate')?.setValue(n)">
+            <mat-icon [class.filled]="(reviewFormGroup.get('review.rate')?.value || 0) >= n">star</mat-icon>
+          </button>
+        </div>
+        <mat-form-field appearance="fill" class="sr-only">
+          <mat-label>Select rate</mat-label>
+          <mat-select formControlName="rate" tabindex="-1" aria-hidden="true">
+            <mat-option *ngFor="let rate of ratings" [value]="rate.value">{{ rate.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-error *ngIf="rate.errors && (rate.dirty || rate.touched)">Rate must be valid</mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Leave a opinion</mat-label>
-        <textarea matInput placeholder="Lesson was great but..."
-                  formControlName="content" style="min-height: 10rem"></textarea>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Leave an opinion</mat-label>
+        <textarea matInput placeholder="Lesson was great but..." formControlName="content"></textarea>
         <mat-error *ngIf="content.errors && (content.dirty || content.touched)">Content must be valid</mat-error>
       </mat-form-field>
 
-      <button class="second-btn" style="width: 100%">Add opinion</button>
+      <button class="btn-submit" type="submit">Add opinion</button>
     </div>
   </form>
 </div>

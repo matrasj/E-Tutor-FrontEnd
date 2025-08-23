@@ -116,7 +116,8 @@ export class SingleAdvertisementViewComponent implements OnInit, AfterViewInit, 
       data: {
         userId: this.currentUser?.id,
         advertisementId: this.advertisement?.id
-      }
+      },
+      panelClass: 'big-dialog'
     });
   }
 

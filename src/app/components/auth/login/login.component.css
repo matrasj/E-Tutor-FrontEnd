@@ -1,27 +1,45 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
+.auth-wrap {
+  background: radial-gradient(1200px 600px at 8% -10%, #f0f5ff 0%, #f7f9ff 45%, #ffffff 80%) no-repeat;
+  padding: 2.5rem 1rem;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 2.8rem 1.8rem;
-  max-width: 30rem;
-  border-radius: 0.5rem;
+  display: grid;
+  place-items: center;
 }
 
-.login-form-con {
+.auth-card {
   width: 100%;
-  padding: 2.8rem 0.6rem;
+  max-width: 420px;
+  display: grid;
+  gap: 1.2rem;
+  background: #ffffff;
+  border: 1px solid rgba(16, 24, 40, 0.06);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(16, 24, 40, 0.08);
+  padding: 2rem 1.5rem;
 }
 
-.inner-con {
-  width: 95%;
-  max-width: 60rem;
-  padding: 3.4rem 4.2rem;
+.auth-card h1 {
+  margin: 0 0 0.4rem 0;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0b1739;
+  letter-spacing: -0.02em;
 }
 
-.login-img {
-  width: 50%;
-  border-radius: 2rem;
+.auth-field {
+  width: 100%;
 }
 
+.auth-submit {
+  width: 100%;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: 2rem;
+  }
+}

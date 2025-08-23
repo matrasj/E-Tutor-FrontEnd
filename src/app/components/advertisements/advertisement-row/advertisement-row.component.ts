@@ -29,9 +29,11 @@ export class AdvertisementRowComponent implements OnInit {
 
   onOpinionCreating() {
     this.dialogRef.open(ReviewFormComponent, {
-      data : {
-        userId : this.currentUser.id,
-        advertisementId : this.advertisement.id
+      width: '700px',
+      maxWidth: '90vw',
+      data: {
+        userId: this.currentUser.id,
+        advertisementId: this.advertisement.id
       }
     });
   }

@@ -1,140 +1,129 @@
 <ng-container *ngIf="!isLoading; else loader">
-  <div class="single-advertisement-con flex-col align-center ">
-    <div style="width: 80%" class="inner-con">
-      <div class="all-con flex " style="gap: 3.2rem">
-        <div class="left-panel flex-col align-start">
-          <img class="profile-image" style="align-self: center" [src]="advertisement?.userPayload?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
-          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center mb-2" (click)="onMessageCreating()" style="gap: 0.2rem">
-            <mat-icon style="color: #fff">email</mat-icon>
+  <div class="ad-single">
+    <div class="ad-wrapper">
+      <div class="ad-body">
+        <!-- LEFT -->
+        <div class="ad-left">
+          <img class="ad-avatar" [src]="advertisement?.userPayload?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
+
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()"
+                  class="btn-accent" (click)="onMessageCreating()">
+            <mat-icon>email</mat-icon>
             Send message
           </button>
-          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()" class="flex align-center second-btn justify-center" (click)="onMakingAppointment()" style="gap: 0.2rem">
-            <mat-icon style="color: #fff">event</mat-icon>
+
+          <button *ngIf="advertisement?.userPayload?.username !== currentUser?.username && isAuthenticated()"
+                  class="btn-accent" (click)="onMakingAppointment()">
+            <mat-icon>event</mat-icon>
             Make an appointment
           </button>
 
-          <ul class="flex flex-col" style="gap: 0.6rem">
-            <li *ngFor="let place of advertisement?.placesNames">
-              <div class="flex align-center">
-                <mat-icon>location_on</mat-icon>
-                <p class="place-name">{{ place | titlecase}}</p>
-              </div>
-            </li>
-          </ul>
-
-          <div class="availability-info info-con" >
-            <div class="flex align-center" style="gap: 0.6rem;">
-              <mat-icon>calendar_today</mat-icon>
-              <p>Availability</p>
+          <div class="card-section">
+            <div class="card-head">
+              <mat-icon>location_on</mat-icon>
+              <span>Places</span>
             </div>
+            <ul class="list">
+              <li *ngFor="let place of advertisement?.placesNames">{{ place | titlecase }}</li>
+            </ul>
           </div>
-          <div class="days-list">
-            <ul class="flex-col" style="gap: 0.6rem">
-              <li class="flex align-center" style="gap: 1.2rem; width: max-content" *ngFor="let availability of advertisement?.availabilityPayloads">
-                <p style="color: #468EF5;">{{ availability.dayName}}</p>
-                <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
+
+          <div class="card-section">
+            <div class="card-head">
+              <mat-icon>calendar_today</mat-icon>
+              <span>Availability</span>
+            </div>
+            <ul class="list">
+              <li *ngFor="let availability of advertisement?.availabilityPayloads">
+                <span class="day">{{ availability.dayName}}</span>
+                <span>{{ availability.startHour}} - {{ availability.endHour}}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="right-panel flex-col">
-          <div class="flex space-between" style="margin-bottom: 1.2rem">
-            <p class="subject-name">{{ advertisement?.subjectName | titlecase}}</p>
-            <p class="price">{{ advertisement?.price }}zł / {{ advertisement?.minutesDuration }} min</p>
+        <!-- RIGHT -->
+        <div class="ad-right">
+          <div class="ad-header">
+            <h2 class="subject">{{ advertisement?.subjectName | titlecase}}</h2>
+            <span class="price">{{ advertisement?.price }} zł / {{ advertisement?.minutesDuration }} min</span>
           </div>
-          <p class="user-name">{{ advertisement?.userPayload?.firstName | titlecase}} {{ advertisement?.userPayload?.lastName | titlecase }}</p>
-          <div class="flex align-end" style="gap: 0.6rem; margin-bottom: 2.4rem">
+
+          <p class="tutor">{{ advertisement?.userPayload?.firstName | titlecase}} {{ advertisement?.userPayload?.lastName | titlecase }}</p>
+
+          <div class="ad-rating">
             <div class="star-ratings">
-              <div class="fill-ratings" [ngStyle]="{ width : (advertisement?.ratingAverage) + '%'}">
+              <div class="fill-ratings" [ngStyle]="{ width : (advertisement?.ratingAverage) + '%' }">
                 <span>★★★★★</span>
               </div>
-              <div class="empty-ratings">
-                <span>★★★★★</span>
-              </div>
+              <div class="empty-ratings"><span>★★★★★</span></div>
             </div>
-            <p style="color: #468EF5; font-weight: 300;">{{ advertisement?.reviewsQuantity }} reviews</p>
+            <span class="reviews">{{ advertisement?.reviewsQuantity }} reviews</span>
           </div>
 
-          <div class="add-desc">
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
+          <div class="card-section">
+            <div class="card-head">
               <mat-icon>description</mat-icon>
-              <p>Advertisement description</p>
+              <span>Advertisement description</span>
             </div>
+            <div class="content" [innerHTML]="advertisement?.content"></div>
+          </div>
 
-            <p class="add-content" [innerHTML]="advertisement?.content"></p>
-
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
-              <mat-icon>schedule</mat-icon>
-              <p>Availability</p>
-            </div>
-            <div class="days-list">
-              <ul class="flex-col" style="gap: 0.6rem">
-                <li class="flex align-center" style="gap: 1.2rem" *ngFor="let availability of advertisement?.availabilityPayloads">
-                  <p style="color: #468EF5;">{{ availability.dayName}}</p>
-                  <p>{{ availability.startHour}} - {{ availability.endHour}}</p>
-                </li>
-              </ul>
-            </div>
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem">
+          <div class="card-section">
+            <div class="card-head">
               <mat-icon>bookmark_border</mat-icon>
-              <p>Lesson's range</p>
+              <span>Lesson's range</span>
             </div>
-            <ul class="flex-col" style="gap: 0.6rem; padding-left: 2.2rem; list-style: square; margin-bottom: 1.8rem">
-              <li class="lesson-range" *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
+            <ul class="list square">
+              <li *ngFor="let lessonRange of advertisement?.lessonRanges">{{ lessonRange | titlecase}}</li>
             </ul>
+          </div>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem;">
-              <mat-icon> pin_drop</mat-icon>
-              <p>Place of lessons</p>
+          <div class="card-section">
+            <div class="card-head">
+              <mat-icon>pin_drop</mat-icon>
+              <span>Place of lessons</span>
             </div>
-
-            <ul  class="flex-col" style="gap: 0.6rem;">
-              <li *ngFor="let place of advertisement?.placesNames">
-                <div class="flex align-center">
-                  <mat-icon>location_on</mat-icon>
-                  <p class="place-name">{{ place | titlecase}}</p>
-                </div>
-              </li>
+            <ul class="list">
+              <li *ngFor="let place of advertisement?.placesNames">{{ place | titlecase}}</li>
             </ul>
+          </div>
 
-            <div class="info-con info-con-main flex align-center" style="margin-bottom: 0.8rem" *ngIf="!!advertisement?.latitude && !!advertisement?.longitude">
+          <div class="card-section" *ngIf="!!advertisement?.latitude && !!advertisement?.longitude">
+            <div class="card-head">
               <mat-icon>location_on</mat-icon>
-              <p>Tutority location on map</p>
+              <span>Tutor location on map</span>
             </div>
-            <div #mapContainer id="map" *ngIf="!!advertisement?.latitude && !!advertisement?.longitude" style="height: 500px; width: 100%;"></div>
+            <div #mapContainer id="map"></div>
           </div>
         </div>
       </div>
 
-      <div class="reviews-con" style="align-self: flex-start">
-        <p style="font-size: 1.4rem">Last opinions</p>
-        <p style="font-size: 0.8rem; color: #999999; margin-bottom: 1.2rem">Opinion's number: {{ advertisement?.reviewsQuantity }}</p>
-        <button *ngIf="isAuthenticated()" class="white-button second-btn flex align-center" (click)="onOpinionCreating()" style="gap: 0.2rem">
+      <!-- REVIEWS -->
+      <div class="ad-reviews">
+        <h3>Last opinions</h3>
+        <p class="reviews-info">Opinion's number: {{ advertisement?.reviewsQuantity }}</p>
+
+        <button *ngIf="isAuthenticated()" class="btn-outline" (click)="onOpinionCreating()">
           <mat-icon>record_voice_over</mat-icon>
           Opinion
         </button>
-        <p *ngIf="reviews.length === 0" class="alert alert-warning" style="width: 100%">No reviews posted yet</p>
 
-        <div class="flex-col" style="width: 100%; gap: 2.4rem; margin-bottom: 3.8rem">
-          <div class="option-con flex align-start" style="gap: 1.2rem;" *ngFor="let review of reviews">
-            <img class="author-profile-image" [src]="review?.user?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
-            <div class="review-content flex-col" style="width: 100%">
-              <p class="review-author-name" style="margin-bottom: 1.8rem">{{ review?.user?.firstName}}</p>
-              <div class="flex space-between" style="margin-bottom: 1.2rem">
-                <div class="flex align-center" style="gap: 0.2rem">
-                  <div class="star-ratings">
-                    <div class="fill-ratings" [ngStyle]="{ width : (review.starsNumber / 5) * 100 + '%'}">
-                      <span>★★★★★</span>
-                    </div>
-                    <div class="empty-ratings">
-                      <span>★★★★★</span>
-                    </div>
-                  </div>
+        <p *ngIf="reviews.length === 0" class="alert alert-warning">No reviews posted yet</p>
+
+        <div class="reviews-list">
+          <div class="review" *ngFor="let review of reviews">
+            <img class="review-avatar" [src]="review?.user?.profileImagePath ?? 'assets/images/default_avatar.png'"/>
+            <div class="review-body">
+              <p class="review-author">{{ review?.user?.firstName}}</p>
+              <div class="review-header">
+                <div class="star-ratings">
+                  <div class="fill-ratings" [ngStyle]="{ width : (review.starsNumber / 5) * 100 + '%' }"><span>★★★★★</span></div>
+                  <div class="empty-ratings"><span>★★★★★</span></div>
                 </div>
-                <p>{{ getFormattedDate(review?.createdAt) }}</p>
+                <span class="review-date">{{ getFormattedDate(review?.createdAt) }}</span>
               </div>
-              <p class="content">{{ review?.content}}</p>
+              <p class="review-text">{{ review?.content}}</p>
             </div>
           </div>
         </div>
@@ -142,6 +131,7 @@
     </div>
   </div>
 </ng-container>
+
 <ng-template #loader>
   <app-loader></app-loader>
 </ng-template>

@@ -1,4 +1,121 @@
-.review-form-con {
+.review-form {
   min-width: 40rem;
-  padding: 2.4rem 2.8rem;
+  max-width: 760px;
+  width: 100%;
+  margin: 2rem auto;
+  background: #ffffff;
+  border: 1px solid rgba(16, 24, 40, 0.06);
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 16px 36px rgba(16, 24, 40, 0.08);
+}
+
+.review-form h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0b1739;
+  margin-bottom: 1.6rem;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  color: #0b1739;
+  font-weight: 600;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.star {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0.2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.star:hover {
+  background: #eef3ff;
+}
+
+.star:active {
+  transform: translateY(1px);
+}
+
+.star mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  line-height: 28px;
+  color: #c9d2f6;
+}
+
+.star mat-icon.filled {
+  color: #3567ff;
+}
+
+.form-field textarea {
+  min-height: 10rem;
+}
+
+.btn-submit {
+  appearance: none;
+  border: 0;
+  background: linear-gradient(180deg, #3567ff, #1e4fff);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.08s, box-shadow 0.2s;
+}
+
+.btn-submit:hover {
+  box-shadow: 0 8px 18px rgba(53, 103, 255, 0.35);
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .review-form {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+  .review-form h1 {
+    font-size: 1.3rem;
+  }
 }

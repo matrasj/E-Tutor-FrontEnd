@@ -1,90 +1,68 @@
-<div class="menu-con flex flex-col align-center justify-center">
-
-  <div class="nav-links-con flex align-center space-between" >
-
-    <div class="flex align-center" style="gap: 1.2rem">
-      <div class="flex align-center menu-link" routerLink="/" style="gap: 0.8rem">
-        <mat-icon>school</mat-icon>
-        <p>E-Tutor</p>
-      </div>
-
-      <div class="link" *ngIf="!showHamburgerIcon" (click)="onAdvertisementsForCategorySearching('tutor')">
-        Tutors advertisements
-      </div>
-
-      <div class="link" *ngIf="!showHamburgerIcon" (click)="onAdvertisementsForCategorySearching('student')">
-        Students advertisements
-      </div>
+<div class="hero">
+  <header class="topbar">
+    <div class="brand" routerLink="/">
+      <mat-icon>school</mat-icon>
+      <span>E-Tutor</span>
     </div>
 
-    <mat-icon *ngIf="showHamburgerIcon" style="cursor: pointer" (click)="onMenuOpening()" class="responsive-icon">
-      menu
-    </mat-icon>
+    <nav class="primary-nav" *ngIf="!showHamburgerIcon">
+      <button class="nav-pill" (click)="onAdvertisementsForCategorySearching('tutor')">Tutors advertisements</button>
+      <button class="nav-pill" (click)="onAdvertisementsForCategorySearching('student')">Students advertisements</button>
+    </nav>
 
-    <div class="flex align-center"  style="gap: 2rem;" *ngIf="(!isAuthenticated && !showHamburgerIcon) else authenticatedMenu">
-      <div class="link" routerLink="/login" >
-        Login
-      </div>
+    <mat-icon *ngIf="showHamburgerIcon" class="hamburger" (click)="onMenuOpening()">menu</mat-icon>
 
-      <div>
-        <button class="main-btn" routerLink="/register">
-          Register
-        </button>
-      </div>
+    <div class="auth" *ngIf="(!isAuthenticated && !showHamburgerIcon) else authenticatedMenu">
+      <a class="auth-link" routerLink="/login">Login</a>
+      <button class="primary-btn main-btn" routerLink="/register">Register</button>
     </div>
 
-    <ng-template #authenticatedMenu >
-      <div class="user-bar" *ngIf="!showHamburgerIcon">
-        <div [matMenuTriggerFor]="appMenu" class="flex align-center" style="cursor: pointer; gap: 0.8rem">
-          <p class="username">Hi {{ currentUser?.firstName }} {{ currentUser?.lastName}}</p>
-          <img class="profile-img" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
-             : 'assets/images/default_avatar.png'"/>
+    <ng-template #authenticatedMenu>
+      <div class="user" *ngIf="!showHamburgerIcon">
+        <div [matMenuTriggerFor]="appMenu" class="user-trigger">
+          <span class="hello">Hi {{ currentUser?.firstName }} {{ currentUser?.lastName}}</span>
+          <img class="avatar" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath) : 'assets/images/default_avatar.png'"/>
         </div>
-
         <mat-menu #appMenu="matMenu">
-          <button class="profile-button" mat-menu-item routerLink="/profile">
-            <mat-icon class="profile-icon" >settings</mat-icon>
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>settings</mat-icon>
             Profile settings
-
           </button>
-          <button class="profile-button" mat-menu-item (click)="logout()">
-            <mat-icon class="profile-icon">logout</mat-icon>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
             Logout
           </button>
-
         </mat-menu>
-
-
       </div>
     </ng-template>
-  </div>
+  </header>
 
-  <div class="search-bar flex justify-center" *ngIf="shouldBeHeaderVisible">
-    <h1>Find the best lessons and offers from over {{ totalAdvertisementsQuantity }} advertisements</h1>
-  </div>
+  <section class="headline" *ngIf="shouldBeHeaderVisible">
+    <h1>Find great lessons and offers from over {{ totalAdvertisementsQuantity }} advertisements</h1>
+  </section>
 
-  <div class="form-con" *ngIf="shouldBeSearchFormVisible">
-    <form class="flex align-items-center justify-center " style="gap: 0.8rem" (submit)="onAdvertisementsSearching($event)">
-      <div class="flex align-items-center" style="gap: 0.8rem">
+  <section class="search-card" *ngIf="shouldBeSearchFormVisible">
+    <form class="search-form" (submit)="onAdvertisementsSearching($event)">
+      <div class="control search-control">
         <mat-icon>search</mat-icon>
-        <mat-form-field class="flex" >
-          <input [(ngModel)]="keyPhrase" name="keyPhrase" matInput class="search-input" style="color: #333" placeholder="Ex. Physics">
+        <mat-form-field appearance="fill" class="grow">
+          <input [(ngModel)]="keyPhrase" name="keyPhrase" matInput placeholder="Try: Physics">
         </mat-form-field>
       </div>
 
-
-      <mat-form-field appearance="fill">
-        <mat-label>Add category</mat-label>
-        <mat-select  [(value)]="selectedCategory" >
+      <mat-form-field appearance="outline" class="select-control">
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="selectedCategory">
           <mat-option value="tutor">Tutor's advertisements</mat-option>
           <mat-option value="student">Student's advertisements</mat-option>
           <mat-option value="all">All advertisements</mat-option>
         </mat-select>
       </mat-form-field>
-      <div class="d-flex align-items-center" style="gap: 0.8rem">
-        <button class="second-btn" type="submit" (click)="onAdvertisementsSearching()">Search</button>
-        <button class="second-btn" type="button" (click)="onFindClosestTutorClick()">Find on map</button>
+
+      <div class="actions">
+        <button class="primary-btn second-btn" type="submit" (click)="onAdvertisementsSearching()">Search</button>
+        <button class="ghost-btn second-btn" type="button" (click)="onFindClosestTutorClick()">Find on map</button>
       </div>
     </form>
-  </div>
+  </section>
 </div>

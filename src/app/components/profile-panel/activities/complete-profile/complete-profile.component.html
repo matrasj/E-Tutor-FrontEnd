@@ -1,85 +1,71 @@
-<div class="complete-panel">
-  <h1>My account</h1>
-  <hr/>
+<div class="account-wrap">
+  <div class="account-card">
+    <h1>My account</h1>
+    <hr>
 
-  <form [formGroup]="userFormGroup" (ngSubmit)="onChangesSaving()">
-    <div formGroupName="user">
-      <h4>Profile image</h4>
-      <form class="content-con flex align-center" style="gap: 1.8rem" (submit)="onProfileImageChanging($event)">
-        <img class="user-img"
-             [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath)
-             : 'assets/images/default_avatar.png'"/>
-        <div class="image-con flex-col align-start">
-          <div class="flex-col">
-            <input type="file" class="form-control" (change)="onFileSelect($event)" id="image" name="profile-image" >
-            <p class="hint">Choose file for your profile image</p>
+    <form [formGroup]="userFormGroup" (ngSubmit)="onChangesSaving()">
+      <div formGroupName="user">
+        <h4>Profile image</h4>
+        <form class="image-row" (submit)="onProfileImageChanging($event)">
+          <img class="user-img" [src]="currentUser?.profileImagePath ? sanitizerPhoto(currentUser?.profileImagePath) : 'assets/images/default_avatar.png'"/>
+          <div class="image-side">
+            <div class="file-block">
+              <input type="file" class="form-control" (change)="onFileSelect($event)" id="image" name="profile-image">
+              <p class="hint">Choose file for your profile image</p>
+            </div>
+            <div class="image-actions">
+              <button class="second-btn">Change</button>
+              <button type="button" (click)="onRemovingProfileImage()" *ngIf="currentUser?.profileImagePath" class="second-btn delete-button">Remove</button>
+            </div>
           </div>
+        </form>
 
-          <div style="padding-left: 0.8rem; gap: 0.8rem" class="flex align-center">
-            <button class="second-btn">Change</button>
-            <button type="button" (click)="onRemovingProfileImage()" *ngIf="currentUser?.profileImagePath" class="second-btn delete-button">Remove</button>
-          </div>
+        <hr>
+        <h4>Basic info</h4>
+        <div class="fields-col">
+          <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput placeholder="Ex. Jakub" [value]="currentUser?.firstName">
+            <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">Please enter valid First Name</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput placeholder="Ex. Smith" [value]="currentUser?.lastName">
+            <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">Please enter valid Last Name</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email address</mat-label>
+            <input formControlName="email" matInput placeholder="Ex. your.email@domain.com" [value]="currentUser?.email">
+            <mat-error *ngIf="email.errors && (email.dirty || email.touched)">Please enter valid email</mat-error>
+          </mat-form-field>
         </div>
-      </form>
 
-      <hr/>
-      <h4>Basic info</h4>
-      <div class="flex-col" style="gap: 1.8rem">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>First Name</mat-label>
-          <input formControlName="firstName" matInput placeholder="Ex. Jakub" [value]="currentUser?.firstName">
-          <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
-            Please enter valid First Name
-          </mat-error>
-        </mat-form-field>
+        <hr>
+        <h4>Contact info</h4>
+        <div class="fields-col">
+          <mat-form-field appearance="fill">
+            <mat-label>Phone number</mat-label>
+            <input formControlName="phoneNumber" matInput placeholder="Ex. 433233544" [value]="currentUser?.phoneNumber">
+            <mat-error *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)">Please enter valid phone number</mat-error>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Last Name</mat-label>
-          <input formControlName="lastName" matInput placeholder="Ex. Smith" [value]="currentUser?.lastName">
-          <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
-            Please enter valid Last Name
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input formControlName="address" matInput placeholder="Ex. Wall street 7A/19" [value]="currentUser?.address">
+            <mat-error *ngIf="address.errors && (address.dirty || address.touched)">Please enter valid address</mat-error>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Email address</mat-label>
-          <input formControlName="email" matInput placeholder="Ex. your.email@domain.com" [value]="currentUser?.email">
-          <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
-            Please enter valid email
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input formControlName="city" matInput placeholder="Ex. Warsaw" [value]="currentUser?.city">
+            <mat-error *ngIf="city.errors && (city.dirty || city.touched)">Please enter city</mat-error>
+          </mat-form-field>
+        </div>
+
+        <button class="second-btn save-btn">Save changes</button>
       </div>
-
-      <hr/>
-      <h4>Contact info</h4>
-      <div class="flex-col" style="gap: 1.8rem;">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Phone number</mat-label>
-          <input formControlName="phoneNumber" matInput placeholder="Ex. 433233544" [value]="currentUser?.phoneNumber">
-          <mat-error *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)">
-            Please enter valid phone number
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Address</mat-label>
-          <input formControlName="address" matInput placeholder="Ex. Wall street 7A/19" [value]="currentUser?.address">
-          <mat-error *ngIf="address.errors && (address.dirty || address.touched)">
-            Please enter valid address
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>City</mat-label>
-          <input formControlName="city" matInput placeholder="Ex. Warsaw" [value]="currentUser?.city">
-          <mat-error *ngIf="city.errors && (city.dirty || city.touched)">
-            Please enter city
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <button class="second-btn" style="margin-top: 2.4rem; width: 100%" >Save changes</button>
-    </div>
-  </form>
-
+    </form>
+  </div>
 </div>

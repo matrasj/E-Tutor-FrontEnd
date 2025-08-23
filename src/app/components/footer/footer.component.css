@@ -1,10 +1,35 @@
-.footer-con {
-  background-image: linear-gradient(to right bottom, rgba(70, 142, 245, 0.9), rgba(40, 110, 210, 0.99)), url('src/assets/background.png');
-  padding: 2.4rem;
+.footer {
+  background: #f9fafc;
+  border-top: 1px solid #e5e7eb;
+  padding: 1.6rem 1rem;
 }
 
-.footer-con p {
-  font-size: 1.2rem;
-  color: #fff;
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #475569;
   margin: 0;
+}
+
+.footer .highlight {
+  font-weight: 600;
+  color: #3567ff;
+  transition: color 0.2s ease;
+}
+
+.footer .highlight:hover {
+  color: #1a46d6;
+}
+
+@media (max-width: 640px) {
+  .footer p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
 }
