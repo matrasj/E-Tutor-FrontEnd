@@ -1,27 +1,96 @@
 <div class="con">
-  <mat-tab-group >
-    <mat-tab label="I give lessons" style="width: 50%;" >
+  <mat-tab-group>
+    <mat-tab label="I give lessons">
       <div class="flex-col content-con">
         <h1>I give lessons</h1>
-        <p class="alert alert-info" *ngIf="currentUser?.advertisementsForStudentQuantity > 0; else noAdds">You have created
-          <span style="color: #468EF5">{{ currentUser?.advertisementsForStudentQuantity}} </span>
+
+        <p
+          class="alert alert-info"
+          *ngIf="currentUser?.advertisementsForStudentQuantity > 0; else noAddsStudent"
+        >
+          You have created
+          <span style="color: #468EF5">
+            {{ currentUser?.advertisementsForStudentQuantity }}
+          </span>
           advertisements for students
         </p>
-        <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : false}">Add advertisement</button>
+
+        <button
+          class="second-btn"
+          style="align-self: flex-end"
+          routerLink="/profile/create-advertisement-tutor"
+          [queryParams]="{ tutorLooking: false }"
+        >
+          Add advertisement
+        </button>
+
+        <!-- LISTA OGŁOSZEŃ: ja uczę -->
+        <div class="ads-list" style="width: 100%; margin-top: 1rem;">
+          <app-advertisement-row
+            *ngFor="let advertisement of tutorAdvertisements"
+            [advertisement]="advertisement"
+          ></app-advertisement-row>
+
+          <p
+            *ngIf="tutorAdvertisements.length === 0"
+            class="alert alert-warning"
+            style="margin-top: .5rem;"
+          >
+            No advertisement posted yet
+          </p>
+        </div>
       </div>
     </mat-tab>
+
     <mat-tab label="I'm looking for a teacher">
       <div class="flex-col content-con">
         <h1>I'm looking for a tutor</h1>
-        <p class="alert alert-warning" *ngIf="currentUser?.advertisementsForTutorQuantity > 0; else noAdds">You have
-          <span style="color: #468EF5">{{ currentUser?.advertisementsForTutorQuantity}} advertisements for students</span>
+
+        <p
+          class="alert alert-warning"
+          *ngIf="currentUser?.advertisementsForTutorQuantity > 0; else noAddsTutor"
+        >
+          You have
+          <span style="color: #468EF5">
+            {{ currentUser?.advertisementsForTutorQuantity }}
+          </span>
+          advertisements for students
         </p>
-        <button class="second-btn" style="align-self: flex-end" routerLink="/profile/create-advertisement-tutor" [queryParams]="{tutorLooking : true}">Add advertisement</button>
+
+        <button
+          class="second-btn"
+          style="align-self: flex-end"
+          routerLink="/profile/create-advertisement-tutor"
+          [queryParams]="{ tutorLooking: true }"
+        >
+          Add advertisement
+        </button>
+
+        <!-- LISTA OGŁOSZEŃ: szukam nauczyciela -->
+        <div class="ads-list" style="width: 100%; margin-top: 1rem;">
+          <app-advertisement-row
+            *ngFor="let advertisement of studentAdvertisements"
+            [advertisement]="advertisement"
+          ></app-advertisement-row>
+
+          <p
+            *ngIf="studentAdvertisements.length === 0"
+            class="alert alert-warning"
+            style="margin-top: .5rem;"
+          >
+            No advertisement posted yet
+          </p>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>
 </div>
 
-<ng-template #noAdds>
+<!-- osobne ng-template dla każdego taba (żeby nie pomylić styli/info) -->
+<ng-template #noAddsStudent>
+  <p class="alert alert-warning">No advertisements posted yet</p>
+</ng-template>
+
+<ng-template #noAddsTutor>
   <p class="alert alert-warning">No advertisements posted yet</p>
 </ng-template>
