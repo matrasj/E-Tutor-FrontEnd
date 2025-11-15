@@ -4,7 +4,10 @@
 
     <ng-container *ngIf="!isLoading; else loader">
       <div class="results-list">
-        <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
+        <app-advertisement-row *ngFor="let advertisement of advertisements"
+                               [advertisement]="advertisement"
+                               (reloadEmitter)="fetchData()"
+        ></app-advertisement-row>
       </div>
 
       <p class="empty-alert" *ngIf="advertisements.length === 0">No advertisements found</p>

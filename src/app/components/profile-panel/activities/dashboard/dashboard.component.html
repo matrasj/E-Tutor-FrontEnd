@@ -32,7 +32,9 @@
     <section class="card card-ads">
       <h4>Your advertisements</h4>
       <div class="ads-list">
-        <app-advertisement-row *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-row>
+        <app-advertisement-row *ngFor="let advertisement of advertisements"
+                               [advertisement]="advertisement"
+                               (reloadEmitter)="ngOnInit()"></app-advertisement-row>
         <p *ngIf="advertisements.length === 0" class="alert alert-warning">No advertisement posted yet</p>
       </div>
     </section>

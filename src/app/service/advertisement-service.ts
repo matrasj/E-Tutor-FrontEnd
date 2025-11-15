@@ -61,6 +61,10 @@ export class AdvertisementService {
   getLightAdvertisementsForHomePage(limit : number) : Observable<AdvertisementPayloadLightModel[]> {
     return this.httpClient.get<AdvertisementPayloadLightModel[]>(`${this.API_URL}/advertisements/limit/${limit}`);
   }
+
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.API_URL}/advertisements/${id}`);
+  }
 }
 
 export interface PageApiResponse {

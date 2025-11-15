@@ -33,6 +33,12 @@
     </div>
 
     <div class="ad-right">
+      <button class="delete-btn"
+              *ngIf="isAuthenticated() && advertisement.userPayload.id === currentUser.id"
+              (click)="onDelete($event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
       <p class="ad-price">{{ advertisement.price }} zł / {{ advertisement.minutesDuration }} min</p>
 
       <div class="ad-phone">

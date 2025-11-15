@@ -29,6 +29,7 @@
           <app-advertisement-row
             *ngFor="let advertisement of tutorAdvertisements"
             [advertisement]="advertisement"
+            (reloadEmitter)="ngOnInit()"
           ></app-advertisement-row>
 
           <p
@@ -71,6 +72,7 @@
           <app-advertisement-row
             *ngFor="let advertisement of studentAdvertisements"
             [advertisement]="advertisement"
+            (reloadEmitter)="ngOnInit()"
           ></app-advertisement-row>
 
           <p
