@@ -17,7 +17,6 @@ import {UserService} from "../../../../service/user-service";
 import {AuthService} from "../../../../service/auth-service";
 import * as L from 'leaflet';
 
-// Fix: Leaflet's default icon path for Angular
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -69,12 +68,12 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     {name : "High school", checked : false},
     {name : "Studies", checked : false}
   ]
-  // @ts-ignore
-  @ViewChild('singleSelect', { static: true }) singleSelect: MatSelect;
+  @ViewChild('singleSelect', { static: true }) singleSelect!: MatSelect;
 
   @Input() placeholderLabel = 'Search';
   protected _onDestroy = new Subject<void>();
   public selectPlaceOnMap: boolean = true;
+
   constructor(private subjectService : SubjectService,
               private cityService : CityService,
               private formBuilder : FormBuilder,
@@ -109,7 +108,7 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
       .subscribe((cities) => {
         this.cities = cities;
         this.cityCtrl.setValue(this.cities[10]);
-        this.filteredCities.next(this.subjects.slice());
+        this.filteredCities.next(this.cities.slice());
         this.cityFilterCtrl.valueChanges.pipe(takeUntil(this._onDestroy))
           .subscribe(() => {
             this.filterCities();
@@ -152,7 +151,6 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     return this.advertisementFormGroup.get('advertisement').get('latitude');
   }
 
-
   ngAfterViewInit() {
     this.setInitialValue();
   }
@@ -177,11 +175,9 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
   }
 
   protected filterSubjects() {
-
     if (!this.subjects) {
       return;
     }
-    // get the search keyword
     let search = this.subjectFilterCtrl.value;
 
     if (!search) {
@@ -190,14 +186,12 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
     } else {
       search = search.toLowerCase();
     }
-    // filter the banks
     this.filteredSubjects.next(
       this.subjects.filter(subject => subject.name.toLowerCase().indexOf(search) > -1)
     );
   }
 
   protected filterCities() {
-
     if (!this.cities) {
       return;
     }
@@ -234,8 +228,6 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
         availability.hourStart = null;
       }
     }
-
-
   }
 
   onLessonRangeSelecting($event: MatCheckboxChange) {
@@ -252,7 +244,7 @@ export class CreateAdvertisementComponent implements OnInit, AfterViewInit, OnDe
       this.advertisementFormGroup.markAllAsTouched();
     } else {
       const advertisementPayloadRequest : AdvertisementPayloadRequestModel
-       = new AdvertisementPayloadRequestModel(
+        = new AdvertisementPayloadRequestModel(
         this.currentUserModel.id,
         this.subjectCtrl.value.name,
         this.lessonPrice.value,

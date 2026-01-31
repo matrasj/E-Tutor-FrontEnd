@@ -61,6 +61,7 @@ import { AppointmentsComponent } from './components/profile-panel/activities/app
 import {FullCalendarModule} from "@fullcalendar/angular";
 import { ApproveVisitModalComponent } from './components/profile-panel/activities/appointments/approve-visit-modal/approve-visit-modal.component';
 import {MatListModule} from "@angular/material/list";
+import { RejectVisitModalComponent } from './components/profile-panel/activities/appointments/reject-visit-modal/reject-visit-modal.component';
 
 
 const routes = [
@@ -111,6 +112,7 @@ const routes = [
     MakeAppointmentModalComponent,
     AppointmentsComponent,
     ApproveVisitModalComponent,
+    RejectVisitModalComponent,
   ],
   imports: [
     BrowserModule,

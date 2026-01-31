@@ -9,6 +9,7 @@ import {VisitPayloadModel} from "../model/visit/visit-payload-model";
 })
 export class VisitService {
   private API_URL : string = environment.API_URL;
+
   constructor(private httpClient : HttpClient) {
   }
 
@@ -28,7 +29,15 @@ export class VisitService {
     return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/visits/accepted/${userId}`);
   }
 
+  public getAllRejectedVisitConnectedToUser(userId: number) : Observable<VisitPayloadModel[]> {
+    return this.httpClient.get<VisitPayloadModel[]>(`${this.API_URL}/visits/rejected/${userId}`);
+  }
+
   public approveVisit(visitId: number) : Observable<VisitPayloadModel> {
     return this.httpClient.patch<VisitPayloadModel>(`${this.API_URL}/visits/approve/${visitId}`, {});
+  }
+
+  public rejectVisit(visitId: number) : Observable<void> {
+    return this.httpClient.patch<void>(`${this.API_URL}/visits/reject/${visitId}`, {});
   }
 }

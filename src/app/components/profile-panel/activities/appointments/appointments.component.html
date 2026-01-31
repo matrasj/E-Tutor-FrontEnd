@@ -43,6 +43,7 @@
                   <div class="row-purpose">{{ v.purpose }}</div>
                 </div>
                 <div class="row-actions">
+                  <button mat-stroked-button color="warn" (click)="reject(v.id)" [disabled]="v.accepted">Reject</button>
                   <button mat-stroked-button color="primary" (click)="approve(v.id)" [disabled]="v.accepted">Approve</button>
                 </div>
               </div>
@@ -94,6 +95,50 @@
               <div class="empty">
                 <mat-icon>hourglass_empty</mat-icon>
                 <div>You have not requested any visits yet</div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Rejected">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Rejected visits</h3>
+            <p class="panel-subtitle">Visit requests that were declined</p>
+          </div>
+
+          <div class="panel-body">
+            <div class="list" *ngIf="rejectedVisits.length; else emptyRejected">
+              <div class="visit-row rejected" *ngFor="let v of rejectedVisits">
+                <div class="row-main">
+                  <div class="row-top">
+                    <span class="row-title">{{ v.advertisement.subjectName || 'Subject' }}</span>
+                    <span class="status st-rejected">Rejected</span>
+                  </div>
+                  <div class="row-meta">
+                  <span class="chip">
+                    <mat-icon>event</mat-icon>
+                    {{ v.visitDate }} • {{ v.visitTime }}
+                  </span>
+                    <span class="chip" *ngIf="v.tutorName">
+                    <mat-icon>school</mat-icon>
+                    Tutor: {{ v.tutorName }}
+                  </span>
+                    <span class="chip" *ngIf="v.requesterName">
+                    <mat-icon>person</mat-icon>
+                    Student: {{ v.requesterName }}
+                  </span>
+                  </div>
+                  <div class="row-purpose">{{ v.purpose }}</div>
+                </div>
+              </div>
+            </div>
+
+            <ng-template #emptyRejected>
+              <div class="empty">
+                <mat-icon>check_circle</mat-icon>
+                <div>No rejected visits</div>
               </div>
             </ng-template>
           </div>

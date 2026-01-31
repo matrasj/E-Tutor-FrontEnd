@@ -10,6 +10,14 @@ import {finalize} from "rxjs";
 import {Router} from "@angular/router";
 import {DialogRef} from "@angular/cdk/dialog";
 
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'assets/marker-icon-2x.png',
+  iconUrl: 'assets/marker-icon.png',
+  shadowUrl: 'assets/marker-shadow.png',
+});
+
 @Component({
   selector: 'app-find-closest-tutor-modal',
   templateUrl: './find-closest-tutor-modal.component.html',
@@ -18,12 +26,14 @@ import {DialogRef} from "@angular/cdk/dialog";
 export class FindClosestTutorModalComponent implements OnInit {
   private map!: L.Map;
   private marker!: L.Marker;
+  private advertisementMarkers: L.Marker[] = [];
   subjectFilter = '';
   fg: FormGroup | any;
   subjects: SubjectSearchResponseModel[] = [];
   filteredSubjects: SubjectSearchResponseModel[] = [];
   isLoading: boolean = false;
   advertisements: AdvertisementPayloadLightModel[] = [];
+
   constructor(private subjectService: SubjectService,
               private fb: FormBuilder,
               private advertisementService: AdvertisementService,
@@ -74,13 +84,26 @@ export class FindClosestTutorModalComponent implements OnInit {
     this.advertisementService.getAdvertisementsBySubjectId(this.subject.value)
       .pipe(finalize(() => this.isLoading = false))
       .subscribe({
-      next: (res) => {
-        this.advertisements = res;
-        this.toastrService.success(`There are ${this.advertisements.length} with your subject`);
-        this.initMap();
-      },
-      error: (err) => this.toastrService.error('An error occurred')
-    })
+        next: (res) => {
+          this.advertisements = res;
+          this.toastrService.success(`There are ${this.advertisements.length} with your subject`);
+          this.clearAdvertisementMarkers();
+
+          if (this.map) {
+            this.renderAdvertisementsOnMap();
+          } else {
+            this.initMap();
+          }
+        },
+        error: (err) => this.toastrService.error('An error occurred')
+      })
+  }
+
+  private clearAdvertisementMarkers(): void {
+    this.advertisementMarkers.forEach(marker => {
+      this.map?.removeLayer(marker);
+    });
+    this.advertisementMarkers = [];
   }
 
   private initMap(): void {
@@ -91,16 +114,26 @@ export class FindClosestTutorModalComponent implements OnInit {
           const lng = position.coords.longitude;
           this.longitude.setValue(lng);
           this.latitude.setValue(lat);
-          this.map = L.map('map').setView([lat, lng], 13);
 
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-          }).addTo(this.map);
+          if (!this.map) {
+            this.map = L.map('map').setView([lat, lng], 13);
 
-          this.marker = L.marker([lat, lng]).addTo(this.map)
-            .bindPopup("You are here!").openPopup();
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+            }).addTo(this.map);
 
-          if (this.subject.value && this.advertisements?.length > 0) this.renderAdvertisementsOnMap();
+            this.marker = L.marker([lat, lng]).addTo(this.map)
+              .bindPopup("You are here!").openPopup();
+          } else {
+            this.map.setView([lat, lng], 13);
+            if (this.marker) {
+              this.marker.setLatLng([lat, lng]);
+            }
+          }
+
+          if (this.subject.value && this.advertisements?.length > 0) {
+            this.renderAdvertisementsOnMap();
+          }
         },
         (error) => {
           console.error("Geolokalizacja niedostępna:", error);
@@ -114,12 +147,14 @@ export class FindClosestTutorModalComponent implements OnInit {
   }
 
   private initMapFallback(): void {
-    const defaultLatLng: L.LatLngExpression = [52.2297, 21.0122];
-    this.map = L.map('map').setView(defaultLatLng, 13);
+    if (!this.map) {
+      const defaultLatLng: L.LatLngExpression = [52.2297, 21.0122];
+      this.map = L.map('map').setView(defaultLatLng, 13);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
+    }
   }
 
   private renderAdvertisementsOnMap() {
@@ -127,6 +162,7 @@ export class FindClosestTutorModalComponent implements OnInit {
       const advertisementId = add.id;
 
       const marker = L.marker([add.latitude, add.longitude]).addTo(this.map);
+      this.advertisementMarkers.push(marker);
 
       const popupId = `popup-btn-${advertisementId}`;
       const popupContent = `
@@ -158,5 +194,11 @@ export class FindClosestTutorModalComponent implements OnInit {
         }, 0);
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.map) {
+      this.map.remove();
+    }
   }
 }

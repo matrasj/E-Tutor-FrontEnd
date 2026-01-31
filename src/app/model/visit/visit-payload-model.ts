@@ -9,6 +9,7 @@ export interface VisitPayloadModel {
   advertisementId: number;
   authorId: number;
   accepted: boolean;
+  rejected: boolean;
   requesterName: string;
   tutorName: string;
 }

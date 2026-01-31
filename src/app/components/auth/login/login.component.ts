@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth-service";
 import {LoginPayloadRequestModel} from "../../../model/auth/login-payload-request-model";
 import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,16 +13,26 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   loginFormGroup : FormGroup | any;
   hide : boolean = true;
+
   constructor(private formBuilder : FormBuilder,
               private authService : AuthService,
               private toastrService : ToastrService,
-              private router : Router) {
+              private router : Router,
+              private route : ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
       username : new FormControl('', [Validators.required, Validators.minLength(4)]),
       password : new FormControl('', [Validators.required, Validators.minLength(4)])
+    });
+
+    this.route.queryParams.subscribe(params => {
+      if (params['confirmed'] === 'true') {
+        this.toastrService.success('Account successfully confirmed! You can now log in.');
+      } else if (params['confirmed'] === 'false') {
+        this.toastrService.error('Account confirmation failed. ' + (params['error'] || 'Please try again or contact support.'));
+      }
     });
   }
 
@@ -45,11 +55,10 @@ export class LoginComponent implements OnInit {
         )
       ).subscribe((res) => {
         this.authService.setCurrentUser(res.userPayload);
-          this.authService.setToken(res.jwtToken);
-          this.router.navigate(['/']);
-
-          this.toastrService.success("Successfully logged in!")
-          this.loginFormGroup.reset();
+        this.authService.setToken(res.jwtToken);
+        this.router.navigate(['/']);
+        this.toastrService.success("Successfully logged in!")
+        this.loginFormGroup.reset();
       }, () => {
         this.toastrService.error("Something went wrong")
       })

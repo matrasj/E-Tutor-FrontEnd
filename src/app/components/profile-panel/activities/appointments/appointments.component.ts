@@ -10,6 +10,7 @@ import { AuthService } from '../../../../service/auth-service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ApproveVisitModalComponent } from './approve-visit-modal/approve-visit-modal.component';
+import { RejectVisitModalComponent } from './reject-visit-modal/reject-visit-modal.component';
 
 @Component({
   selector: 'app-appointments',
@@ -42,6 +43,7 @@ export class AppointmentsComponent implements OnInit {
   visitsAsTutor: VisitPayloadModel[] = [];
   visitsAsStudent: VisitPayloadModel[] = [];
   acceptedVisits: VisitPayloadModel[] = [];
+  rejectedVisits: VisitPayloadModel[] = [];
   private currentUserId!: number;
 
   constructor(
@@ -63,14 +65,16 @@ export class AppointmentsComponent implements OnInit {
     forkJoin([
       this.visitService.getAllVisitRequestsAsStudent(userId),
       this.visitService.getAllVisitRequestsAsTutor(userId),
-      this.visitService.getAllAcceptedVisitConnectedToUser(userId)
+      this.visitService.getAllAcceptedVisitConnectedToUser(userId),
+      this.visitService.getAllRejectedVisitConnectedToUser(userId)
     ])
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
-        next: ([asStudent, asTutor, accepted]) => {
+        next: ([asStudent, asTutor, accepted, rejected]) => {
           this.visitsAsStudent = asStudent;
           this.visitsAsTutor = asTutor;
           this.acceptedVisits = accepted;
+          this.rejectedVisits = rejected;
 
           const tutorIds = new Set(this.visitsAsTutor.map(v => v.id));
           const events = this.acceptedVisits.map(v => this.mapVisitToEvent(v, tutorIds.has(v.id)));
@@ -112,6 +116,20 @@ export class AppointmentsComponent implements OnInit {
 
   approve(visitId: number) {
     const dialogRef = this.dialog.open(ApproveVisitModalComponent, {
+      data: { visitId },
+      panelClass: 'big-dialog',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed?: boolean) => {
+      if (confirmed) {
+        this.fetchData();
+      }
+    });
+  }
+
+  reject(visitId: number) {
+    const dialogRef = this.dialog.open(RejectVisitModalComponent, {
       data: { visitId },
       panelClass: 'big-dialog',
       disableClose: true

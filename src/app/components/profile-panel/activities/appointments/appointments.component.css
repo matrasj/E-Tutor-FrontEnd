@@ -42,188 +42,188 @@
   backdrop-filter: blur(20px);
 }
 
-   :host ::ng-deep {
-     .fc {
-       height: 100% !important;
-       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-     }
+:host ::ng-deep {
+  .fc {
+    height: 100% !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 
-     .fc-header-toolbar {
-       background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-       padding: 1.5rem;
-       border-radius: 12px;
-       margin-bottom: 1.5rem !important;
-       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-       border: 1px solid rgba(226, 232, 240, 0.6);
+  .fc-header-toolbar {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.6);
 
-       .fc-toolbar-chunk {
-         display: flex;
-         align-items: center;
-         gap: 0.5rem;
-       }
+    .fc-toolbar-chunk {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-       .fc-button {
-         background: linear-gradient(135deg, #667eea, #764ba2) !important;
-         border: none !important;
-         border-radius: 8px !important;
-         padding: 0.75rem 1.25rem !important;
-         font-weight: 600 !important;
-         font-size: 0.9rem !important;
-         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
-         transition: all 0.3s ease !important;
+    .fc-button {
+      background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      border: none !important;
+      border-radius: 8px !important;
+      padding: 0.75rem 1.25rem !important;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+      transition: all 0.3s ease !important;
 
-         &:hover {
-           transform: translateY(-2px) !important;
-           box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4) !important;
-         }
+      &:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4) !important;
+      }
 
-         &.fc-button-active {
-           background: linear-gradient(135deg, #5a67d8, #6b46c1) !important;
-           box-shadow: 0 2px 8px rgba(90, 103, 216, 0.4) !important;
-         }
-       }
+      &.fc-button-active {
+        background: linear-gradient(135deg, #5a67d8, #6b46c1) !important;
+        box-shadow: 0 2px 8px rgba(90, 103, 216, 0.4) !important;
+      }
+    }
 
-       .fc-toolbar-title {
-         font-size: 1.8rem !important;
-         font-weight: 700 !important;
-         color: #1a202c !important;
-         background: linear-gradient(135deg, #667eea, #764ba2);
-         -webkit-background-clip: text;
-         -webkit-text-fill-color: transparent;
-         background-clip: text;
-       }
-     }
+    .fc-toolbar-title {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: #1a202c !important;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
 
-     .fc-theme-standard {
-       .fc-scrollgrid {
-         border: none !important;
-         border-radius: 12px !important;
-         overflow: hidden !important;
-         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
-       }
+  .fc-theme-standard {
+    .fc-scrollgrid {
+      border: none !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    }
 
-       th, td {
-         border-color: rgba(226, 232, 240, 0.8) !important;
-       }
-     }
+    th, td {
+      border-color: rgba(226, 232, 240, 0.8) !important;
+    }
+  }
 
-   .fc-col-header {
-     background: linear-gradient(135deg, #f7fafc, #edf2f7) !important;
+  .fc-col-header {
+    background: linear-gradient(135deg, #f7fafc, #edf2f7) !important;
 
-     .fc-col-header-cell {
-       padding: 1rem 0.5rem !important;
+    .fc-col-header-cell {
+      padding: 1rem 0.5rem !important;
 
-       .fc-col-header-cell-cushion {
-         font-weight: 700 !important;
-         font-size: 0.9rem !important;
-         color: #4a5568 !important;
-         text-transform: uppercase !important;
-         letter-spacing: 0.5px !important;
-       }
-     }
-   }
+      .fc-col-header-cell-cushion {
+        font-weight: 700 !important;
+        font-size: 0.9rem !important;
+        color: #4a5568 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+      }
+    }
+  }
 
-   .fc-daygrid-day {
-     background: rgba(255, 255, 255, 0.9) !important;
-     transition: all 0.2s ease !important;
+  .fc-daygrid-day {
+    background: rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.2s ease !important;
 
-     &:hover {
-       background: rgba(247, 250, 252, 0.95) !important;
-     }
+    &:hover {
+      background: rgba(247, 250, 252, 0.95) !important;
+    }
 
-     .fc-daygrid-day-number {
-       padding: 0.75rem !important;
-       font-weight: 600 !important;
-       font-size: 0.95rem !important;
-       color: #2d3748 !important;
-     }
-   }
+    .fc-daygrid-day-number {
+      padding: 0.75rem !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+      color: #2d3748 !important;
+    }
+  }
 
-   .fc-day-today {
-     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)) !important;
+  .fc-day-today {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)) !important;
 
-     .fc-daygrid-day-number {
-       background: linear-gradient(135deg, #667eea, #764ba2) !important;
-       color: white !important;
-       border-radius: 50% !important;
-       width: 2rem !important;
-       height: 2rem !important;
-       display: flex !important;
-       align-items: center !important;
-       justify-content: center !important;
-       margin: 0.25rem !important;
-     }
-   }
+    .fc-daygrid-day-number {
+      background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      color: white !important;
+      border-radius: 50% !important;
+      width: 2rem !important;
+      height: 2rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0.25rem !important;
+    }
+  }
 
-   .fc-event {
-     border: none !important;
-     border-radius: 8px !important;
-     padding: 0.25rem 0.5rem !important;
-     margin: 0.125rem !important;
-     font-weight: 600 !important;
-     font-size: 0.85rem !important;
-     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-     cursor: default !important;
-     transition: all 0.2s ease !important;
+  .fc-event {
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.25rem 0.5rem !important;
+    margin: 0.125rem !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    cursor: default !important;
+    transition: all 0.2s ease !important;
 
-     &:hover {
-       transform: translateY(-1px) !important;
-       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
-     }
+    &:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    }
 
-     .fc-event-title {
-       font-weight: 600 !important;
-     }
+    .fc-event-title {
+      font-weight: 600 !important;
+    }
 
-     .fc-event-time {
-       font-weight: 500 !important;
-       opacity: 0.9 !important;
-     }
-   }
+    .fc-event-time {
+      font-weight: 500 !important;
+      opacity: 0.9 !important;
+    }
+  }
 
-   .fc-more-link {
-     background: linear-gradient(135deg, #667eea, #764ba2) !important;
-     color: white !important;
-     border-radius: 6px !important;
-     padding: 0.25rem 0.5rem !important;
-     font-weight: 600 !important;
-     font-size: 0.8rem !important;
-     text-decoration: none !important;
-     margin: 0.125rem !important;
-     display: inline-block !important;
-     box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3) !important;
+  .fc-more-link {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 0.25rem 0.5rem !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    text-decoration: none !important;
+    margin: 0.125rem !important;
+    display: inline-block !important;
+    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3) !important;
 
-     &:hover {
-       transform: translateY(-1px) !important;
-       box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4) !important;
-     }
-   }
+    &:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4) !important;
+    }
+  }
 
-   @media (max-width: 768px) {
-     .fc-header-toolbar {
-       flex-direction: column !important;
-       gap: 1rem !important;
+  @media (max-width: 768px) {
+    .fc-header-toolbar {
+      flex-direction: column !important;
+      gap: 1rem !important;
 
-       .fc-toolbar-chunk {
-         justify-content: center !important;
-       }
+      .fc-toolbar-chunk {
+        justify-content: center !important;
+      }
 
-       .fc-toolbar-title {
-         font-size: 1.5rem !important;
-       }
-     }
+      .fc-toolbar-title {
+        font-size: 1.5rem !important;
+      }
+    }
 
-     .fc-button {
-       padding: 0.5rem 1rem !important;
-       font-size: 0.8rem !important;
-     }
+    .fc-button {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.8rem !important;
+    }
 
-     .fc-event {
-       font-size: 0.75rem !important;
-       padding: 0.125rem 0.25rem !important;
-     }
-   }
-   }
+    .fc-event {
+      font-size: 0.75rem !important;
+      padding: 0.125rem 0.25rem !important;
+    }
+  }
+}
 
 :host ::ng-deep .fc-header-toolbar .fc-button {
   margin: 0 4px;
@@ -309,6 +309,11 @@
   background: linear-gradient(0deg, rgba(16,185,129,0.06), rgba(16,185,129,0.06)), #fff;
 }
 
+.visit-row.rejected {
+  border-color: rgba(220,38,38,0.35);
+  background: linear-gradient(0deg, rgba(220,38,38,0.06), rgba(220,38,38,0.06)), #fff;
+}
+
 .row-main {
   display: grid;
   gap: 8px;
@@ -349,6 +354,12 @@
   border-color: #34d399;
 }
 
+.st-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
 .row-meta {
   display: flex;
   flex-wrap: wrap;
@@ -374,6 +385,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  color: rgba(0,0,0,0.4);
+}
+
+.empty mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: rgba(0,0,0,0.2);
 }
 
 .custom-event {
